@@ -1,0 +1,38 @@
+<h1>Mafia
+<a href=@{AuthR LogoutR} .logout> Logout
+<section .main>
+    <div .bars>
+        <div .bar_holder>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Zločiny <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Krádež aut <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Práca <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Vražda <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Misie <br>
+
+        <div .bar_holder>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Banka <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Obchod <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Nemocnica <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Vazenie <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Továren na náboje <br>
+
+        <div .bar_holder>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Profil <br>
+            <div .bar>        
+                <a href=@{MainMenuR} .bar_item> Garáž <br>
+            <div .bar>
+                <a href=@{MainMenuR} .bar_item> Štatistika <br>
+
+    <div .game>
+        <h1> TODO LETO

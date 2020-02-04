@@ -1,0 +1,196 @@
+--Cast z defaultLayout
+        muser <- maybeAuthPair
+
+        -- Get the breadcrumbs, as defined in the YesodBreadcrumbs instance.
+        (title, parents) <- breadcrumbs
+
+        -- Define the menu items of the header.
+        let menuItems =
+                [ NavbarLeft $ MenuItem
+                    { menuItemLabel = "Home"
+                    , menuItemRoute = HomeR
+                    , menuItemAccessCallback = True
+                    }
+                , NavbarLeft $ MenuItem
+                    { menuItemLabel = "Profile"
+                    , menuItemRoute = ProfileR
+                    , menuItemAccessCallback = isJust muser
+                    }
+                , NavbarRight $ MenuItem
+                    { menuItemLabel = "Login"
+                    , menuItemRoute = AuthR LoginR
+                    , menuItemAccessCallback = isNothing muser
+                    }
+                , NavbarRight $ MenuItem
+                    { menuItemLabel = "Logout"
+                    , menuItemRoute = AuthR LogoutR
+                    , menuItemAccessCallback = isJust muser
+                    }
+                ]
+
+        let navbarLeftMenuItems = [x | NavbarLeft x <- menuItems]
+        let navbarRightMenuItems = [x | NavbarRight x <- menuItems]
+
+        let navbarLeftFilteredMenuItems = [x | x <- navbarLeftMenuItems, menuItemAccessCallback x]
+        let navbarRightFilteredMenuItems = [x | x <- navbarRightMenuItems, menuItemAccessCallback x]
+
+
+
+-- Define breadcrumbs.
+    instance YesodBreadcrumbs App where
+    -- Takes the route that the user is currently on, and returns a tuple
+    -- of the 'Text' that you want the label to display, and a previous
+    -- breadcrumb route.
+    breadcrumb
+        :: Route App  -- ^ The route the user is visiting currently.
+        -> Handler (Text, Maybe (Route App))
+    breadcrumb HomeR = return ("Home", Nothing)
+    breadcrumb (AuthR _) = return ("Login", Just HomeR)
+    breadcrumb ProfileR = return ("Profile", Just HomeR)
+    breadcrumb  _ = return ("home", Nothing)
+
+
+getHome
+     -- (formWidget, formEnctype) <- generateFormPost loginAForm
+   -- let submission = Nothing :: Maybe FileForm
+   --     handlerName = "getHomeR" :: Text
+    --allComments <- runDB $ getAllComments
+
+    
+        --let (commentFormId, commentTextareaId, commentListId) = commentIds
+       -- aDomId <- newIdent
+
+
+
+postHome
+     -- ((result, formWidget), formEnctype) <- runFormPost loginAForm
+   -- let handlerName = "postHomeR" :: Text
+   --     submission = case result of
+   --         FormSuccess res -> Just res
+    --        _ -> Nothing
+    --allComments <- runDB $ getAllComments
+
+    
+       -- let (commentFormId, commentTextareaId, commentListId) = commentIds
+       -- aDomId <- newIdent
+
+--sampleForm :: Form FileForm
+    --sampleForm = renderBootstrap3 BootstrapBasicForm $ FileForm
+  --  <$> fileAFormReq "Choose a file"
+    -- <*> areq textField textSettings Nothing
+    -- Add attributes like the placeholder and CSS classes.
+   -- where textSettings = FieldSettings
+     --       { fsLabel = "What's on the file?"
+       --     , fsTooltip = Nothing
+         --   , fsId = Nothing
+           -- , fsName = Nothing
+           -- , fsAttrs =
+           --     [ ("class", "form-control")
+          --      , ("placeholder", "File description")
+          --      ]
+          --  }
+
+
+
+instance YesodAuthEmail App where
+    type AuthEmailId App = UserId
+
+    afterPasswordRoute _ = MainMenuR
+
+    addUnverified email verkey = liftHandler $ runDB $ insert $ User email Nothing (Just verkey) False
+
+    sendVerifyEmail email _ verurl = do
+        -- Print out to the console the verification email, for easier
+        -- debugging.
+      --  liftIO $ putStrLn $ "Copy/ Paste this URL in your browser:" ++ unpack verurl
+
+        -- Send email.
+        liftIO $ renderSendMail (emptyMail $ Address Nothing "noreply")
+            { mailTo = [Address Nothing email]
+            , mailHeaders = [ ("Subject", "McMafia - Verify your email address")]
+            , mailParts = [[textPart, htmlPart]]
+            }
+     where
+        textPart = Part
+            { partType = "text/plain; charset=utf-8"
+            , partEncoding = None
+            , partDisposition = DefaultDisposition
+            , partContent = PartContent $ Data.Text.Lazy.Encoding.encodeUtf8
+                [stext|
+                    Please confirm your email address by clicking on the link below.
+
+                    #{verurl}
+
+                    Thank you
+                |]
+            , partHeaders = []
+            }
+        htmlPart = Part
+            { partType = "text/html; charset=utf-8"
+            , partEncoding = None
+            , partDisposition = DefaultDisposition
+            , partContent = PartContent $ renderHtml
+                [shamlet|
+                    <p>Prosím aby ste klikli na odkaz pre potvrdenie emailu.
+                    <p>
+                        <a href=#{verurl}>#{verurl}
+                    <p>Ďakujeme
+                |]
+            , partHeaders = []
+            }
+
+    getVerifyKey = liftHandler . runDB . fmap (join . fmap userVerkey) . get
+    
+    setVerifyKey uid key = liftHandler $ runDB $ update uid [UserVerkey =. Just key]
+
+    verifyAccount uid = liftHandler $ runDB $ do
+        mu <- get uid
+        case mu of
+            Nothing -> return Nothing
+            Just u -> do
+                update uid [UserVerified =. True, UserVerkey =. Nothing]
+                return $ Just uid
+
+    getPassword = liftHandler . runDB . fmap (join . fmap userPassword) . get
+
+    setPassword uid pass = liftHandler . runDB $ update uid [UserPassword =. Just pass]
+
+    getEmailCreds email = liftHandler $ runDB $ do
+        mu <- getBy $ UniqueUser email
+        case mu of
+            Nothing -> return Nothing
+            Just (Entity uid u) -> return $ Just EmailCreds
+                { emailCredsId = uid
+                , emailCredsAuthId = Just uid
+                , emailCredsStatus = isJust $ userPassword u
+                , emailCredsVerkey = userVerkey u
+                , emailCredsEmail = email
+                }
+    
+    getEmail = liftHandler . runDB . fmap (fmap userEmail) . get
+
+
+data U = U
+    { uUsername :: Text
+    , uPassword  :: Text
+    }
+    deriving Show
+
+myLoginHandler = do 
+        (widget, enctype) <- generateFormPost loginForm
+        defaultLayout $ do
+            setTitle "Login"
+            $(widgetFile "homepage")
+    where 
+        loginForm extra = do
+            (usernameRes, usernameView) <- mreq textField "Username" Nothing
+            (passwordRes, passwordView) <- mreq passwordField "Password" Nothing
+            let userRes = U <$> usernameRes <*> passwordRes
+            let widget = [whamlet|
+                            #{extra}
+                            <div>
+                                ^{fvInput usernameView}
+                            <div>
+                                ^{fvInput passwordView}
+                        |]
+            return (userRes, widget)
