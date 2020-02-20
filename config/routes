@@ -2,10 +2,8 @@
 -- Syntax for this file here: https://www.yesodweb.com/book/routing-and-handlers
 
 /static StaticR Static appStatic
-/auth AuthR Auth getAuth
 
-/favicon.ico FaviconR GET
-/robots.txt RobotsR GET
+/auth AuthR Auth getAuth
 
 / HomeR GET 
 
@@ -13,6 +11,4 @@
 
 /register RegisterR GET POST
 
-/about AboutR GET
-
-/main MainMenuR GET
+/send-data/#DeviceId/#Text SendDataR GET POST

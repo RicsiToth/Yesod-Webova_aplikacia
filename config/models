@@ -4,7 +4,10 @@
 User
     username Text
     password Text 
-    fullName Text
-    admin Bool default=false
-    email Text
     UniqueUsername username
+Device
+    url Text
+    userId UserId
+Values
+    value Text
+    deviceId DeviceId

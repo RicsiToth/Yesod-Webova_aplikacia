@@ -176,7 +176,7 @@ data U = U
     }
     deriving Show
 
-myLoginHandler = do 
+myLoginHandler = do
         (widget, enctype) <- generateFormPost loginForm
         defaultLayout $ do
             setTitle "Login"
@@ -194,3 +194,36 @@ myLoginHandler = do
                                 ^{fvInput passwordView}
                         |]
             return (userRes, widget)
+
+
+
+{-# LANGUAGE NoImplicitPrelude #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE QuasiQuotes #-}
+{-# LANGUAGE EmptyDataDecls             #-}
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE GADTs                      #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+module Handler.SendData where
+
+import Import
+import           Control.Monad.IO.Class  (liftIO)
+import           Database.Persist
+import           Database.Persist.Sqlite
+import           Database.Persist.TH
+import           Data.Text
+import           Control.Monad.Logger
+import           Conduit
+
+getSendDataR :: DeviceId -> Text -> Handler Html
+getSendDataR id value = do
+    id <- runDB $ insert $ Values value id
+    defaultLayout [whamlet|<p>OK|]
+
+    
+
+postSendDataR :: DeviceId -> Text -> Handler Html
+postSendDataR id value = getSendDataR id value

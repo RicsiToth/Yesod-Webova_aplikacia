@@ -4,13 +4,21 @@
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
 {-# LANGUAGE QuasiQuotes #-}
+
+{-# LANGUAGE EmptyDataDecls             #-}
+{-# LANGUAGE FlexibleContexts           #-}
+{-# LANGUAGE GADTs                      #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
 module Handler.Home where
 
 import Import
 import Text.Julius (RawJS (..))
+import Database.Persist.Sql
 
 getHomeR :: Handler Html
 getHomeR = do
+  let id'= toSqlKey 1
+  runDB $ insert $ Device "Prvy device" id'
   defaultLayout $ do
     setTitle "Welcome to McMafia"
     $(widgetFile "homepage")

@@ -10,9 +10,7 @@ import Import
 import Yesod.Auth.HashDB (setPassword)
 
 data NewUser = NewUser { nUsername :: Text,
-                         nFullName :: Text,
-                         nPassword :: Text,
-                         nEmail :: Text
+                         nPassword :: Text
                        }
 
 getRegisterR :: Handler Html
@@ -32,10 +30,7 @@ postRegisterR = do
     FormSuccess nu -> do
       newb <- setPassword (nPassword nu) $
             User { userUsername = (nUsername nu), 
-                   userPassword = "",
-                   userFullName = (nFullName nu),
-                   userAdmin = False,
-                   userEmail = (nEmail nu)
+                   userPassword = ""
                  }
 
       nameTaken <- usernameTaken $ nUsername nu
@@ -67,9 +62,7 @@ usernameTaken name = do
 newUserForm :: Form NewUser
 newUserForm = renderDivs $ NewUser
               <$> areq textField "Username" Nothing
-              <*> areq textField "Full Name" Nothing
               <*> areq passwordField "Password" Nothing
-              <*> areq textField "Email" Nothing
 
 myWid widget enctype = do 
   [whamlet|
