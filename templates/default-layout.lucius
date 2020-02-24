@@ -1,30 +1,16 @@
-body {
-  background-image: url(@{StaticR img_background_jpg});
+body{
+  background-color:white;
 }
-
-#header{
-  background: #E1DEDD;
-  width: 500px;
-  height: 250px;   
-  color: black;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
-  font-size: 20px;
+.top{
+  background-color: #1a1aff;
+  height: 50px;
+  font-size: 2em;
+  color: white;
 }
-
-#login{
-  background: #E1DEDD;
-  width: 500px;
-  height: 120px;   
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  /* bring your own prefixes */
-  transform: translate(-50%, -50%);
-  border-radius: 20px;
+section{
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
 }

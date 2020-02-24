@@ -13,21 +13,14 @@ module Foundation where
 
 import Import.NoFoundation
 import Database.Persist.Sql (ConnectionPool, runSqlPool)
-import Text.Hamlet (hamletFile, shamlet)
+import Text.Hamlet (hamletFile)
 import Text.Jasmine (minifym)
-import Text.Shakespeare.Text (stext)
-import Control.Monad.Logger (LogSource, runNoLoggingT)
-
-import Yesod.Auth.OpenId (authOpenId, IdentifierType (Claimed))
+import Control.Monad.Logger (LogSource)
 import Yesod.Default.Util (addStaticContentExternal)
 import Yesod.Core.Types (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
-import qualified Data.CaseInsensitive as CI
-import qualified Data.Text.Encoding as TE
 import Network.HTTP.Conduit (Manager)
 
-import Control.Applicative
-import Data.Maybe
 import Yesod.Auth.HashDB
 
 data App = App
@@ -62,9 +55,9 @@ instance Yesod App where
 
     defaultLayout :: Widget -> Handler Html
     defaultLayout widget = do
-        master <- getYesod
-        mmsg <- getMessage   
-        mcurrentRoute <- getCurrentRoute
+        _ <- getYesod
+        _ <- getMessage   
+        _ <- getCurrentRoute
         pc <- widgetToPageContent $ do
             addStylesheet $ StaticR css_bootstrap_css
             $(widgetFile "default-layout")
@@ -80,7 +73,8 @@ instance Yesod App where
     isAuthorized RegisterR _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
     isAuthorized (SendDataR _ _) _ = return Authorized
-
+    isAuthorized AddDeviceR _ = isAuthenticated
+    isAuthorized RemoveDeviceR _ = isAuthenticated
 
     addStaticContent :: Text -> Text -> LByteString -> Handler (Maybe (Either Text (Route App, [(Text, Text)])))
     addStaticContent ext mime content = do

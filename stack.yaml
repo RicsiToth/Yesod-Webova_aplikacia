@@ -47,6 +47,7 @@ extra-deps:
   - uri-bytestring-aeson-0.1.0.7
   - yesod-auth-hashdb-1.7.1.2
   - yesod-markdown-0.12.6.2
+  - guid-0.1.0
 # Override default flag values for local packages and extra-deps
 # flags: {}
 

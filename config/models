@@ -7,6 +7,7 @@ User
     UniqueUsername username
 Device
     url Text
+    name Text
     userId UserId
 Values
     value Text

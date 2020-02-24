@@ -1,0 +1,4 @@
+<p> 
+    <a href=@{AuthR LoginR} .login> Prihlásenie
+    <a href=@{RegisterR} .signin> Regstrácia 
+        

@@ -1,0 +1,5 @@
+<h2>
+    Sign up!
+<form method="post" enctype=#{enctype}>
+    ^{widget}
+    <button> Poslať

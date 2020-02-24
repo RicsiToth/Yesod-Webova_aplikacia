@@ -1,0 +1,24 @@
+section{
+    border-style: double;
+}
+form{
+    position: relative;
+    left: 110px;
+    top: 30px;
+}
+#hident3{
+    position: relative;
+    left: 15px;
+}
+#hident2{
+    position: relative;
+    left: 11px;
+}
+h2{
+    text-align:center;
+}
+button{
+    position: relative;
+    left: 110px;
+    top: 15px;
+}

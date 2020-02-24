@@ -15,17 +15,15 @@ data NewUser = NewUser { nUsername :: Text,
 
 getRegisterR :: Handler Html
 getRegisterR = do
-  (tmp, enctype) <- generateFormPost newUserForm
-  let widget = myWid tmp enctype
+  (widget, enctype) <- generateFormPost newUserForm
   defaultLayout $ do
     setTitle "Sign up"
-    $(widgetFile "homepage")
+    $(widgetFile "register")
 
 
 postRegisterR :: Handler Html
 postRegisterR = do
-  ((result, tmp), enctype) <- runFormPost newUserForm
-  let widget = myWid tmp enctype
+  ((result, widget), enctype) <- runFormPost newUserForm
   case result of
     FormSuccess nu -> do
       newb <- setPassword (nPassword nu) $
@@ -34,15 +32,12 @@ postRegisterR = do
                  }
 
       nameTaken <- usernameTaken $ nUsername nu
-      -- check username availability before insert
-      -- avoid internal server error when using Mongo
-      -- with a unique index on User collection
       if (nameTaken)
         then do
           setMessage "That username is not available"
-          defaultLayout $ do -- redisplay the page, keeping form data
+          defaultLayout $ do
             setTitle "Name Taken"
-            $(widgetFile "homepage")
+            $(widgetFile "register")
         else do
           _ <- runDB $ insert newb
           redirect $ AuthR LoginR
@@ -63,32 +58,3 @@ newUserForm :: Form NewUser
 newUserForm = renderDivs $ NewUser
               <$> areq textField "Username" Nothing
               <*> areq passwordField "Password" Nothing
-
-myWid widget enctype = do 
-  [whamlet|
-    <form method="post" enctype=#{enctype}>
-      ^{widget}
-      <button> Poslať
-  |]
-  toWidget [lucius| 
-             form{
-               position: relative;
-               left: 120px;
-             }
-             #hident5{
-               position: relative;
-               left: 42px;
-             }
-             #hident4{
-               position: relative;
-               left: 14.5px;
-             }
-             #hident3{
-               position: relative;
-               left: 12px;
-             }
-             #hident2{
-               position: relative;
-               left: 11px;
-             }
-            |]

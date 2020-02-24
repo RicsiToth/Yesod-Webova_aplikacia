@@ -9,13 +9,10 @@
 {-# LANGUAGE TypeFamilies               #-}
 module Model where
 
-import qualified ClassyPrelude.Yesod
 import Database.Persist.Quasi
 import Prelude
 import Yesod
 import Data.Text (Text)
-import Language.Haskell.TH.Syntax
-import Yesod.Markdown (Markdown)
 import Yesod.Auth.HashDB (HashDBUser(..))
 
 -- You can define all of your database entities in the entities file.

@@ -14,7 +14,7 @@ import Import
 
 getSendDataR :: DeviceId -> Text -> Handler Html
 getSendDataR id' value = do
-    valueid <- runDB $ insert $ Values value id'
+    _ <- runDB $ insert $ Values value id'
     defaultLayout [whamlet|<p>OK|]
 
     
