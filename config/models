@@ -6,9 +6,10 @@ User
     password Text 
     UniqueUsername username
 Device
-    url Text
     name Text
+    uuid Text
     userId UserId
+    UniqueUuid uuid
 Values
     value Text
     deviceId DeviceId

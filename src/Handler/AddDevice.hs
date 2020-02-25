@@ -11,10 +11,9 @@ import Database.Persist.Sql
 import Data.Maybe
 import Data.Text as T
 import Text.Read as R
+import Data.GUID
 
-data NewDevice = NewDevice{ url :: Text,
-                            name :: Text
-                          }
+data NewDevice = NewDevice{ name :: Text }
 
 getAddDeviceR :: Handler Html
 getAddDeviceR = do
@@ -32,7 +31,8 @@ postAddDeviceR = do
             let tmp = T.unpack $ fromJust sessId
             let tmp2 = R.read tmp ::Int64
             let id' = toSqlKey tmp2
-            _ <- runDB $ insert $ Device (url nu) (name nu) id'
+            uuid <- liftIO $ genText
+            _ <- runDB $ insert $ Device (name nu) uuid id'
             redirect AddDeviceR
         _ -> do
             setMessage "Something went wrong"
@@ -40,5 +40,4 @@ postAddDeviceR = do
 
 newDeviceForm :: Form NewDevice
 newDeviceForm = renderDivs $ NewDevice
-              <$> areq textField "Url" Nothing
-              <*> areq textField "Name" Nothing
+              <$> areq textField "Name" Nothing
