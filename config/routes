@@ -11,7 +11,7 @@
 
 /register RegisterR GET POST
 
-/send-data/#DeviceId/#Text SendDataR GET POST
+/send-data/#Text/#DeviceId/#Text SendDataR GET POST
 
 /add-device AddDeviceR GET POST
 /remove-device RemoveDeviceR GET POST

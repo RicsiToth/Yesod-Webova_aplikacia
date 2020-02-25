@@ -12,12 +12,25 @@ module Handler.SendData where
 
 import Import
 
-getSendDataR :: DeviceId -> Text -> Handler Html
-getSendDataR id' value = do
-    _ <- runDB $ insert $ Values value id'
-    defaultLayout [whamlet|<p>OK|]
+getSendDataR :: Text -> DeviceId -> Text -> Handler Html
+getSendDataR uuid id' value = do
+    valid <- validation id' uuid
+    if(valid)
+        then do
+            _ <- runDB $ insert $ Values value id'
+            defaultLayout [whamlet|<p>OK|]
+        else defaultLayout [whamlet|<p>NIE|]
+
+
 
     
 
-postSendDataR :: DeviceId -> Text -> Handler Html
-postSendDataR id' value = getSendDataR id' value
+postSendDataR :: Text -> DeviceId -> Text -> Handler Html
+postSendDataR uuid id' value = getSendDataR uuid id' value
+
+validation :: DeviceId -> Text -> Handler Bool
+validation id' uuid = do
+  results <- runDB $ selectList [DeviceId ==. id', DeviceUuid ==. uuid] []
+  case results of
+    [] -> return False
+    _  -> return True

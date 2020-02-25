@@ -72,7 +72,7 @@ instance Yesod App where
     isAuthorized (AuthR _) _ = return Authorized
     isAuthorized RegisterR _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
-    isAuthorized (SendDataR _ _) _ = return Authorized
+    isAuthorized (SendDataR _ _ _) _ = return Authorized
     isAuthorized AddDeviceR _ = isAuthenticated
     isAuthorized RemoveDeviceR _ = isAuthenticated
 
