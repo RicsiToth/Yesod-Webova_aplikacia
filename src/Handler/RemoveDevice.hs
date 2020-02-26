@@ -13,3 +13,4 @@ getRemoveDeviceR = error "Not yet implemented: getRemoveDeviceR"
 
 postRemoveDeviceR :: Handler Html
 postRemoveDeviceR = error "Not yet implemented: postRemoveDeviceR"
+
