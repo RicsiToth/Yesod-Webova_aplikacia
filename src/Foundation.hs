@@ -74,7 +74,7 @@ instance Yesod App where
     isAuthorized ProfileR _ = isAuthenticated
     isAuthorized (SendDataR _ _ _) _ = return Authorized
     isAuthorized AddDeviceR _ = isAuthenticated
-    isAuthorized RemoveDeviceR _ = isAuthenticated
+    isAuthorized (RemoveDeviceR _) _ = isAuthenticated
 
     addStaticContent :: Text -> Text -> LByteString -> Handler (Maybe (Either Text (Route App, [(Text, Text)])))
     addStaticContent ext mime content = do
@@ -152,4 +152,3 @@ instance HasHttpManager App where
 
 unsafeHandler :: App -> Handler a -> IO a
 unsafeHandler = Unsafe.fakeHandlerGetLogger appLogger
-
