@@ -14,4 +14,5 @@
 /send-data/#Text/#DeviceId/#Text SendDataR GET POST
 
 /add-device AddDeviceR GET POST
-/remove-device RemoveDeviceR GET POST
+
+/remove-device/#DeviceId RemoveDeviceR GET POST
