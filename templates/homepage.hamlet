@@ -1,0 +1,15 @@
+<div .sideBar>
+    <ul>
+        $forall Entity deviceid device <- dev
+            <li>
+                $if(deviceid == deviceId)
+                    <a href=@{HomeIdR deviceid} .selected>#{deviceName device}
+                $else
+                    <a href=@{HomeIdR deviceid}>#{deviceName device}
+$forall Entity deviceid device <- seldev
+    <div .devInfo>
+        <div .uuid>
+            <p .uuidText>#{deviceUuid device}
+        <div .delete>
+            <a href=@{RemoveDeviceR deviceid} .removeDevice>Delete
+    

@@ -1,4 +1,7 @@
 <p .top>
-    Ročníkový projekt - IOT
+    <a href=@{HomeR} .home>Ročníkový projekt - IOT
+    $maybe _ <- maid
+        <a href=@{AddDeviceR} .addDevice>Add Device
+        <a href=@{AuthR LogoutR} .logout>Logout
 <section>
     ^{widget}

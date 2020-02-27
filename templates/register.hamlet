@@ -1,5 +1,6 @@
-<h2>
-    Sign up!
-<form method="post" enctype=#{enctype}>
-    ^{widget}
-    <button> Poslať
+<div .center>
+    <h2>
+        Sign up!
+    <form method="post" enctype=#{enctype}>
+        ^{widget}
+        <button> Poslať

@@ -1,6 +1,3 @@
-section{
-    border-style: double;
-}
 form{
     position: relative;
     left: 110px;
@@ -21,4 +18,9 @@ button{
     position: relative;
     left: 110px;
     top: 15px;
+}
+.center{
+    border-style: double;
+    border-radius: 10px;
+    background-color: white;
 }

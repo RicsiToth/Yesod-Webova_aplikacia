@@ -5,7 +5,7 @@
 
 /auth AuthR Auth getAuth
 
-/ HomeR GET 
+/ IntroR GET 
 
 /profile ProfileR GET
 
@@ -16,3 +16,5 @@
 /add-device AddDeviceR GET POST
 
 /remove-device/#DeviceId RemoveDeviceR GET POST
+/home HomeR GET
+/home/#DeviceId HomeIdR GET

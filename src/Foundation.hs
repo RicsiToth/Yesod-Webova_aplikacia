@@ -55,6 +55,7 @@ instance Yesod App where
 
     defaultLayout :: Widget -> Handler Html
     defaultLayout widget = do
+        maid <- maybeAuthId
         _ <- getYesod
         _ <- getMessage   
         _ <- getCurrentRoute
@@ -67,14 +68,16 @@ instance Yesod App where
     authRoute _ = Just $ AuthR LoginR
 
     isAuthorized :: Route App -> Bool -> Handler AuthResult
-    isAuthorized HomeR _ = return Authorized
+    isAuthorized IntroR _ = return Authorized
     isAuthorized (StaticR _) _ = return Authorized
     isAuthorized (AuthR _) _ = return Authorized
     isAuthorized RegisterR _ = return Authorized
-    isAuthorized ProfileR _ = isAuthenticated
     isAuthorized (SendDataR _ _ _) _ = return Authorized
+    isAuthorized ProfileR _ = isAuthenticated
     isAuthorized AddDeviceR _ = isAuthenticated
     isAuthorized (RemoveDeviceR _) _ = isAuthenticated
+    isAuthorized (HomeIdR _) _ = isAuthenticated
+    isAuthorized HomeR _ = isAuthenticated
 
     addStaticContent :: Text -> Text -> LByteString -> Handler (Maybe (Either Text (Route App, [(Text, Text)])))
     addStaticContent ext mime content = do
@@ -118,7 +121,8 @@ instance YesodAuth App where
     type AuthId App = UserId
 
     loginDest _ = HomeR
-    logoutDest _ = HomeR
+
+    logoutDest _ = IntroR
 
     authPlugins _ = [authHashDB (Just . UniqueUsername)]
   
