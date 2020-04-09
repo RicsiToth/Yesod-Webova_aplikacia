@@ -12,4 +12,6 @@ Device
     UniqueUuid uuid
 Values
     value Text
+    time UTCTime default=CURRENT_TIME
     deviceId DeviceId
+    

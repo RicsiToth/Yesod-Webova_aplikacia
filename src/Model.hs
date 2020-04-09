@@ -9,9 +9,12 @@
 {-# LANGUAGE TypeFamilies               #-}
 module Model where
 
+import Database.Persist.Sqlite
+import Database.Persist.TH
+import Data.Time.LocalTime
+import Data.Time
 import Database.Persist.Quasi
 import Prelude
-import Yesod
 import Data.Text (Text)
 import Yesod.Auth.HashDB (HashDBUser(..))
 
