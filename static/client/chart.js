@@ -7064,18 +7064,18 @@ var $elm_community$json_extra$Json$Decode$Extra$datetime = A2(
 	},
 	$elm$json$Json$Decode$string);
 var $elm$json$Json$Decode$field = _Json_decodeField;
-var $elm$json$Json$Decode$int = _Json_decodeInt;
+var $elm$json$Json$Decode$float = _Json_decodeFloat;
 var $author$project$Main$dataDecoder = A3(
 	$elm$json$Json$Decode$map2,
 	$author$project$Main$Data,
 	A2($elm$json$Json$Decode$field, 'time', $elm_community$json_extra$Json$Decode$Extra$datetime),
-	A2($elm$json$Json$Decode$field, 'value', $elm$json$Json$Decode$int));
+	A2($elm$json$Json$Decode$field, 'value', $elm$json$Json$Decode$float));
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $author$project$Main$theDecoder = $elm$json$Json$Decode$list($author$project$Main$dataDecoder);
 var $author$project$Main$getData = $elm$http$Http$get(
 	{
 		expect: A2($elm$http$Http$expectJson, $author$project$Main$GotData, $author$project$Main$theDecoder),
-		url: 'http://localhost:3000/data/1'
+		url: 'http://localhost:8080/data/1'
 	});
 var $author$project$Main$init = function (_v0) {
 	return _Utils_Tuple2($author$project$Main$Loading, $author$project$Main$getData);
@@ -7107,409 +7107,82 @@ var $author$project$Main$update = F2(
 			}
 		}
 	});
+var $elm_community$typed_svg$TypedSvg$Types$Paint = function (a) {
+	return {$: 'Paint', a: a};
+};
+var $elm_community$typed_svg$TypedSvg$Types$PaintNone = {$: 'PaintNone'};
 var $elm_community$typed_svg$TypedSvg$Types$Translate = F2(
 	function (a, b) {
 		return {$: 'Translate', a: a, b: b};
 	});
-var $elm$virtual_dom$VirtualDom$attribute = F2(
-	function (key, value) {
-		return A2(
-			_VirtualDom_attribute,
-			_VirtualDom_noOnOrFormAction(key),
-			_VirtualDom_noJavaScriptOrHtmlUri(value));
-	});
-var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
-var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'class',
-		A2($elm$core$String$join, ' ', names));
+var $folkertdev$one_true_path_experiment$SubPath$SubPath = function (a) {
+	return {$: 'SubPath', a: a};
 };
-var $elm_community$typed_svg$TypedSvg$Types$AnchorMiddle = {$: 'AnchorMiddle'};
-var $gampleman$elm_visualization$Scale$bandwidth = function (_v0) {
-	var scale = _v0.a;
-	return scale.bandwidth;
+var $folkertdev$one_true_path_experiment$SubPath$firstPoint = function (_v0) {
+	var moveto = _v0.moveto;
+	var p = moveto.a;
+	return p;
 };
-var $gampleman$elm_visualization$Scale$convert = F2(
-	function (_v0, value) {
-		var scale = _v0.a;
-		return A3(scale.convert, scale.domain, scale.range, value);
-	});
-var $ryannhg$date_format$DateFormat$DayOfMonthFixed = {$: 'DayOfMonthFixed'};
-var $ryannhg$date_format$DateFormat$dayOfMonthFixed = $ryannhg$date_format$DateFormat$DayOfMonthFixed;
-var $ryannhg$date_format$DateFormat$Language$Language = F6(
-	function (toMonthName, toMonthAbbreviation, toWeekdayName, toWeekdayAbbreviation, toAmPm, toOrdinalSuffix) {
-		return {toAmPm: toAmPm, toMonthAbbreviation: toMonthAbbreviation, toMonthName: toMonthName, toOrdinalSuffix: toOrdinalSuffix, toWeekdayAbbreviation: toWeekdayAbbreviation, toWeekdayName: toWeekdayName};
-	});
-var $ryannhg$date_format$DateFormat$Language$toEnglishAmPm = function (hour) {
-	return (hour > 11) ? 'pm' : 'am';
+var $folkertdev$one_true_path_experiment$LowLevel$Command$LineTo = function (a) {
+	return {$: 'LineTo', a: a};
 };
-var $ryannhg$date_format$DateFormat$Language$toEnglishMonthName = function (month) {
-	switch (month.$) {
-		case 'Jan':
-			return 'January';
-		case 'Feb':
-			return 'February';
-		case 'Mar':
-			return 'March';
-		case 'Apr':
-			return 'April';
-		case 'May':
-			return 'May';
-		case 'Jun':
-			return 'June';
-		case 'Jul':
-			return 'July';
-		case 'Aug':
-			return 'August';
-		case 'Sep':
-			return 'September';
-		case 'Oct':
-			return 'October';
-		case 'Nov':
-			return 'November';
-		default:
-			return 'December';
-	}
-};
-var $ryannhg$date_format$DateFormat$Language$toEnglishSuffix = function (num) {
-	var _v0 = A2($elm$core$Basics$modBy, 100, num);
-	switch (_v0) {
-		case 11:
-			return 'th';
-		case 12:
-			return 'th';
-		case 13:
-			return 'th';
-		default:
-			var _v1 = A2($elm$core$Basics$modBy, 10, num);
-			switch (_v1) {
-				case 1:
-					return 'st';
-				case 2:
-					return 'nd';
-				case 3:
-					return 'rd';
-				default:
-					return 'th';
-			}
-	}
-};
-var $ryannhg$date_format$DateFormat$Language$toEnglishWeekdayName = function (weekday) {
-	switch (weekday.$) {
-		case 'Mon':
-			return 'Monday';
-		case 'Tue':
-			return 'Tuesday';
-		case 'Wed':
-			return 'Wednesday';
-		case 'Thu':
-			return 'Thursday';
-		case 'Fri':
-			return 'Friday';
-		case 'Sat':
-			return 'Saturday';
-		default:
-			return 'Sunday';
-	}
-};
-var $ryannhg$date_format$DateFormat$Language$english = A6(
-	$ryannhg$date_format$DateFormat$Language$Language,
-	$ryannhg$date_format$DateFormat$Language$toEnglishMonthName,
-	A2(
-		$elm$core$Basics$composeR,
-		$ryannhg$date_format$DateFormat$Language$toEnglishMonthName,
-		$elm$core$String$left(3)),
-	$ryannhg$date_format$DateFormat$Language$toEnglishWeekdayName,
-	A2(
-		$elm$core$Basics$composeR,
-		$ryannhg$date_format$DateFormat$Language$toEnglishWeekdayName,
-		$elm$core$String$left(3)),
-	$ryannhg$date_format$DateFormat$Language$toEnglishAmPm,
-	$ryannhg$date_format$DateFormat$Language$toEnglishSuffix);
-var $elm$time$Time$flooredDiv = F2(
-	function (numerator, denominator) {
-		return $elm$core$Basics$floor(numerator / denominator);
-	});
-var $elm$time$Time$posixToMillis = function (_v0) {
-	var millis = _v0.a;
-	return millis;
-};
-var $elm$time$Time$toAdjustedMinutesHelp = F3(
-	function (defaultOffset, posixMinutes, eras) {
-		toAdjustedMinutesHelp:
-		while (true) {
-			if (!eras.b) {
-				return posixMinutes + defaultOffset;
+var $folkertdev$one_true_path_experiment$LowLevel$Command$lineTo = $folkertdev$one_true_path_experiment$LowLevel$Command$LineTo;
+var $folkertdev$one_true_path_experiment$SubPath$Empty = {$: 'Empty'};
+var $folkertdev$one_true_path_experiment$SubPath$map2 = F3(
+	function (f, sub1, sub2) {
+		var _v0 = _Utils_Tuple2(sub1, sub2);
+		if (_v0.a.$ === 'Empty') {
+			if (_v0.b.$ === 'Empty') {
+				var _v1 = _v0.a;
+				var _v2 = _v0.b;
+				return $folkertdev$one_true_path_experiment$SubPath$Empty;
 			} else {
-				var era = eras.a;
-				var olderEras = eras.b;
-				if (_Utils_cmp(era.start, posixMinutes) < 0) {
-					return posixMinutes + era.offset;
+				var _v3 = _v0.a;
+				var subpath = _v0.b;
+				return subpath;
+			}
+		} else {
+			if (_v0.b.$ === 'Empty') {
+				var subpath = _v0.a;
+				var _v4 = _v0.b;
+				return subpath;
+			} else {
+				var a = _v0.a.a;
+				var b = _v0.b.a;
+				return A2(f, a, b);
+			}
+		}
+	});
+var $folkertdev$elm_deque$Deque$Deque = function (a) {
+	return {$: 'Deque', a: a};
+};
+var $folkertdev$elm_deque$Deque$mapAbstract = F2(
+	function (f, _v0) {
+		var _abstract = _v0.a;
+		return $folkertdev$elm_deque$Deque$Deque(
+			f(_abstract));
+	});
+var $elm$core$List$drop = F2(
+	function (n, list) {
+		drop:
+		while (true) {
+			if (n <= 0) {
+				return list;
+			} else {
+				if (!list.b) {
+					return list;
 				} else {
-					var $temp$defaultOffset = defaultOffset,
-						$temp$posixMinutes = posixMinutes,
-						$temp$eras = olderEras;
-					defaultOffset = $temp$defaultOffset;
-					posixMinutes = $temp$posixMinutes;
-					eras = $temp$eras;
-					continue toAdjustedMinutesHelp;
+					var x = list.a;
+					var xs = list.b;
+					var $temp$n = n - 1,
+						$temp$list = xs;
+					n = $temp$n;
+					list = $temp$list;
+					continue drop;
 				}
 			}
 		}
 	});
-var $elm$time$Time$toAdjustedMinutes = F2(
-	function (_v0, time) {
-		var defaultOffset = _v0.a;
-		var eras = _v0.b;
-		return A3(
-			$elm$time$Time$toAdjustedMinutesHelp,
-			defaultOffset,
-			A2(
-				$elm$time$Time$flooredDiv,
-				$elm$time$Time$posixToMillis(time),
-				60000),
-			eras);
-	});
-var $elm$time$Time$toHour = F2(
-	function (zone, time) {
-		return A2(
-			$elm$core$Basics$modBy,
-			24,
-			A2(
-				$elm$time$Time$flooredDiv,
-				A2($elm$time$Time$toAdjustedMinutes, zone, time),
-				60));
-	});
-var $ryannhg$date_format$DateFormat$amPm = F3(
-	function (language, zone, posix) {
-		return language.toAmPm(
-			A2($elm$time$Time$toHour, zone, posix));
-	});
-var $elm$core$Basics$ge = _Utils_ge;
-var $elm$time$Time$toCivil = function (minutes) {
-	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
-	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
-	var dayOfEra = rawDay - (era * 146097);
-	var yearOfEra = ((((dayOfEra - ((dayOfEra / 1460) | 0)) + ((dayOfEra / 36524) | 0)) - ((dayOfEra / 146096) | 0)) / 365) | 0;
-	var dayOfYear = dayOfEra - (((365 * yearOfEra) + ((yearOfEra / 4) | 0)) - ((yearOfEra / 100) | 0));
-	var mp = (((5 * dayOfYear) + 2) / 153) | 0;
-	var month = mp + ((mp < 10) ? 3 : (-9));
-	var year = yearOfEra + (era * 400);
-	return {
-		day: (dayOfYear - ((((153 * mp) + 2) / 5) | 0)) + 1,
-		month: month,
-		year: year + ((month <= 2) ? 1 : 0)
-	};
-};
-var $elm$time$Time$toDay = F2(
-	function (zone, time) {
-		return $elm$time$Time$toCivil(
-			A2($elm$time$Time$toAdjustedMinutes, zone, time)).day;
-	});
-var $ryannhg$date_format$DateFormat$dayOfMonth = $elm$time$Time$toDay;
-var $elm$time$Time$Sun = {$: 'Sun'};
-var $elm$time$Time$Fri = {$: 'Fri'};
-var $elm$time$Time$Mon = {$: 'Mon'};
-var $elm$time$Time$Sat = {$: 'Sat'};
-var $elm$time$Time$Thu = {$: 'Thu'};
-var $elm$time$Time$Tue = {$: 'Tue'};
-var $elm$time$Time$Wed = {$: 'Wed'};
-var $ryannhg$date_format$DateFormat$days = _List_fromArray(
-	[$elm$time$Time$Sun, $elm$time$Time$Mon, $elm$time$Time$Tue, $elm$time$Time$Wed, $elm$time$Time$Thu, $elm$time$Time$Fri, $elm$time$Time$Sat]);
-var $elm$core$List$filter = F2(
-	function (isGood, list) {
-		return A3(
-			$elm$core$List$foldr,
-			F2(
-				function (x, xs) {
-					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
-				}),
-			_List_Nil,
-			list);
-	});
-var $elm$core$List$head = function (list) {
-	if (list.b) {
-		var x = list.a;
-		var xs = list.b;
-		return $elm$core$Maybe$Just(x);
-	} else {
-		return $elm$core$Maybe$Nothing;
-	}
-};
-var $elm$time$Time$toWeekday = F2(
-	function (zone, time) {
-		var _v0 = A2(
-			$elm$core$Basics$modBy,
-			7,
-			A2(
-				$elm$time$Time$flooredDiv,
-				A2($elm$time$Time$toAdjustedMinutes, zone, time),
-				60 * 24));
-		switch (_v0) {
-			case 0:
-				return $elm$time$Time$Thu;
-			case 1:
-				return $elm$time$Time$Fri;
-			case 2:
-				return $elm$time$Time$Sat;
-			case 3:
-				return $elm$time$Time$Sun;
-			case 4:
-				return $elm$time$Time$Mon;
-			case 5:
-				return $elm$time$Time$Tue;
-			default:
-				return $elm$time$Time$Wed;
-		}
-	});
-var $elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
-var $ryannhg$date_format$DateFormat$dayOfWeek = F2(
-	function (zone, posix) {
-		return function (_v1) {
-			var i = _v1.a;
-			return i;
-		}(
-			A2(
-				$elm$core$Maybe$withDefault,
-				_Utils_Tuple2(0, $elm$time$Time$Sun),
-				$elm$core$List$head(
-					A2(
-						$elm$core$List$filter,
-						function (_v0) {
-							var day = _v0.b;
-							return _Utils_eq(
-								day,
-								A2($elm$time$Time$toWeekday, zone, posix));
-						},
-						A2(
-							$elm$core$List$indexedMap,
-							F2(
-								function (i, day) {
-									return _Utils_Tuple2(i, day);
-								}),
-							$ryannhg$date_format$DateFormat$days)))));
-	});
-var $ryannhg$date_format$DateFormat$isLeapYear = function (year_) {
-	return (!(!A2($elm$core$Basics$modBy, 4, year_))) ? false : ((!(!A2($elm$core$Basics$modBy, 100, year_))) ? true : ((!(!A2($elm$core$Basics$modBy, 400, year_))) ? false : true));
-};
-var $ryannhg$date_format$DateFormat$daysInMonth = F2(
-	function (year_, month) {
-		switch (month.$) {
-			case 'Jan':
-				return 31;
-			case 'Feb':
-				return $ryannhg$date_format$DateFormat$isLeapYear(year_) ? 29 : 28;
-			case 'Mar':
-				return 31;
-			case 'Apr':
-				return 30;
-			case 'May':
-				return 31;
-			case 'Jun':
-				return 30;
-			case 'Jul':
-				return 31;
-			case 'Aug':
-				return 31;
-			case 'Sep':
-				return 30;
-			case 'Oct':
-				return 31;
-			case 'Nov':
-				return 30;
-			default:
-				return 31;
-		}
-	});
-var $elm$time$Time$Jan = {$: 'Jan'};
-var $elm$time$Time$Apr = {$: 'Apr'};
-var $elm$time$Time$Aug = {$: 'Aug'};
-var $elm$time$Time$Dec = {$: 'Dec'};
-var $elm$time$Time$Feb = {$: 'Feb'};
-var $elm$time$Time$Jul = {$: 'Jul'};
-var $elm$time$Time$Jun = {$: 'Jun'};
-var $elm$time$Time$Mar = {$: 'Mar'};
-var $elm$time$Time$May = {$: 'May'};
-var $elm$time$Time$Nov = {$: 'Nov'};
-var $elm$time$Time$Oct = {$: 'Oct'};
-var $elm$time$Time$Sep = {$: 'Sep'};
-var $ryannhg$date_format$DateFormat$months = _List_fromArray(
-	[$elm$time$Time$Jan, $elm$time$Time$Feb, $elm$time$Time$Mar, $elm$time$Time$Apr, $elm$time$Time$May, $elm$time$Time$Jun, $elm$time$Time$Jul, $elm$time$Time$Aug, $elm$time$Time$Sep, $elm$time$Time$Oct, $elm$time$Time$Nov, $elm$time$Time$Dec]);
-var $elm$time$Time$toMonth = F2(
-	function (zone, time) {
-		var _v0 = $elm$time$Time$toCivil(
-			A2($elm$time$Time$toAdjustedMinutes, zone, time)).month;
-		switch (_v0) {
-			case 1:
-				return $elm$time$Time$Jan;
-			case 2:
-				return $elm$time$Time$Feb;
-			case 3:
-				return $elm$time$Time$Mar;
-			case 4:
-				return $elm$time$Time$Apr;
-			case 5:
-				return $elm$time$Time$May;
-			case 6:
-				return $elm$time$Time$Jun;
-			case 7:
-				return $elm$time$Time$Jul;
-			case 8:
-				return $elm$time$Time$Aug;
-			case 9:
-				return $elm$time$Time$Sep;
-			case 10:
-				return $elm$time$Time$Oct;
-			case 11:
-				return $elm$time$Time$Nov;
-			default:
-				return $elm$time$Time$Dec;
-		}
-	});
-var $ryannhg$date_format$DateFormat$monthPair = F2(
-	function (zone, posix) {
-		return A2(
-			$elm$core$Maybe$withDefault,
-			_Utils_Tuple2(0, $elm$time$Time$Jan),
-			$elm$core$List$head(
-				A2(
-					$elm$core$List$filter,
-					function (_v0) {
-						var i = _v0.a;
-						var m = _v0.b;
-						return _Utils_eq(
-							m,
-							A2($elm$time$Time$toMonth, zone, posix));
-					},
-					A2(
-						$elm$core$List$indexedMap,
-						F2(
-							function (a, b) {
-								return _Utils_Tuple2(a, b);
-							}),
-						$ryannhg$date_format$DateFormat$months))));
-	});
-var $ryannhg$date_format$DateFormat$monthNumber_ = F2(
-	function (zone, posix) {
-		return 1 + function (_v0) {
-			var i = _v0.a;
-			var m = _v0.b;
-			return i;
-		}(
-			A2($ryannhg$date_format$DateFormat$monthPair, zone, posix));
-	});
-var $elm$core$List$sum = function (numbers) {
-	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
-};
 var $elm$core$List$takeReverse = F3(
 	function (n, list, kept) {
 		takeReverse:
@@ -7636,11 +7309,1590 @@ var $elm$core$List$take = F2(
 	function (n, list) {
 		return A3($elm$core$List$takeFast, 0, n, list);
 	});
+var $folkertdev$elm_deque$Internal$rebalance = function (deque) {
+	var sizeF = deque.sizeF;
+	var sizeR = deque.sizeR;
+	var front = deque.front;
+	var rear = deque.rear;
+	var size1 = ((sizeF + sizeR) / 2) | 0;
+	var size2 = (sizeF + sizeR) - size1;
+	var balanceConstant = 4;
+	if ((sizeF + sizeR) < 2) {
+		return deque;
+	} else {
+		if (_Utils_cmp(sizeF, (balanceConstant * sizeR) + 1) > 0) {
+			var newRear = _Utils_ap(
+				rear,
+				$elm$core$List$reverse(
+					A2($elm$core$List$drop, size1, front)));
+			var newFront = A2($elm$core$List$take, size1, front);
+			return {front: newFront, rear: newRear, sizeF: size1, sizeR: size2};
+		} else {
+			if (_Utils_cmp(sizeR, (balanceConstant * sizeF) + 1) > 0) {
+				var newRear = A2($elm$core$List$take, size1, rear);
+				var newFront = _Utils_ap(
+					front,
+					$elm$core$List$reverse(
+						A2($elm$core$List$drop, size1, rear)));
+				return {front: newFront, rear: newRear, sizeF: size1, sizeR: size2};
+			} else {
+				return deque;
+			}
+		}
+	}
+};
+var $folkertdev$elm_deque$Deque$pushBack = F2(
+	function (elem, _v0) {
+		var deque = _v0.a;
+		return A2(
+			$folkertdev$elm_deque$Deque$mapAbstract,
+			$folkertdev$elm_deque$Internal$rebalance,
+			$folkertdev$elm_deque$Deque$Deque(
+				{
+					front: deque.front,
+					rear: A2($elm$core$List$cons, elem, deque.rear),
+					sizeF: deque.sizeF,
+					sizeR: deque.sizeR + 1
+				}));
+	});
+var $folkertdev$one_true_path_experiment$SubPath$pushBack = F2(
+	function (drawto, data) {
+		return _Utils_update(
+			data,
+			{
+				drawtos: A2($folkertdev$elm_deque$Deque$pushBack, drawto, data.drawtos)
+			});
+	});
+var $elm$core$Basics$composeL = F3(
+	function (g, f, x) {
+		return g(
+			f(x));
+	});
+var $folkertdev$elm_deque$Internal$length = function (deque) {
+	return deque.sizeF + deque.sizeR;
+};
+var $folkertdev$elm_deque$Internal$isEmpty = function (deque) {
+	return !$folkertdev$elm_deque$Internal$length(deque);
+};
+var $folkertdev$elm_deque$Deque$unwrap = function (_v0) {
+	var boundedDeque = _v0.a;
+	return boundedDeque;
+};
+var $folkertdev$elm_deque$Deque$isEmpty = A2($elm$core$Basics$composeL, $folkertdev$elm_deque$Internal$isEmpty, $folkertdev$elm_deque$Deque$unwrap);
+var $folkertdev$elm_deque$Deque$append = F2(
+	function (p, q) {
+		var x = p.a;
+		var y = q.a;
+		return $folkertdev$elm_deque$Deque$isEmpty(p) ? q : ($folkertdev$elm_deque$Deque$isEmpty(q) ? p : $folkertdev$elm_deque$Deque$Deque(
+			{
+				front: _Utils_ap(
+					x.front,
+					$elm$core$List$reverse(x.rear)),
+				rear: $elm$core$List$reverse(
+					_Utils_ap(
+						y.front,
+						$elm$core$List$reverse(y.rear))),
+				sizeF: x.sizeF + x.sizeR,
+				sizeR: y.sizeF + y.sizeR
+			}));
+	});
+var $folkertdev$one_true_path_experiment$SubPath$unsafeConcatenate = F2(
+	function (a, b) {
+		return _Utils_update(
+			a,
+			{
+				drawtos: A2($folkertdev$elm_deque$Deque$append, a.drawtos, b.drawtos)
+			});
+	});
+var $folkertdev$one_true_path_experiment$SubPath$connect = function () {
+	var helper = F2(
+		function (right, left) {
+			return $folkertdev$one_true_path_experiment$SubPath$SubPath(
+				A2(
+					$folkertdev$one_true_path_experiment$SubPath$unsafeConcatenate,
+					A2(
+						$folkertdev$one_true_path_experiment$SubPath$pushBack,
+						$folkertdev$one_true_path_experiment$LowLevel$Command$lineTo(
+							_List_fromArray(
+								[
+									$folkertdev$one_true_path_experiment$SubPath$firstPoint(right)
+								])),
+						left),
+					right));
+		});
+	return $folkertdev$one_true_path_experiment$SubPath$map2(helper);
+}();
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $gampleman$elm_visualization$Shape$Generators$area = F2(
+	function (curve, data) {
+		var makeShape = F2(
+			function (topline, bottomline) {
+				return A2(
+					$folkertdev$one_true_path_experiment$SubPath$connect,
+					curve(bottomline),
+					curve(topline));
+			});
+		var makeCurves = F3(
+			function (acc, datum, _v3) {
+				var prev = _v3.a;
+				var list = _v3.b;
+				var _v0 = _Utils_Tuple3(prev, datum, list);
+				if (_v0.b.$ === 'Nothing') {
+					var _v1 = _v0.b;
+					var l = _v0.c;
+					return _Utils_Tuple2(false, l);
+				} else {
+					if (!_v0.a) {
+						var point = _v0.b.a;
+						var l = _v0.c;
+						return _Utils_Tuple2(
+							true,
+							A2(
+								$elm$core$List$cons,
+								_List_fromArray(
+									[
+										acc(point)
+									]),
+								l));
+					} else {
+						if (_v0.c.b) {
+							var p1 = _v0.b.a;
+							var _v2 = _v0.c;
+							var ps = _v2.a;
+							var l = _v2.b;
+							return _Utils_Tuple2(
+								true,
+								A2(
+									$elm$core$List$cons,
+									A2(
+										$elm$core$List$cons,
+										acc(p1),
+										ps),
+									l));
+						} else {
+							var p1 = _v0.b.a;
+							var l = _v0.c;
+							return _Utils_Tuple2(
+								true,
+								A2(
+									$elm$core$List$cons,
+									_List_fromArray(
+										[
+											acc(p1)
+										]),
+									l));
+						}
+					}
+				}
+			});
+		var topLineData = A3(
+			$elm$core$List$foldr,
+			makeCurves($elm$core$Tuple$first),
+			_Utils_Tuple2(false, _List_Nil),
+			data).b;
+		var bottomLineData = A2(
+			$elm$core$List$map,
+			$elm$core$List$reverse,
+			A3(
+				$elm$core$List$foldr,
+				makeCurves($elm$core$Tuple$second),
+				_Utils_Tuple2(false, _List_Nil),
+				data).b);
+		var shapes = A3($elm$core$List$map2, makeShape, topLineData, bottomLineData);
+		return A3($elm$core$List$map2, makeShape, topLineData, bottomLineData);
+	});
+var $gampleman$elm_visualization$Shape$area = $gampleman$elm_visualization$Shape$Generators$area;
+var $folkertdev$one_true_path_experiment$LowLevel$Command$CurveTo = function (a) {
+	return {$: 'CurveTo', a: a};
+};
+var $folkertdev$one_true_path_experiment$LowLevel$Command$cubicCurveTo = $folkertdev$one_true_path_experiment$LowLevel$Command$CurveTo;
+var $folkertdev$one_true_path_experiment$SubPath$empty = $folkertdev$one_true_path_experiment$SubPath$Empty;
+var $ianmackenzie$elm_geometry$Geometry$Types$Vector2d = function (a) {
+	return {$: 'Vector2d', a: a};
+};
+var $ianmackenzie$elm_geometry$Vector2d$fromComponents = $ianmackenzie$elm_geometry$Geometry$Types$Vector2d;
+var $folkertdev$one_true_path_experiment$Curve$monotonePoint = F4(
+	function (_v0, _v1, t0, t1) {
+		var x0 = _v0.a;
+		var y0 = _v0.b;
+		var x1 = _v1.a;
+		var y1 = _v1.b;
+		var dx = (x1 - x0) / 3;
+		return _Utils_Tuple3(
+			_Utils_Tuple2(x0 + dx, y0 + (dx * t0)),
+			_Utils_Tuple2(x1 - dx, y1 - (dx * t1)),
+			_Utils_Tuple2(x1, y1));
+	});
+var $ianmackenzie$elm_geometry$Vector2d$components = function (_v0) {
+	var components_ = _v0.a;
+	return components_;
+};
+var $ianmackenzie$elm_geometry$Vector2d$difference = F2(
+	function (firstVector, secondVector) {
+		var _v0 = $ianmackenzie$elm_geometry$Vector2d$components(secondVector);
+		var x2 = _v0.a;
+		var y2 = _v0.b;
+		var _v1 = $ianmackenzie$elm_geometry$Vector2d$components(firstVector);
+		var x1 = _v1.a;
+		var y1 = _v1.b;
+		return $ianmackenzie$elm_geometry$Vector2d$fromComponents(
+			_Utils_Tuple2(x1 - x2, y1 - y2));
+	});
+var $folkertdev$one_true_path_experiment$Curve$slope2 = F3(
+	function (p0, p1, t) {
+		var _v0 = $ianmackenzie$elm_geometry$Vector2d$components(
+			A2($ianmackenzie$elm_geometry$Vector2d$difference, p0, p1));
+		var dx = _v0.a;
+		var dy = _v0.b;
+		return (!(!dx)) ? ((((3 * dy) / dx) - t) / 2) : t;
+	});
+var $elm$core$Basics$abs = function (n) {
+	return (n < 0) ? (-n) : n;
+};
+var $elm$core$Basics$min = F2(
+	function (x, y) {
+		return (_Utils_cmp(x, y) < 0) ? x : y;
+	});
+var $folkertdev$one_true_path_experiment$Curve$sign = function (x) {
+	return (x < 0) ? (-1) : 1;
+};
+var $folkertdev$one_true_path_experiment$Curve$toH = F2(
+	function (h0, h1) {
+		return (!h0) ? ((h1 < 0) ? (0 * (-1)) : h1) : h0;
+	});
+var $folkertdev$one_true_path_experiment$Curve$slope3 = F3(
+	function (p0, p1, p2) {
+		var _v0 = $ianmackenzie$elm_geometry$Vector2d$components(
+			A2($ianmackenzie$elm_geometry$Vector2d$difference, p2, p1));
+		var dx2 = _v0.a;
+		var dy2 = _v0.b;
+		var _v1 = $ianmackenzie$elm_geometry$Vector2d$components(
+			A2($ianmackenzie$elm_geometry$Vector2d$difference, p1, p0));
+		var dx1 = _v1.a;
+		var dy1 = _v1.b;
+		var _v2 = _Utils_Tuple2(
+			A2($folkertdev$one_true_path_experiment$Curve$toH, dx1, dx2),
+			A2($folkertdev$one_true_path_experiment$Curve$toH, dx2, dx1));
+		var s0h = _v2.a;
+		var s1h = _v2.b;
+		var s1 = dy2 / s1h;
+		var s0 = dy1 / s0h;
+		var p = ((s0 * dx2) + (s1 * dx1)) / (dx1 + dx2);
+		return ($folkertdev$one_true_path_experiment$Curve$sign(s0) + $folkertdev$one_true_path_experiment$Curve$sign(s1)) * A2(
+			$elm$core$Basics$min,
+			A2(
+				$elm$core$Basics$min,
+				$elm$core$Basics$abs(s0),
+				$elm$core$Basics$abs(s1)),
+			0.5 * $elm$core$Basics$abs(p));
+	});
+var $folkertdev$one_true_path_experiment$Curve$monotoneXHelper = F3(
+	function (acc, t0, remaininPoints) {
+		monotoneXHelper:
+		while (true) {
+			if (remaininPoints.b && remaininPoints.b.b) {
+				if (remaininPoints.b.b.b) {
+					var p0 = remaininPoints.a;
+					var _v1 = remaininPoints.b;
+					var p1 = _v1.a;
+					var _v2 = _v1.b;
+					var p = _v2.a;
+					var rest = _v2.b;
+					var t1 = A3(
+						$folkertdev$one_true_path_experiment$Curve$slope3,
+						$ianmackenzie$elm_geometry$Vector2d$fromComponents(p0),
+						$ianmackenzie$elm_geometry$Vector2d$fromComponents(p1),
+						$ianmackenzie$elm_geometry$Vector2d$fromComponents(p));
+					var $temp$acc = A2(
+						$elm$core$List$cons,
+						A4($folkertdev$one_true_path_experiment$Curve$monotonePoint, p0, p1, t0, t1),
+						acc),
+						$temp$t0 = t1,
+						$temp$remaininPoints = A2(
+						$elm$core$List$cons,
+						p1,
+						A2($elm$core$List$cons, p, rest));
+					acc = $temp$acc;
+					t0 = $temp$t0;
+					remaininPoints = $temp$remaininPoints;
+					continue monotoneXHelper;
+				} else {
+					var p0 = remaininPoints.a;
+					var _v3 = remaininPoints.b;
+					var p1 = _v3.a;
+					var t1 = A3(
+						$folkertdev$one_true_path_experiment$Curve$slope2,
+						$ianmackenzie$elm_geometry$Vector2d$fromComponents(p0),
+						$ianmackenzie$elm_geometry$Vector2d$fromComponents(p1),
+						t0);
+					return $elm$core$List$reverse(
+						A2(
+							$elm$core$List$cons,
+							A4($folkertdev$one_true_path_experiment$Curve$monotonePoint, p0, p1, t0, t1),
+							acc));
+				}
+			} else {
+				return _List_Nil;
+			}
+		}
+	});
+var $folkertdev$one_true_path_experiment$LowLevel$Command$MoveTo = function (a) {
+	return {$: 'MoveTo', a: a};
+};
+var $folkertdev$one_true_path_experiment$LowLevel$Command$moveTo = $folkertdev$one_true_path_experiment$LowLevel$Command$MoveTo;
+var $folkertdev$elm_deque$Internal$fromList = function (list) {
+	return $folkertdev$elm_deque$Internal$rebalance(
+		{
+			front: list,
+			rear: _List_Nil,
+			sizeF: $elm$core$List$length(list),
+			sizeR: 0
+		});
+};
+var $folkertdev$elm_deque$Deque$fromList = A2($elm$core$Basics$composeL, $folkertdev$elm_deque$Deque$Deque, $folkertdev$elm_deque$Internal$fromList);
+var $folkertdev$one_true_path_experiment$SubPath$with = F2(
+	function (moveto, drawtos) {
+		return $folkertdev$one_true_path_experiment$SubPath$SubPath(
+			{
+				drawtos: $folkertdev$elm_deque$Deque$fromList(drawtos),
+				moveto: moveto
+			});
+	});
+var $folkertdev$one_true_path_experiment$Curve$monotoneX = function (points) {
+	if (points.b && points.b.b) {
+		if (points.b.b.b) {
+			var p0 = points.a;
+			var _v1 = points.b;
+			var p1 = _v1.a;
+			var _v2 = _v1.b;
+			var p = _v2.a;
+			var rest = _v2.b;
+			var t1 = A3(
+				$folkertdev$one_true_path_experiment$Curve$slope3,
+				$ianmackenzie$elm_geometry$Vector2d$fromComponents(p0),
+				$ianmackenzie$elm_geometry$Vector2d$fromComponents(p1),
+				$ianmackenzie$elm_geometry$Vector2d$fromComponents(p));
+			var otherInstructions = A3(
+				$folkertdev$one_true_path_experiment$Curve$monotoneXHelper,
+				_List_Nil,
+				t1,
+				A2(
+					$elm$core$List$cons,
+					p1,
+					A2($elm$core$List$cons, p, rest)));
+			var initialInstruction = A4(
+				$folkertdev$one_true_path_experiment$Curve$monotonePoint,
+				p0,
+				p1,
+				A3(
+					$folkertdev$one_true_path_experiment$Curve$slope2,
+					$ianmackenzie$elm_geometry$Vector2d$fromComponents(p0),
+					$ianmackenzie$elm_geometry$Vector2d$fromComponents(p1),
+					t1),
+				t1);
+			return A2(
+				$folkertdev$one_true_path_experiment$SubPath$with,
+				$folkertdev$one_true_path_experiment$LowLevel$Command$moveTo(p0),
+				_List_fromArray(
+					[
+						$folkertdev$one_true_path_experiment$LowLevel$Command$cubicCurveTo(
+						A2($elm$core$List$cons, initialInstruction, otherInstructions))
+					]));
+		} else {
+			var p0 = points.a;
+			var _v3 = points.b;
+			var p1 = _v3.a;
+			return A2(
+				$folkertdev$one_true_path_experiment$SubPath$with,
+				$folkertdev$one_true_path_experiment$LowLevel$Command$moveTo(p0),
+				_List_fromArray(
+					[
+						$folkertdev$one_true_path_experiment$LowLevel$Command$lineTo(
+						_List_fromArray(
+							[p1]))
+					]));
+		}
+	} else {
+		return $folkertdev$one_true_path_experiment$SubPath$empty;
+	}
+};
+var $gampleman$elm_visualization$Shape$monotoneInXCurve = $folkertdev$one_true_path_experiment$Curve$monotoneX;
+var $gampleman$elm_visualization$Scale$convert = F2(
+	function (_v0, value) {
+		var scale = _v0.a;
+		return A3(scale.convert, scale.domain, scale.range, value);
+	});
+var $gampleman$elm_visualization$Scale$rangeExtent = function (_v0) {
+	var options = _v0.a;
+	return A2(options.rangeExtent, options.domain, options.range);
+};
+var $author$project$Main$padding = 30;
+var $gampleman$elm_visualization$Scale$Scale = function (a) {
+	return {$: 'Scale', a: a};
+};
+var $gampleman$elm_visualization$Scale$Internal$bimap = F4(
+	function (_v0, _v1, deinterpolate, reinterpolate) {
+		var d0 = _v0.a;
+		var d1 = _v0.b;
+		var r0 = _v1.a;
+		var r1 = _v1.b;
+		var _v2 = (_Utils_cmp(d1, d0) < 0) ? _Utils_Tuple2(
+			A2(deinterpolate, d1, d0),
+			A2(reinterpolate, r1, r0)) : _Utils_Tuple2(
+			A2(deinterpolate, d0, d1),
+			A2(reinterpolate, r0, r1));
+		var de = _v2.a;
+		var re = _v2.b;
+		return A2($elm$core$Basics$composeL, re, de);
+	});
+var $gampleman$elm_visualization$Scale$Linear$deinterpolate = F3(
+	function (a, b, x) {
+		var normalizedB = b - a;
+		return (!normalizedB) ? 0 : ((x - a) / normalizedB);
+	});
+var $gampleman$elm_visualization$Scale$Time$deinterpolate = $gampleman$elm_visualization$Scale$Linear$deinterpolate;
+var $gampleman$elm_visualization$Scale$Internal$interpolateFloat = F3(
+	function (from, to, time) {
+		return from + ((to - from) * time);
+	});
+var $elm$time$Time$posixToMillis = function (_v0) {
+	var millis = _v0.a;
+	return millis;
+};
+var $gampleman$elm_visualization$Scale$Time$toTime = function (_v0) {
+	var a = _v0.a;
+	var b = _v0.b;
+	return _Utils_Tuple2(
+		$elm$time$Time$posixToMillis(a),
+		$elm$time$Time$posixToMillis(b));
+};
+var $gampleman$elm_visualization$Scale$Time$convert = F2(
+	function (domain, range) {
+		return A4(
+			$gampleman$elm_visualization$Scale$Internal$bimap,
+			$gampleman$elm_visualization$Scale$Time$toTime(domain),
+			range,
+			F3(
+				function (d, r, v) {
+					return A3(
+						$gampleman$elm_visualization$Scale$Time$deinterpolate,
+						d,
+						r,
+						$elm$time$Time$posixToMillis(v));
+				}),
+			$gampleman$elm_visualization$Scale$Internal$interpolateFloat);
+	});
+var $gampleman$elm_visualization$Scale$Time$interpolate = F2(
+	function (a, b) {
+		return A2($gampleman$elm_visualization$Scale$Internal$interpolateFloat, a, b);
+	});
+var $gampleman$elm_visualization$Scale$Time$invert = F2(
+	function (domain, range) {
+		return A4(
+			$gampleman$elm_visualization$Scale$Internal$bimap,
+			range,
+			$gampleman$elm_visualization$Scale$Time$toTime(domain),
+			$gampleman$elm_visualization$Scale$Time$deinterpolate,
+			F3(
+				function (d, r, v) {
+					return $elm$time$Time$millisToPosix(
+						$elm$core$Basics$round(
+							A3($gampleman$elm_visualization$Scale$Time$interpolate, d, r, v)));
+				}));
+	});
+var $justinmimbs$time_extra$Time$Extra$Day = {$: 'Day'};
+var $justinmimbs$date$Date$Days = {$: 'Days'};
+var $justinmimbs$time_extra$Time$Extra$Millisecond = {$: 'Millisecond'};
+var $justinmimbs$time_extra$Time$Extra$Month = {$: 'Month'};
+var $justinmimbs$date$Date$Months = {$: 'Months'};
+var $justinmimbs$date$Date$RD = function (a) {
+	return {$: 'RD', a: a};
+};
+var $justinmimbs$date$Date$isLeapYear = function (y) {
+	return ((!A2($elm$core$Basics$modBy, 4, y)) && (!(!A2($elm$core$Basics$modBy, 100, y)))) || (!A2($elm$core$Basics$modBy, 400, y));
+};
+var $justinmimbs$date$Date$daysBeforeMonth = F2(
+	function (y, m) {
+		var leapDays = $justinmimbs$date$Date$isLeapYear(y) ? 1 : 0;
+		switch (m.$) {
+			case 'Jan':
+				return 0;
+			case 'Feb':
+				return 31;
+			case 'Mar':
+				return 59 + leapDays;
+			case 'Apr':
+				return 90 + leapDays;
+			case 'May':
+				return 120 + leapDays;
+			case 'Jun':
+				return 151 + leapDays;
+			case 'Jul':
+				return 181 + leapDays;
+			case 'Aug':
+				return 212 + leapDays;
+			case 'Sep':
+				return 243 + leapDays;
+			case 'Oct':
+				return 273 + leapDays;
+			case 'Nov':
+				return 304 + leapDays;
+			default:
+				return 334 + leapDays;
+		}
+	});
+var $justinmimbs$date$Date$floorDiv = F2(
+	function (a, b) {
+		return $elm$core$Basics$floor(a / b);
+	});
+var $justinmimbs$date$Date$daysBeforeYear = function (y1) {
+	var y = y1 - 1;
+	var leapYears = (A2($justinmimbs$date$Date$floorDiv, y, 4) - A2($justinmimbs$date$Date$floorDiv, y, 100)) + A2($justinmimbs$date$Date$floorDiv, y, 400);
+	return (365 * y) + leapYears;
+};
+var $justinmimbs$date$Date$daysInMonth = F2(
+	function (y, m) {
+		switch (m.$) {
+			case 'Jan':
+				return 31;
+			case 'Feb':
+				return $justinmimbs$date$Date$isLeapYear(y) ? 29 : 28;
+			case 'Mar':
+				return 31;
+			case 'Apr':
+				return 30;
+			case 'May':
+				return 31;
+			case 'Jun':
+				return 30;
+			case 'Jul':
+				return 31;
+			case 'Aug':
+				return 31;
+			case 'Sep':
+				return 30;
+			case 'Oct':
+				return 31;
+			case 'Nov':
+				return 30;
+			default:
+				return 31;
+		}
+	});
+var $justinmimbs$date$Date$monthToNumber = function (m) {
+	switch (m.$) {
+		case 'Jan':
+			return 1;
+		case 'Feb':
+			return 2;
+		case 'Mar':
+			return 3;
+		case 'Apr':
+			return 4;
+		case 'May':
+			return 5;
+		case 'Jun':
+			return 6;
+		case 'Jul':
+			return 7;
+		case 'Aug':
+			return 8;
+		case 'Sep':
+			return 9;
+		case 'Oct':
+			return 10;
+		case 'Nov':
+			return 11;
+		default:
+			return 12;
+	}
+};
+var $elm$time$Time$Apr = {$: 'Apr'};
+var $elm$time$Time$Aug = {$: 'Aug'};
+var $elm$time$Time$Dec = {$: 'Dec'};
+var $elm$time$Time$Feb = {$: 'Feb'};
+var $elm$time$Time$Jan = {$: 'Jan'};
+var $elm$time$Time$Jul = {$: 'Jul'};
+var $elm$time$Time$Jun = {$: 'Jun'};
+var $elm$time$Time$Mar = {$: 'Mar'};
+var $elm$time$Time$May = {$: 'May'};
+var $elm$time$Time$Nov = {$: 'Nov'};
+var $elm$time$Time$Oct = {$: 'Oct'};
+var $elm$time$Time$Sep = {$: 'Sep'};
+var $justinmimbs$date$Date$numberToMonth = function (mn) {
+	var _v0 = A2($elm$core$Basics$max, 1, mn);
+	switch (_v0) {
+		case 1:
+			return $elm$time$Time$Jan;
+		case 2:
+			return $elm$time$Time$Feb;
+		case 3:
+			return $elm$time$Time$Mar;
+		case 4:
+			return $elm$time$Time$Apr;
+		case 5:
+			return $elm$time$Time$May;
+		case 6:
+			return $elm$time$Time$Jun;
+		case 7:
+			return $elm$time$Time$Jul;
+		case 8:
+			return $elm$time$Time$Aug;
+		case 9:
+			return $elm$time$Time$Sep;
+		case 10:
+			return $elm$time$Time$Oct;
+		case 11:
+			return $elm$time$Time$Nov;
+		default:
+			return $elm$time$Time$Dec;
+	}
+};
+var $justinmimbs$date$Date$toCalendarDateHelp = F3(
+	function (y, m, d) {
+		toCalendarDateHelp:
+		while (true) {
+			var monthDays = A2($justinmimbs$date$Date$daysInMonth, y, m);
+			var mn = $justinmimbs$date$Date$monthToNumber(m);
+			if ((mn < 12) && (_Utils_cmp(d, monthDays) > 0)) {
+				var $temp$y = y,
+					$temp$m = $justinmimbs$date$Date$numberToMonth(mn + 1),
+					$temp$d = d - monthDays;
+				y = $temp$y;
+				m = $temp$m;
+				d = $temp$d;
+				continue toCalendarDateHelp;
+			} else {
+				return {day: d, month: m, year: y};
+			}
+		}
+	});
+var $justinmimbs$date$Date$divWithRemainder = F2(
+	function (a, b) {
+		return _Utils_Tuple2(
+			A2($justinmimbs$date$Date$floorDiv, a, b),
+			A2($elm$core$Basics$modBy, b, a));
+	});
+var $justinmimbs$date$Date$year = function (_v0) {
+	var rd = _v0.a;
+	var _v1 = A2($justinmimbs$date$Date$divWithRemainder, rd, 146097);
+	var n400 = _v1.a;
+	var r400 = _v1.b;
+	var _v2 = A2($justinmimbs$date$Date$divWithRemainder, r400, 36524);
+	var n100 = _v2.a;
+	var r100 = _v2.b;
+	var _v3 = A2($justinmimbs$date$Date$divWithRemainder, r100, 1461);
+	var n4 = _v3.a;
+	var r4 = _v3.b;
+	var _v4 = A2($justinmimbs$date$Date$divWithRemainder, r4, 365);
+	var n1 = _v4.a;
+	var r1 = _v4.b;
+	var n = (!r1) ? 0 : 1;
+	return ((((n400 * 400) + (n100 * 100)) + (n4 * 4)) + n1) + n;
+};
+var $justinmimbs$date$Date$toOrdinalDate = function (_v0) {
+	var rd = _v0.a;
+	var y = $justinmimbs$date$Date$year(
+		$justinmimbs$date$Date$RD(rd));
+	return {
+		ordinalDay: rd - $justinmimbs$date$Date$daysBeforeYear(y),
+		year: y
+	};
+};
+var $justinmimbs$date$Date$toCalendarDate = function (_v0) {
+	var rd = _v0.a;
+	var date = $justinmimbs$date$Date$toOrdinalDate(
+		$justinmimbs$date$Date$RD(rd));
+	return A3($justinmimbs$date$Date$toCalendarDateHelp, date.year, $elm$time$Time$Jan, date.ordinalDay);
+};
+var $justinmimbs$date$Date$add = F3(
+	function (unit, n, _v0) {
+		var rd = _v0.a;
+		switch (unit.$) {
+			case 'Years':
+				return A3(
+					$justinmimbs$date$Date$add,
+					$justinmimbs$date$Date$Months,
+					12 * n,
+					$justinmimbs$date$Date$RD(rd));
+			case 'Months':
+				var date = $justinmimbs$date$Date$toCalendarDate(
+					$justinmimbs$date$Date$RD(rd));
+				var wholeMonths = ((12 * (date.year - 1)) + ($justinmimbs$date$Date$monthToNumber(date.month) - 1)) + n;
+				var m = $justinmimbs$date$Date$numberToMonth(
+					A2($elm$core$Basics$modBy, 12, wholeMonths) + 1);
+				var y = A2($justinmimbs$date$Date$floorDiv, wholeMonths, 12) + 1;
+				return $justinmimbs$date$Date$RD(
+					($justinmimbs$date$Date$daysBeforeYear(y) + A2($justinmimbs$date$Date$daysBeforeMonth, y, m)) + A2(
+						$elm$core$Basics$min,
+						date.day,
+						A2($justinmimbs$date$Date$daysInMonth, y, m)));
+			case 'Weeks':
+				return $justinmimbs$date$Date$RD(rd + (7 * n));
+			default:
+				return $justinmimbs$date$Date$RD(rd + n);
+		}
+	});
+var $elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
+	});
+var $justinmimbs$date$Date$fromCalendarDate = F3(
+	function (y, m, d) {
+		return $justinmimbs$date$Date$RD(
+			($justinmimbs$date$Date$daysBeforeYear(y) + A2($justinmimbs$date$Date$daysBeforeMonth, y, m)) + A3(
+				$elm$core$Basics$clamp,
+				1,
+				A2($justinmimbs$date$Date$daysInMonth, y, m),
+				d));
+	});
+var $elm$time$Time$flooredDiv = F2(
+	function (numerator, denominator) {
+		return $elm$core$Basics$floor(numerator / denominator);
+	});
+var $elm$time$Time$toAdjustedMinutesHelp = F3(
+	function (defaultOffset, posixMinutes, eras) {
+		toAdjustedMinutesHelp:
+		while (true) {
+			if (!eras.b) {
+				return posixMinutes + defaultOffset;
+			} else {
+				var era = eras.a;
+				var olderEras = eras.b;
+				if (_Utils_cmp(era.start, posixMinutes) < 0) {
+					return posixMinutes + era.offset;
+				} else {
+					var $temp$defaultOffset = defaultOffset,
+						$temp$posixMinutes = posixMinutes,
+						$temp$eras = olderEras;
+					defaultOffset = $temp$defaultOffset;
+					posixMinutes = $temp$posixMinutes;
+					eras = $temp$eras;
+					continue toAdjustedMinutesHelp;
+				}
+			}
+		}
+	});
+var $elm$time$Time$toAdjustedMinutes = F2(
+	function (_v0, time) {
+		var defaultOffset = _v0.a;
+		var eras = _v0.b;
+		return A3(
+			$elm$time$Time$toAdjustedMinutesHelp,
+			defaultOffset,
+			A2(
+				$elm$time$Time$flooredDiv,
+				$elm$time$Time$posixToMillis(time),
+				60000),
+			eras);
+	});
+var $elm$core$Basics$ge = _Utils_ge;
+var $elm$time$Time$toCivil = function (minutes) {
+	var rawDay = A2($elm$time$Time$flooredDiv, minutes, 60 * 24) + 719468;
+	var era = (((rawDay >= 0) ? rawDay : (rawDay - 146096)) / 146097) | 0;
+	var dayOfEra = rawDay - (era * 146097);
+	var yearOfEra = ((((dayOfEra - ((dayOfEra / 1460) | 0)) + ((dayOfEra / 36524) | 0)) - ((dayOfEra / 146096) | 0)) / 365) | 0;
+	var dayOfYear = dayOfEra - (((365 * yearOfEra) + ((yearOfEra / 4) | 0)) - ((yearOfEra / 100) | 0));
+	var mp = (((5 * dayOfYear) + 2) / 153) | 0;
+	var month = mp + ((mp < 10) ? 3 : (-9));
+	var year = yearOfEra + (era * 400);
+	return {
+		day: (dayOfYear - ((((153 * mp) + 2) / 5) | 0)) + 1,
+		month: month,
+		year: year + ((month <= 2) ? 1 : 0)
+	};
+};
+var $elm$time$Time$toDay = F2(
+	function (zone, time) {
+		return $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).day;
+	});
+var $elm$time$Time$toMonth = F2(
+	function (zone, time) {
+		var _v0 = $elm$time$Time$toCivil(
+			A2($elm$time$Time$toAdjustedMinutes, zone, time)).month;
+		switch (_v0) {
+			case 1:
+				return $elm$time$Time$Jan;
+			case 2:
+				return $elm$time$Time$Feb;
+			case 3:
+				return $elm$time$Time$Mar;
+			case 4:
+				return $elm$time$Time$Apr;
+			case 5:
+				return $elm$time$Time$May;
+			case 6:
+				return $elm$time$Time$Jun;
+			case 7:
+				return $elm$time$Time$Jul;
+			case 8:
+				return $elm$time$Time$Aug;
+			case 9:
+				return $elm$time$Time$Sep;
+			case 10:
+				return $elm$time$Time$Oct;
+			case 11:
+				return $elm$time$Time$Nov;
+			default:
+				return $elm$time$Time$Dec;
+		}
+	});
 var $elm$time$Time$toYear = F2(
 	function (zone, time) {
 		return $elm$time$Time$toCivil(
 			A2($elm$time$Time$toAdjustedMinutes, zone, time)).year;
 	});
+var $justinmimbs$date$Date$fromPosix = F2(
+	function (zone, posix) {
+		return A3(
+			$justinmimbs$date$Date$fromCalendarDate,
+			A2($elm$time$Time$toYear, zone, posix),
+			A2($elm$time$Time$toMonth, zone, posix),
+			A2($elm$time$Time$toDay, zone, posix));
+	});
+var $justinmimbs$date$Date$toRataDie = function (_v0) {
+	var rd = _v0.a;
+	return rd;
+};
+var $justinmimbs$time_extra$Time$Extra$dateToMillis = function (date) {
+	var daysSinceEpoch = $justinmimbs$date$Date$toRataDie(date) - 719163;
+	return daysSinceEpoch * 86400000;
+};
+var $justinmimbs$time_extra$Time$Extra$timeFromClock = F4(
+	function (hour, minute, second, millisecond) {
+		return (((hour * 3600000) + (minute * 60000)) + (second * 1000)) + millisecond;
+	});
+var $elm$time$Time$toHour = F2(
+	function (zone, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			24,
+			A2(
+				$elm$time$Time$flooredDiv,
+				A2($elm$time$Time$toAdjustedMinutes, zone, time),
+				60));
+	});
+var $elm$time$Time$toMillis = F2(
+	function (_v0, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			1000,
+			$elm$time$Time$posixToMillis(time));
+	});
+var $elm$time$Time$toMinute = F2(
+	function (zone, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			60,
+			A2($elm$time$Time$toAdjustedMinutes, zone, time));
+	});
+var $elm$time$Time$toSecond = F2(
+	function (_v0, time) {
+		return A2(
+			$elm$core$Basics$modBy,
+			60,
+			A2(
+				$elm$time$Time$flooredDiv,
+				$elm$time$Time$posixToMillis(time),
+				1000));
+	});
+var $justinmimbs$time_extra$Time$Extra$timeFromPosix = F2(
+	function (zone, posix) {
+		return A4(
+			$justinmimbs$time_extra$Time$Extra$timeFromClock,
+			A2($elm$time$Time$toHour, zone, posix),
+			A2($elm$time$Time$toMinute, zone, posix),
+			A2($elm$time$Time$toSecond, zone, posix),
+			A2($elm$time$Time$toMillis, zone, posix));
+	});
+var $justinmimbs$time_extra$Time$Extra$toOffset = F2(
+	function (zone, posix) {
+		var millis = $elm$time$Time$posixToMillis(posix);
+		var localMillis = $justinmimbs$time_extra$Time$Extra$dateToMillis(
+			A2($justinmimbs$date$Date$fromPosix, zone, posix)) + A2($justinmimbs$time_extra$Time$Extra$timeFromPosix, zone, posix);
+		return ((localMillis - millis) / 60000) | 0;
+	});
+var $justinmimbs$time_extra$Time$Extra$posixFromDateTime = F3(
+	function (zone, date, time) {
+		var millis = $justinmimbs$time_extra$Time$Extra$dateToMillis(date) + time;
+		var offset0 = A2(
+			$justinmimbs$time_extra$Time$Extra$toOffset,
+			zone,
+			$elm$time$Time$millisToPosix(millis));
+		var posix1 = $elm$time$Time$millisToPosix(millis - (offset0 * 60000));
+		var offset1 = A2($justinmimbs$time_extra$Time$Extra$toOffset, zone, posix1);
+		if (_Utils_eq(offset0, offset1)) {
+			return posix1;
+		} else {
+			var posix2 = $elm$time$Time$millisToPosix(millis - (offset1 * 60000));
+			var offset2 = A2($justinmimbs$time_extra$Time$Extra$toOffset, zone, posix2);
+			return _Utils_eq(offset1, offset2) ? posix2 : posix1;
+		}
+	});
+var $justinmimbs$time_extra$Time$Extra$add = F4(
+	function (interval, n, zone, posix) {
+		add:
+		while (true) {
+			switch (interval.$) {
+				case 'Millisecond':
+					return $elm$time$Time$millisToPosix(
+						$elm$time$Time$posixToMillis(posix) + n);
+				case 'Second':
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Millisecond,
+						$temp$n = n * 1000,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+				case 'Minute':
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Millisecond,
+						$temp$n = n * 60000,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+				case 'Hour':
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Millisecond,
+						$temp$n = n * 3600000,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+				case 'Day':
+					return A3(
+						$justinmimbs$time_extra$Time$Extra$posixFromDateTime,
+						zone,
+						A3(
+							$justinmimbs$date$Date$add,
+							$justinmimbs$date$Date$Days,
+							n,
+							A2($justinmimbs$date$Date$fromPosix, zone, posix)),
+						A2($justinmimbs$time_extra$Time$Extra$timeFromPosix, zone, posix));
+				case 'Month':
+					return A3(
+						$justinmimbs$time_extra$Time$Extra$posixFromDateTime,
+						zone,
+						A3(
+							$justinmimbs$date$Date$add,
+							$justinmimbs$date$Date$Months,
+							n,
+							A2($justinmimbs$date$Date$fromPosix, zone, posix)),
+						A2($justinmimbs$time_extra$Time$Extra$timeFromPosix, zone, posix));
+				case 'Year':
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Month,
+						$temp$n = n * 12,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+				case 'Quarter':
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Month,
+						$temp$n = n * 3,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+				case 'Week':
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Day,
+						$temp$n = n * 7,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+				default:
+					var weekday = interval;
+					var $temp$interval = $justinmimbs$time_extra$Time$Extra$Day,
+						$temp$n = n * 7,
+						$temp$zone = zone,
+						$temp$posix = posix;
+					interval = $temp$interval;
+					n = $temp$n;
+					zone = $temp$zone;
+					posix = $temp$posix;
+					continue add;
+			}
+		}
+	});
+var $justinmimbs$date$Date$Day = {$: 'Day'};
+var $justinmimbs$date$Date$Friday = {$: 'Friday'};
+var $justinmimbs$date$Date$Monday = {$: 'Monday'};
+var $justinmimbs$date$Date$Month = {$: 'Month'};
+var $justinmimbs$date$Date$Quarter = {$: 'Quarter'};
+var $justinmimbs$date$Date$Saturday = {$: 'Saturday'};
+var $justinmimbs$date$Date$Sunday = {$: 'Sunday'};
+var $justinmimbs$date$Date$Thursday = {$: 'Thursday'};
+var $justinmimbs$date$Date$Tuesday = {$: 'Tuesday'};
+var $justinmimbs$date$Date$Wednesday = {$: 'Wednesday'};
+var $justinmimbs$date$Date$Week = {$: 'Week'};
+var $justinmimbs$date$Date$Year = {$: 'Year'};
+var $elm$time$Time$Fri = {$: 'Fri'};
+var $elm$time$Time$Mon = {$: 'Mon'};
+var $elm$time$Time$Sat = {$: 'Sat'};
+var $elm$time$Time$Sun = {$: 'Sun'};
+var $elm$time$Time$Thu = {$: 'Thu'};
+var $elm$time$Time$Tue = {$: 'Tue'};
+var $elm$time$Time$Wed = {$: 'Wed'};
+var $justinmimbs$date$Date$weekdayNumber = function (_v0) {
+	var rd = _v0.a;
+	var _v1 = A2($elm$core$Basics$modBy, 7, rd);
+	if (!_v1) {
+		return 7;
+	} else {
+		var n = _v1;
+		return n;
+	}
+};
+var $justinmimbs$date$Date$weekdayToNumber = function (wd) {
+	switch (wd.$) {
+		case 'Mon':
+			return 1;
+		case 'Tue':
+			return 2;
+		case 'Wed':
+			return 3;
+		case 'Thu':
+			return 4;
+		case 'Fri':
+			return 5;
+		case 'Sat':
+			return 6;
+		default:
+			return 7;
+	}
+};
+var $justinmimbs$date$Date$daysSincePreviousWeekday = F2(
+	function (wd, date) {
+		return A2(
+			$elm$core$Basics$modBy,
+			7,
+			($justinmimbs$date$Date$weekdayNumber(date) + 7) - $justinmimbs$date$Date$weekdayToNumber(wd));
+	});
+var $justinmimbs$date$Date$firstOfMonth = F2(
+	function (y, m) {
+		return $justinmimbs$date$Date$RD(
+			($justinmimbs$date$Date$daysBeforeYear(y) + A2($justinmimbs$date$Date$daysBeforeMonth, y, m)) + 1);
+	});
+var $justinmimbs$date$Date$firstOfYear = function (y) {
+	return $justinmimbs$date$Date$RD(
+		$justinmimbs$date$Date$daysBeforeYear(y) + 1);
+};
+var $justinmimbs$date$Date$month = A2(
+	$elm$core$Basics$composeR,
+	$justinmimbs$date$Date$toCalendarDate,
+	function ($) {
+		return $.month;
+	});
+var $justinmimbs$date$Date$monthToQuarter = function (m) {
+	return (($justinmimbs$date$Date$monthToNumber(m) + 2) / 3) | 0;
+};
+var $justinmimbs$date$Date$quarter = A2($elm$core$Basics$composeR, $justinmimbs$date$Date$month, $justinmimbs$date$Date$monthToQuarter);
+var $justinmimbs$date$Date$quarterToMonth = function (q) {
+	return $justinmimbs$date$Date$numberToMonth((q * 3) - 2);
+};
+var $justinmimbs$date$Date$floor = F2(
+	function (interval, date) {
+		var rd = date.a;
+		switch (interval.$) {
+			case 'Year':
+				return $justinmimbs$date$Date$firstOfYear(
+					$justinmimbs$date$Date$year(date));
+			case 'Quarter':
+				return A2(
+					$justinmimbs$date$Date$firstOfMonth,
+					$justinmimbs$date$Date$year(date),
+					$justinmimbs$date$Date$quarterToMonth(
+						$justinmimbs$date$Date$quarter(date)));
+			case 'Month':
+				return A2(
+					$justinmimbs$date$Date$firstOfMonth,
+					$justinmimbs$date$Date$year(date),
+					$justinmimbs$date$Date$month(date));
+			case 'Week':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Mon, date));
+			case 'Monday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Mon, date));
+			case 'Tuesday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Tue, date));
+			case 'Wednesday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Wed, date));
+			case 'Thursday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Thu, date));
+			case 'Friday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Fri, date));
+			case 'Saturday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Sat, date));
+			case 'Sunday':
+				return $justinmimbs$date$Date$RD(
+					rd - A2($justinmimbs$date$Date$daysSincePreviousWeekday, $elm$time$Time$Sun, date));
+			default:
+				return date;
+		}
+	});
+var $justinmimbs$time_extra$Time$Extra$floorDate = F3(
+	function (dateInterval, zone, posix) {
+		return A3(
+			$justinmimbs$time_extra$Time$Extra$posixFromDateTime,
+			zone,
+			A2(
+				$justinmimbs$date$Date$floor,
+				dateInterval,
+				A2($justinmimbs$date$Date$fromPosix, zone, posix)),
+			0);
+	});
+var $justinmimbs$time_extra$Time$Extra$floor = F3(
+	function (interval, zone, posix) {
+		switch (interval.$) {
+			case 'Millisecond':
+				return posix;
+			case 'Second':
+				return A3(
+					$justinmimbs$time_extra$Time$Extra$posixFromDateTime,
+					zone,
+					A2($justinmimbs$date$Date$fromPosix, zone, posix),
+					A4(
+						$justinmimbs$time_extra$Time$Extra$timeFromClock,
+						A2($elm$time$Time$toHour, zone, posix),
+						A2($elm$time$Time$toMinute, zone, posix),
+						A2($elm$time$Time$toSecond, zone, posix),
+						0));
+			case 'Minute':
+				return A3(
+					$justinmimbs$time_extra$Time$Extra$posixFromDateTime,
+					zone,
+					A2($justinmimbs$date$Date$fromPosix, zone, posix),
+					A4(
+						$justinmimbs$time_extra$Time$Extra$timeFromClock,
+						A2($elm$time$Time$toHour, zone, posix),
+						A2($elm$time$Time$toMinute, zone, posix),
+						0,
+						0));
+			case 'Hour':
+				return A3(
+					$justinmimbs$time_extra$Time$Extra$posixFromDateTime,
+					zone,
+					A2($justinmimbs$date$Date$fromPosix, zone, posix),
+					A4(
+						$justinmimbs$time_extra$Time$Extra$timeFromClock,
+						A2($elm$time$Time$toHour, zone, posix),
+						0,
+						0,
+						0));
+			case 'Day':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Day, zone, posix);
+			case 'Month':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Month, zone, posix);
+			case 'Year':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Year, zone, posix);
+			case 'Quarter':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Quarter, zone, posix);
+			case 'Week':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Week, zone, posix);
+			case 'Monday':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Monday, zone, posix);
+			case 'Tuesday':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Tuesday, zone, posix);
+			case 'Wednesday':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Wednesday, zone, posix);
+			case 'Thursday':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Thursday, zone, posix);
+			case 'Friday':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Friday, zone, posix);
+			case 'Saturday':
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Saturday, zone, posix);
+			default:
+				return A3($justinmimbs$time_extra$Time$Extra$floorDate, $justinmimbs$date$Date$Sunday, zone, posix);
+		}
+	});
+var $justinmimbs$time_extra$Time$Extra$ceiling = F3(
+	function (interval, zone, posix) {
+		var floored = A3($justinmimbs$time_extra$Time$Extra$floor, interval, zone, posix);
+		return _Utils_eq(floored, posix) ? posix : A4($justinmimbs$time_extra$Time$Extra$add, interval, 1, zone, floored);
+	});
+var $justinmimbs$time_extra$Time$Extra$Year = {$: 'Year'};
+var $gampleman$elm_visualization$Scale$Time$timeLength = function (interval) {
+	switch (interval.$) {
+		case 'Millisecond':
+			return 1;
+		case 'Second':
+			return 1000;
+		case 'Minute':
+			return 60 * 1000;
+		case 'Hour':
+			return (60 * 60) * 1000;
+		case 'Day':
+			return ((24 * 60) * 60) * 1000;
+		case 'Month':
+			return (((30 * 24) * 60) * 60) * 1000;
+		case 'Year':
+			return ((((365 * 30) * 24) * 60) * 60) * 1000;
+		case 'Quarter':
+			return ((((4 * 30) * 24) * 60) * 60) * 1000;
+		case 'Week':
+			return (((7 * 24) * 60) * 60) * 1000;
+		default:
+			return 0;
+	}
+};
+var $gampleman$elm_visualization$Scale$Time$findInterval = F2(
+	function (target, intervals) {
+		findInterval:
+		while (true) {
+			if (!intervals.b) {
+				return _Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Year, 1);
+			} else {
+				if (intervals.b.b) {
+					var _v1 = intervals.a;
+					var interval = _v1.a;
+					var step = _v1.b;
+					var _v2 = intervals.b;
+					var _v3 = _v2.a;
+					var interval_ = _v3.a;
+					var step_ = _v3.b;
+					var xs = _v2.b;
+					var ratio_ = (step_ * $gampleman$elm_visualization$Scale$Time$timeLength(interval_)) / target;
+					var ratio = target / (step * $gampleman$elm_visualization$Scale$Time$timeLength(interval));
+					if (_Utils_cmp(ratio, ratio_) < 0) {
+						return _Utils_Tuple2(interval, step);
+					} else {
+						var $temp$target = target,
+							$temp$intervals = A2(
+							$elm$core$List$cons,
+							_Utils_Tuple2(interval_, step_),
+							xs);
+						target = $temp$target;
+						intervals = $temp$intervals;
+						continue findInterval;
+					}
+				} else {
+					var x = intervals.a;
+					var xs = intervals.b;
+					return x;
+				}
+			}
+		}
+	});
+var $justinmimbs$time_extra$Time$Extra$Hour = {$: 'Hour'};
+var $justinmimbs$time_extra$Time$Extra$Minute = {$: 'Minute'};
+var $justinmimbs$time_extra$Time$Extra$Second = {$: 'Second'};
+var $justinmimbs$time_extra$Time$Extra$Week = {$: 'Week'};
+var $gampleman$elm_visualization$Scale$Time$tickIntervals = _List_fromArray(
+	[
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Second, 1),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Second, 5),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Second, 15),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Second, 30),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Minute, 1),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Minute, 5),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Minute, 15),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Minute, 30),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Hour, 1),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Hour, 3),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Hour, 6),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Hour, 12),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Day, 1),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Day, 2),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Week, 1),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Month, 1),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Month, 3),
+		_Utils_Tuple2($justinmimbs$time_extra$Time$Extra$Year, 1)
+	]);
+var $gampleman$elm_visualization$Scale$Time$nice = F3(
+	function (zone, domain, count) {
+		var _v0 = $gampleman$elm_visualization$Scale$Time$toTime(domain);
+		var start = _v0.a;
+		var end = _v0.b;
+		var target = $elm$core$Basics$abs(start - end) / count;
+		var _v1 = A2($gampleman$elm_visualization$Scale$Time$findInterval, target, $gampleman$elm_visualization$Scale$Time$tickIntervals);
+		var interval = _v1.a;
+		return _Utils_Tuple2(
+			A3($justinmimbs$time_extra$Time$Extra$floor, interval, zone, domain.a),
+			A3($justinmimbs$time_extra$Time$Extra$ceiling, interval, zone, domain.b));
+	});
+var $gampleman$elm_visualization$Scale$Time$rangeExtent = F2(
+	function (d, r) {
+		return r;
+	});
+var $ryannhg$date_format$DateFormat$AmPmLowercase = {$: 'AmPmLowercase'};
+var $ryannhg$date_format$DateFormat$amPmLowercase = $ryannhg$date_format$DateFormat$AmPmLowercase;
+var $ryannhg$date_format$DateFormat$DayOfMonthFixed = {$: 'DayOfMonthFixed'};
+var $ryannhg$date_format$DateFormat$dayOfMonthFixed = $ryannhg$date_format$DateFormat$DayOfMonthFixed;
+var $ryannhg$date_format$DateFormat$Language$Language = F6(
+	function (toMonthName, toMonthAbbreviation, toWeekdayName, toWeekdayAbbreviation, toAmPm, toOrdinalSuffix) {
+		return {toAmPm: toAmPm, toMonthAbbreviation: toMonthAbbreviation, toMonthName: toMonthName, toOrdinalSuffix: toOrdinalSuffix, toWeekdayAbbreviation: toWeekdayAbbreviation, toWeekdayName: toWeekdayName};
+	});
+var $ryannhg$date_format$DateFormat$Language$toEnglishAmPm = function (hour) {
+	return (hour > 11) ? 'pm' : 'am';
+};
+var $ryannhg$date_format$DateFormat$Language$toEnglishMonthName = function (month) {
+	switch (month.$) {
+		case 'Jan':
+			return 'January';
+		case 'Feb':
+			return 'February';
+		case 'Mar':
+			return 'March';
+		case 'Apr':
+			return 'April';
+		case 'May':
+			return 'May';
+		case 'Jun':
+			return 'June';
+		case 'Jul':
+			return 'July';
+		case 'Aug':
+			return 'August';
+		case 'Sep':
+			return 'September';
+		case 'Oct':
+			return 'October';
+		case 'Nov':
+			return 'November';
+		default:
+			return 'December';
+	}
+};
+var $ryannhg$date_format$DateFormat$Language$toEnglishSuffix = function (num) {
+	var _v0 = A2($elm$core$Basics$modBy, 100, num);
+	switch (_v0) {
+		case 11:
+			return 'th';
+		case 12:
+			return 'th';
+		case 13:
+			return 'th';
+		default:
+			var _v1 = A2($elm$core$Basics$modBy, 10, num);
+			switch (_v1) {
+				case 1:
+					return 'st';
+				case 2:
+					return 'nd';
+				case 3:
+					return 'rd';
+				default:
+					return 'th';
+			}
+	}
+};
+var $ryannhg$date_format$DateFormat$Language$toEnglishWeekdayName = function (weekday) {
+	switch (weekday.$) {
+		case 'Mon':
+			return 'Monday';
+		case 'Tue':
+			return 'Tuesday';
+		case 'Wed':
+			return 'Wednesday';
+		case 'Thu':
+			return 'Thursday';
+		case 'Fri':
+			return 'Friday';
+		case 'Sat':
+			return 'Saturday';
+		default:
+			return 'Sunday';
+	}
+};
+var $ryannhg$date_format$DateFormat$Language$english = A6(
+	$ryannhg$date_format$DateFormat$Language$Language,
+	$ryannhg$date_format$DateFormat$Language$toEnglishMonthName,
+	A2(
+		$elm$core$Basics$composeR,
+		$ryannhg$date_format$DateFormat$Language$toEnglishMonthName,
+		$elm$core$String$left(3)),
+	$ryannhg$date_format$DateFormat$Language$toEnglishWeekdayName,
+	A2(
+		$elm$core$Basics$composeR,
+		$ryannhg$date_format$DateFormat$Language$toEnglishWeekdayName,
+		$elm$core$String$left(3)),
+	$ryannhg$date_format$DateFormat$Language$toEnglishAmPm,
+	$ryannhg$date_format$DateFormat$Language$toEnglishSuffix);
+var $ryannhg$date_format$DateFormat$amPm = F3(
+	function (language, zone, posix) {
+		return language.toAmPm(
+			A2($elm$time$Time$toHour, zone, posix));
+	});
+var $ryannhg$date_format$DateFormat$dayOfMonth = $elm$time$Time$toDay;
+var $ryannhg$date_format$DateFormat$days = _List_fromArray(
+	[$elm$time$Time$Sun, $elm$time$Time$Mon, $elm$time$Time$Tue, $elm$time$Time$Wed, $elm$time$Time$Thu, $elm$time$Time$Fri, $elm$time$Time$Sat]);
+var $elm$core$List$filter = F2(
+	function (isGood, list) {
+		return A3(
+			$elm$core$List$foldr,
+			F2(
+				function (x, xs) {
+					return isGood(x) ? A2($elm$core$List$cons, x, xs) : xs;
+				}),
+			_List_Nil,
+			list);
+	});
+var $elm$core$List$head = function (list) {
+	if (list.b) {
+		var x = list.a;
+		var xs = list.b;
+		return $elm$core$Maybe$Just(x);
+	} else {
+		return $elm$core$Maybe$Nothing;
+	}
+};
+var $elm$time$Time$toWeekday = F2(
+	function (zone, time) {
+		var _v0 = A2(
+			$elm$core$Basics$modBy,
+			7,
+			A2(
+				$elm$time$Time$flooredDiv,
+				A2($elm$time$Time$toAdjustedMinutes, zone, time),
+				60 * 24));
+		switch (_v0) {
+			case 0:
+				return $elm$time$Time$Thu;
+			case 1:
+				return $elm$time$Time$Fri;
+			case 2:
+				return $elm$time$Time$Sat;
+			case 3:
+				return $elm$time$Time$Sun;
+			case 4:
+				return $elm$time$Time$Mon;
+			case 5:
+				return $elm$time$Time$Tue;
+			default:
+				return $elm$time$Time$Wed;
+		}
+	});
+var $elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
+var $ryannhg$date_format$DateFormat$dayOfWeek = F2(
+	function (zone, posix) {
+		return function (_v1) {
+			var i = _v1.a;
+			return i;
+		}(
+			A2(
+				$elm$core$Maybe$withDefault,
+				_Utils_Tuple2(0, $elm$time$Time$Sun),
+				$elm$core$List$head(
+					A2(
+						$elm$core$List$filter,
+						function (_v0) {
+							var day = _v0.b;
+							return _Utils_eq(
+								day,
+								A2($elm$time$Time$toWeekday, zone, posix));
+						},
+						A2(
+							$elm$core$List$indexedMap,
+							F2(
+								function (i, day) {
+									return _Utils_Tuple2(i, day);
+								}),
+							$ryannhg$date_format$DateFormat$days)))));
+	});
+var $ryannhg$date_format$DateFormat$isLeapYear = function (year_) {
+	return (!(!A2($elm$core$Basics$modBy, 4, year_))) ? false : ((!(!A2($elm$core$Basics$modBy, 100, year_))) ? true : ((!(!A2($elm$core$Basics$modBy, 400, year_))) ? false : true));
+};
+var $ryannhg$date_format$DateFormat$daysInMonth = F2(
+	function (year_, month) {
+		switch (month.$) {
+			case 'Jan':
+				return 31;
+			case 'Feb':
+				return $ryannhg$date_format$DateFormat$isLeapYear(year_) ? 29 : 28;
+			case 'Mar':
+				return 31;
+			case 'Apr':
+				return 30;
+			case 'May':
+				return 31;
+			case 'Jun':
+				return 30;
+			case 'Jul':
+				return 31;
+			case 'Aug':
+				return 31;
+			case 'Sep':
+				return 30;
+			case 'Oct':
+				return 31;
+			case 'Nov':
+				return 30;
+			default:
+				return 31;
+		}
+	});
+var $ryannhg$date_format$DateFormat$months = _List_fromArray(
+	[$elm$time$Time$Jan, $elm$time$Time$Feb, $elm$time$Time$Mar, $elm$time$Time$Apr, $elm$time$Time$May, $elm$time$Time$Jun, $elm$time$Time$Jul, $elm$time$Time$Aug, $elm$time$Time$Sep, $elm$time$Time$Oct, $elm$time$Time$Nov, $elm$time$Time$Dec]);
+var $ryannhg$date_format$DateFormat$monthPair = F2(
+	function (zone, posix) {
+		return A2(
+			$elm$core$Maybe$withDefault,
+			_Utils_Tuple2(0, $elm$time$Time$Jan),
+			$elm$core$List$head(
+				A2(
+					$elm$core$List$filter,
+					function (_v0) {
+						var i = _v0.a;
+						var m = _v0.b;
+						return _Utils_eq(
+							m,
+							A2($elm$time$Time$toMonth, zone, posix));
+					},
+					A2(
+						$elm$core$List$indexedMap,
+						F2(
+							function (a, b) {
+								return _Utils_Tuple2(a, b);
+							}),
+						$ryannhg$date_format$DateFormat$months))));
+	});
+var $ryannhg$date_format$DateFormat$monthNumber_ = F2(
+	function (zone, posix) {
+		return 1 + function (_v0) {
+			var i = _v0.a;
+			var m = _v0.b;
+			return i;
+		}(
+			A2($ryannhg$date_format$DateFormat$monthPair, zone, posix));
+	});
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
+};
 var $ryannhg$date_format$DateFormat$dayOfYear = F2(
 	function (zone, posix) {
 		var monthsBeforeThisOne = A2(
@@ -7683,33 +8935,9 @@ var $ryannhg$date_format$DateFormat$toFixedLength = F2(
 		return _Utils_ap(zeros, numStr);
 	});
 var $elm$core$String$toLower = _String_toLower;
-var $elm$time$Time$toMillis = F2(
-	function (_v0, time) {
-		return A2(
-			$elm$core$Basics$modBy,
-			1000,
-			$elm$time$Time$posixToMillis(time));
-	});
-var $elm$time$Time$toMinute = F2(
-	function (zone, time) {
-		return A2(
-			$elm$core$Basics$modBy,
-			60,
-			A2($elm$time$Time$toAdjustedMinutes, zone, time));
-	});
 var $ryannhg$date_format$DateFormat$toNonMilitary = function (num) {
 	return (!num) ? 12 : ((num <= 12) ? num : (num - 12));
 };
-var $elm$time$Time$toSecond = F2(
-	function (_v0, time) {
-		return A2(
-			$elm$core$Basics$modBy,
-			60,
-			A2(
-				$elm$time$Time$flooredDiv,
-				$elm$time$Time$posixToMillis(time),
-				1000));
-	});
 var $elm$core$String$toUpper = _String_toUpper;
 var $ryannhg$date_format$DateFormat$millisecondsPerYear = $elm$core$Basics$round((((1000 * 60) * 60) * 24) * 365.25);
 var $ryannhg$date_format$DateFormat$firstDayOfYear = F2(
@@ -7903,200 +9131,142 @@ var $ryannhg$date_format$DateFormat$formatWithLanguage = F4(
 				tokens));
 	});
 var $ryannhg$date_format$DateFormat$format = $ryannhg$date_format$DateFormat$formatWithLanguage($ryannhg$date_format$DateFormat$Language$english);
-var $ryannhg$date_format$DateFormat$HourMilitaryFixed = {$: 'HourMilitaryFixed'};
-var $ryannhg$date_format$DateFormat$hourMilitaryFixed = $ryannhg$date_format$DateFormat$HourMilitaryFixed;
+var $ryannhg$date_format$DateFormat$HourFixed = {$: 'HourFixed'};
+var $ryannhg$date_format$DateFormat$hourFixed = $ryannhg$date_format$DateFormat$HourFixed;
+var $ryannhg$date_format$DateFormat$MillisecondFixed = {$: 'MillisecondFixed'};
+var $ryannhg$date_format$DateFormat$millisecondFixed = $ryannhg$date_format$DateFormat$MillisecondFixed;
 var $ryannhg$date_format$DateFormat$MinuteFixed = {$: 'MinuteFixed'};
 var $ryannhg$date_format$DateFormat$minuteFixed = $ryannhg$date_format$DateFormat$MinuteFixed;
 var $ryannhg$date_format$DateFormat$MonthNameAbbreviated = {$: 'MonthNameAbbreviated'};
 var $ryannhg$date_format$DateFormat$monthNameAbbreviated = $ryannhg$date_format$DateFormat$MonthNameAbbreviated;
+var $ryannhg$date_format$DateFormat$MonthNameFull = {$: 'MonthNameFull'};
+var $ryannhg$date_format$DateFormat$monthNameFull = $ryannhg$date_format$DateFormat$MonthNameFull;
+var $ryannhg$date_format$DateFormat$SecondFixed = {$: 'SecondFixed'};
+var $ryannhg$date_format$DateFormat$secondFixed = $ryannhg$date_format$DateFormat$SecondFixed;
 var $ryannhg$date_format$DateFormat$Text = function (a) {
 	return {$: 'Text', a: a};
 };
 var $ryannhg$date_format$DateFormat$text = $ryannhg$date_format$DateFormat$Text;
+var $ryannhg$date_format$DateFormat$YearNumber = {$: 'YearNumber'};
+var $ryannhg$date_format$DateFormat$yearNumber = $ryannhg$date_format$DateFormat$YearNumber;
+var $gampleman$elm_visualization$Scale$Time$tickFormat = F4(
+	function (zone, _v0, _v1, date) {
+		var time = $elm$time$Time$posixToMillis(date);
+		var significant = function (interval) {
+			return _Utils_cmp(
+				$elm$time$Time$posixToMillis(
+					A3($justinmimbs$time_extra$Time$Extra$floor, interval, zone, date)),
+				time) < 0;
+		};
+		var format = significant($justinmimbs$time_extra$Time$Extra$Second) ? _List_fromArray(
+			[
+				$ryannhg$date_format$DateFormat$text('.'),
+				$ryannhg$date_format$DateFormat$millisecondFixed
+			]) : (significant($justinmimbs$time_extra$Time$Extra$Minute) ? _List_fromArray(
+			[
+				$ryannhg$date_format$DateFormat$text(':'),
+				$ryannhg$date_format$DateFormat$secondFixed
+			]) : (significant($justinmimbs$time_extra$Time$Extra$Hour) ? _List_fromArray(
+			[
+				$ryannhg$date_format$DateFormat$hourFixed,
+				$ryannhg$date_format$DateFormat$text(':'),
+				$ryannhg$date_format$DateFormat$minuteFixed
+			]) : (significant($justinmimbs$time_extra$Time$Extra$Day) ? _List_fromArray(
+			[
+				$ryannhg$date_format$DateFormat$hourFixed,
+				$ryannhg$date_format$DateFormat$text(' '),
+				$ryannhg$date_format$DateFormat$amPmLowercase
+			]) : (significant($justinmimbs$time_extra$Time$Extra$Month) ? _List_fromArray(
+			[
+				$ryannhg$date_format$DateFormat$dayOfMonthFixed,
+				$ryannhg$date_format$DateFormat$text(' '),
+				$ryannhg$date_format$DateFormat$monthNameAbbreviated
+			]) : (significant($justinmimbs$time_extra$Time$Extra$Year) ? _List_fromArray(
+			[$ryannhg$date_format$DateFormat$monthNameFull]) : _List_fromArray(
+			[$ryannhg$date_format$DateFormat$yearNumber]))))));
+		return A3($ryannhg$date_format$DateFormat$format, format, zone, date);
+	});
+var $justinmimbs$time_extra$Time$Extra$rangeHelp = F6(
+	function (interval, step, zone, until, revList, current) {
+		rangeHelp:
+		while (true) {
+			if (_Utils_cmp(
+				$elm$time$Time$posixToMillis(current),
+				$elm$time$Time$posixToMillis(until)) < 0) {
+				var $temp$interval = interval,
+					$temp$step = step,
+					$temp$zone = zone,
+					$temp$until = until,
+					$temp$revList = A2($elm$core$List$cons, current, revList),
+					$temp$current = A4($justinmimbs$time_extra$Time$Extra$add, interval, step, zone, current);
+				interval = $temp$interval;
+				step = $temp$step;
+				zone = $temp$zone;
+				until = $temp$until;
+				revList = $temp$revList;
+				current = $temp$current;
+				continue rangeHelp;
+			} else {
+				return $elm$core$List$reverse(revList);
+			}
+		}
+	});
+var $justinmimbs$time_extra$Time$Extra$range = F5(
+	function (interval, step, zone, start, until) {
+		return A6(
+			$justinmimbs$time_extra$Time$Extra$rangeHelp,
+			interval,
+			A2($elm$core$Basics$max, 1, step),
+			zone,
+			until,
+			_List_Nil,
+			A3($justinmimbs$time_extra$Time$Extra$ceiling, interval, zone, start));
+	});
+var $gampleman$elm_visualization$Scale$Time$ticks = F3(
+	function (zone, domain, count) {
+		var _v0 = $gampleman$elm_visualization$Scale$Time$toTime(domain);
+		var start = _v0.a;
+		var end = _v0.b;
+		var target = $elm$core$Basics$abs(start - end) / count;
+		var _v1 = A2($gampleman$elm_visualization$Scale$Time$findInterval, target, $gampleman$elm_visualization$Scale$Time$tickIntervals);
+		var interval = _v1.a;
+		var step = _v1.b;
+		return A5(
+			$justinmimbs$time_extra$Time$Extra$range,
+			interval,
+			$elm$core$Basics$round(step),
+			zone,
+			domain.a,
+			domain.b);
+	});
+var $gampleman$elm_visualization$Scale$time = F3(
+	function (zone, range_, domain_) {
+		return $gampleman$elm_visualization$Scale$Scale(
+			{
+				convert: $gampleman$elm_visualization$Scale$Time$convert,
+				domain: domain_,
+				invert: $gampleman$elm_visualization$Scale$Time$invert,
+				nice: $gampleman$elm_visualization$Scale$Time$nice(zone),
+				range: range_,
+				rangeExtent: $gampleman$elm_visualization$Scale$Time$rangeExtent,
+				tickFormat: $gampleman$elm_visualization$Scale$Time$tickFormat(zone),
+				ticks: $gampleman$elm_visualization$Scale$Time$ticks(zone)
+			});
+	});
 var $elm$time$Time$Zone = F2(
 	function (a, b) {
 		return {$: 'Zone', a: a, b: b};
 	});
 var $elm$time$Time$utc = A2($elm$time$Time$Zone, 0, _List_Nil);
-var $author$project$Main$dateFormat = A2(
-	$ryannhg$date_format$DateFormat$format,
-	_List_fromArray(
-		[
-			$ryannhg$date_format$DateFormat$dayOfMonthFixed,
-			$ryannhg$date_format$DateFormat$text(' '),
-			$ryannhg$date_format$DateFormat$monthNameAbbreviated,
-			$ryannhg$date_format$DateFormat$text(' - '),
-			$ryannhg$date_format$DateFormat$hourMilitaryFixed,
-			$ryannhg$date_format$DateFormat$text(':'),
-			$ryannhg$date_format$DateFormat$minuteFixed
-		]),
-	$elm$time$Time$utc);
-var $elm$core$String$fromFloat = _String_fromNumber;
-var $elm$virtual_dom$VirtualDom$nodeNS = function (tag) {
-	return _VirtualDom_nodeNS(
-		_VirtualDom_noScript(tag));
-};
-var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
-var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
-var $author$project$Main$h = 450;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
-	switch (length.$) {
-		case 'Cm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'cm';
-		case 'Em':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'em';
-		case 'Ex':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'ex';
-		case 'In':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'in';
-		case 'Mm':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'mm';
-		case 'Num':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x);
-		case 'Pc':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pc';
-		case 'Percent':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + '%';
-		case 'Pt':
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'pt';
-		default:
-			var x = length.a;
-			return $elm$core$String$fromFloat(x) + 'px';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$height = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'height',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
-	return {$: 'Px', a: a};
-};
-var $elm_community$typed_svg$TypedSvg$Types$px = $elm_community$typed_svg$TypedSvg$Types$Px;
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$height = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$height(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $author$project$Main$padding = 30;
-var $elm_community$typed_svg$TypedSvg$rect = $elm_community$typed_svg$TypedSvg$Core$node('rect');
-var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
-var $elm_community$typed_svg$TypedSvg$Core$text = $elm$virtual_dom$VirtualDom$text;
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString = function (anchorAlignment) {
-	switch (anchorAlignment.$) {
-		case 'AnchorInherit':
-			return 'inherit';
-		case 'AnchorStart':
-			return 'start';
-		case 'AnchorMiddle':
-			return 'middle';
-		default:
-			return 'end';
-	}
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$textAnchor = function (anchorAlignment) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'text-anchor',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$anchorAlignmentToString(anchorAlignment));
-};
-var $elm_community$typed_svg$TypedSvg$text_ = $elm_community$typed_svg$TypedSvg$Core$node('text');
-var $gampleman$elm_visualization$Scale$Scale = function (a) {
-	return {$: 'Scale', a: a};
-};
-var $gampleman$elm_visualization$Scale$toRenderable = F2(
-	function (toString, _v0) {
-		var scale = _v0.a;
-		return $gampleman$elm_visualization$Scale$Scale(
-			{
-				convert: F3(
-					function (dmn, rng, value) {
-						return A3(scale.convert, dmn, rng, value) + (A2($elm$core$Basics$max, scale.bandwidth - 1, 0) / 2);
-					}),
-				domain: scale.domain,
-				range: scale.range,
-				rangeExtent: F2(
-					function (_v1, rng) {
-						return rng;
-					}),
-				tickFormat: F2(
-					function (_v2, _v3) {
-						return toString;
-					}),
-				ticks: F2(
-					function (dmn, _v4) {
-						return dmn;
-					})
-			});
-	});
-var $elm_community$typed_svg$TypedSvg$Attributes$width = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'width',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$width = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$width(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$x = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'x',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$x = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$x(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$y = function (length) {
-	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'y',
-		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
-};
-var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
-	return $elm_community$typed_svg$TypedSvg$Attributes$y(
-		$elm_community$typed_svg$TypedSvg$Types$px(value));
-};
-var $elm$core$Basics$composeL = F3(
-	function (g, f, x) {
-		return g(
-			f(x));
-	});
-var $gampleman$elm_visualization$Scale$Internal$bimap = F4(
-	function (_v0, _v1, deinterpolate, reinterpolate) {
-		var d0 = _v0.a;
-		var d1 = _v0.b;
-		var r0 = _v1.a;
-		var r1 = _v1.b;
-		var _v2 = (_Utils_cmp(d1, d0) < 0) ? _Utils_Tuple2(
-			A2(deinterpolate, d1, d0),
-			A2(reinterpolate, r1, r0)) : _Utils_Tuple2(
-			A2(deinterpolate, d0, d1),
-			A2(reinterpolate, r0, r1));
-		var de = _v2.a;
-		var re = _v2.b;
-		return A2($elm$core$Basics$composeL, re, de);
-	});
-var $gampleman$elm_visualization$Scale$Linear$deinterpolate = F3(
-	function (a, b, x) {
-		var normalizedB = b - a;
-		return (!normalizedB) ? 0 : ((x - a) / normalizedB);
-	});
-var $gampleman$elm_visualization$Scale$Internal$interpolateFloat = F3(
-	function (from, to, time) {
-		return from + ((to - from) * time);
-	});
+var $author$project$Main$w = 600;
+var $author$project$Main$xScale = A3(
+	$gampleman$elm_visualization$Scale$time,
+	$elm$time$Time$utc,
+	_Utils_Tuple2(0, $author$project$Main$w - (2 * $author$project$Main$padding)),
+	_Utils_Tuple2(
+		$elm$time$Time$millisToPosix(1448928000000),
+		$elm$time$Time$millisToPosix(1456790400000)));
+var $author$project$Main$h = 250;
 var $gampleman$elm_visualization$Scale$Linear$convert = F2(
 	function (domain, range) {
 		return A4($gampleman$elm_visualization$Scale$Internal$bimap, domain, range, $gampleman$elm_visualization$Scale$Linear$deinterpolate, $gampleman$elm_visualization$Scale$Internal$interpolateFloat);
@@ -8106,9 +9276,6 @@ var $gampleman$elm_visualization$Scale$Linear$invert = F2(
 	function (domain, range) {
 		return A4($gampleman$elm_visualization$Scale$Internal$bimap, range, domain, $gampleman$elm_visualization$Scale$Linear$deinterpolate, $gampleman$elm_visualization$Scale$Linear$interpolate);
 	});
-var $elm$core$Basics$abs = function (n) {
-	return (n < 0) ? (-n) : n;
-};
 var $elm$core$Basics$e = _Basics_e;
 var $elm$core$Basics$pow = _Basics_pow;
 var $elm$core$Basics$sqrt = _Basics_sqrt;
@@ -8158,6 +9325,7 @@ var $gampleman$elm_visualization$Scale$Linear$precisionFixed = function (step) {
 		$gampleman$elm_visualization$Scale$Linear$exponent(
 			$elm$core$Basics$abs(step)));
 };
+var $elm$core$String$fromFloat = _String_fromNumber;
 var $elm$core$String$cons = _String_cons;
 var $elm$core$String$fromChar = function (_char) {
 	return A2($elm$core$String$cons, _char, '');
@@ -8284,55 +9452,39 @@ var $gampleman$elm_visualization$Scale$linear = F2(
 var $author$project$Main$yScale = A2(
 	$gampleman$elm_visualization$Scale$linear,
 	_Utils_Tuple2($author$project$Main$h - (2 * $author$project$Main$padding), 0),
-	_Utils_Tuple2(0, 600));
-var $author$project$Main$column = F2(
-	function (scale, _v0) {
-		var date = _v0.a;
-		var value = _v0.b;
+	_Utils_Tuple2(0, 5));
+var $author$project$Main$tranfromToAreaData = function (_v0) {
+	var x = _v0.a;
+	var y = _v0.b;
+	return $elm$core$Maybe$Just(
+		_Utils_Tuple2(
+			_Utils_Tuple2(
+				A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$xScale, x),
+				$gampleman$elm_visualization$Scale$rangeExtent($author$project$Main$yScale).a),
+			_Utils_Tuple2(
+				A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$xScale, x),
+				A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, y))));
+};
+var $author$project$Main$area = function (model) {
+	return A2(
+		$gampleman$elm_visualization$Shape$area,
+		$gampleman$elm_visualization$Shape$monotoneInXCurve,
+		A2($elm$core$List$map, $author$project$Main$tranfromToAreaData, model));
+};
+var $elm$virtual_dom$VirtualDom$attribute = F2(
+	function (key, value) {
 		return A2(
-			$elm_community$typed_svg$TypedSvg$g,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$class(
-					_List_fromArray(
-						['column']))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$rect,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-							A2($gampleman$elm_visualization$Scale$convert, scale, date)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-							A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, value)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(
-							$gampleman$elm_visualization$Scale$bandwidth(scale)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(
-							($author$project$Main$h - A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, value)) - (2 * $author$project$Main$padding))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-							A2(
-								$gampleman$elm_visualization$Scale$convert,
-								A2($gampleman$elm_visualization$Scale$toRenderable, $author$project$Main$dateFormat, scale),
-								date)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-							A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, value) - 5),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(
-							$elm$core$String$fromFloat(value))
-						]))
-				]));
+			_VirtualDom_attribute,
+			_VirtualDom_noOnOrFormAction(key),
+			_VirtualDom_noJavaScriptOrHtmlUri(value));
 	});
+var $elm_community$typed_svg$TypedSvg$Core$attribute = $elm$virtual_dom$VirtualDom$attribute;
+var $elm_community$typed_svg$TypedSvg$Attributes$class = function (names) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'class',
+		A2($elm$core$String$join, ' ', names));
+};
 var $author$project$Main$get = function (_v0) {
 	var time = _v0.time;
 	var value = _v0.value;
@@ -8341,11 +9493,780 @@ var $author$project$Main$get = function (_v0) {
 var $author$project$Main$convert = function (data) {
 	return A2($elm$core$List$map, $author$project$Main$get, data);
 };
-var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
-var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
+var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
+var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
+var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
+var $folkertdev$elm_deque$Internal$empty = {front: _List_Nil, rear: _List_Nil, sizeF: 0, sizeR: 0};
+var $folkertdev$elm_deque$Deque$empty = $folkertdev$elm_deque$Deque$Deque($folkertdev$elm_deque$Internal$empty);
+var $folkertdev$one_true_path_experiment$LowLevel$Command$ClosePath = {$: 'ClosePath'};
+var $folkertdev$one_true_path_experiment$LowLevel$Command$EllipticalArc = function (a) {
+	return {$: 'EllipticalArc', a: a};
+};
+var $folkertdev$one_true_path_experiment$LowLevel$Command$QuadraticBezierCurveTo = function (a) {
+	return {$: 'QuadraticBezierCurveTo', a: a};
+};
+var $folkertdev$one_true_path_experiment$LowLevel$Command$merge = F2(
+	function (instruction1, instruction2) {
+		var _v0 = _Utils_Tuple2(instruction1, instruction2);
+		_v0$5:
+		while (true) {
+			switch (_v0.a.$) {
+				case 'LineTo':
+					if (_v0.b.$ === 'LineTo') {
+						var p1 = _v0.a.a;
+						var p2 = _v0.b.a;
+						return $elm$core$Result$Ok(
+							$folkertdev$one_true_path_experiment$LowLevel$Command$LineTo(
+								_Utils_ap(p1, p2)));
+					} else {
+						break _v0$5;
+					}
+				case 'CurveTo':
+					if (_v0.b.$ === 'CurveTo') {
+						var p1 = _v0.a.a;
+						var p2 = _v0.b.a;
+						return $elm$core$Result$Ok(
+							$folkertdev$one_true_path_experiment$LowLevel$Command$CurveTo(
+								_Utils_ap(p1, p2)));
+					} else {
+						break _v0$5;
+					}
+				case 'QuadraticBezierCurveTo':
+					if (_v0.b.$ === 'QuadraticBezierCurveTo') {
+						var p1 = _v0.a.a;
+						var p2 = _v0.b.a;
+						return $elm$core$Result$Ok(
+							$folkertdev$one_true_path_experiment$LowLevel$Command$QuadraticBezierCurveTo(
+								_Utils_ap(p1, p2)));
+					} else {
+						break _v0$5;
+					}
+				case 'EllipticalArc':
+					if (_v0.b.$ === 'EllipticalArc') {
+						var p1 = _v0.a.a;
+						var p2 = _v0.b.a;
+						return $elm$core$Result$Ok(
+							$folkertdev$one_true_path_experiment$LowLevel$Command$EllipticalArc(
+								_Utils_ap(p1, p2)));
+					} else {
+						break _v0$5;
+					}
+				default:
+					if (_v0.b.$ === 'ClosePath') {
+						var _v1 = _v0.a;
+						var _v2 = _v0.b;
+						return $elm$core$Result$Ok($folkertdev$one_true_path_experiment$LowLevel$Command$ClosePath);
+					} else {
+						break _v0$5;
+					}
+			}
+		}
+		return $elm$core$Result$Err(
+			_Utils_Tuple2(instruction1, instruction2));
+	});
+var $folkertdev$elm_deque$Internal$toList = function (deque) {
+	return _Utils_ap(
+		deque.front,
+		$elm$core$List$reverse(deque.rear));
+};
+var $folkertdev$elm_deque$Deque$toList = A2($elm$core$Basics$composeL, $folkertdev$elm_deque$Internal$toList, $folkertdev$elm_deque$Deque$unwrap);
+var $folkertdev$one_true_path_experiment$SubPath$compressHelper = function (drawtos) {
+	var folder = F2(
+		function (instruction, _v3) {
+			var previous = _v3.a;
+			var accum = _v3.b;
+			var _v2 = A2($folkertdev$one_true_path_experiment$LowLevel$Command$merge, previous, instruction);
+			if (_v2.$ === 'Ok') {
+				var merged = _v2.a;
+				return _Utils_Tuple2(merged, accum);
+			} else {
+				return _Utils_Tuple2(
+					instruction,
+					A2($elm$core$List$cons, previous, accum));
+			}
+		});
+	var _v0 = $folkertdev$elm_deque$Deque$toList(drawtos);
+	if (!_v0.b) {
+		return $folkertdev$elm_deque$Deque$empty;
+	} else {
+		var first = _v0.a;
+		var rest = _v0.b;
+		return $folkertdev$elm_deque$Deque$fromList(
+			$elm$core$List$reverse(
+				function (_v1) {
+					var a = _v1.a;
+					var b = _v1.b;
+					return A2($elm$core$List$cons, a, b);
+				}(
+					A3(
+						$elm$core$List$foldl,
+						folder,
+						_Utils_Tuple2(first, _List_Nil),
+						rest))));
+	}
+};
+var $folkertdev$one_true_path_experiment$SubPath$compress = function (subpath) {
+	if (subpath.$ === 'Empty') {
+		return $folkertdev$one_true_path_experiment$SubPath$Empty;
+	} else {
+		var data = subpath.a;
+		return $folkertdev$one_true_path_experiment$SubPath$SubPath(
+			_Utils_update(
+				data,
+				{
+					drawtos: $folkertdev$one_true_path_experiment$SubPath$compressHelper(data.drawtos)
+				}));
+	}
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$DecimalPlaces = function (a) {
+	return {$: 'DecimalPlaces', a: a};
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$decimalPlaces = $folkertdev$svg_path_lowlevel$Path$LowLevel$DecimalPlaces;
+var $folkertdev$one_true_path_experiment$SubPath$defaultConfig = {decimalPlaces: $elm$core$Maybe$Nothing, mergeAdjacent: false};
+var $elm$core$Maybe$map = F2(
+	function (f, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return $elm$core$Maybe$Just(
+				f(value));
+		} else {
+			return $elm$core$Maybe$Nothing;
+		}
+	});
+var $folkertdev$one_true_path_experiment$SubPath$optionFolder = F2(
+	function (option, config) {
+		if (option.$ === 'DecimalPlaces') {
+			var n = option.a;
+			return _Utils_update(
+				config,
+				{
+					decimalPlaces: $elm$core$Maybe$Just(n)
+				});
+		} else {
+			return _Utils_update(
+				config,
+				{mergeAdjacent: true});
+		}
+	});
+var $elm$core$List$singleton = function (value) {
+	return _List_fromArray(
+		[value]);
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$Absolute = {$: 'Absolute'};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$ClosePath = {$: 'ClosePath'};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$CurveTo = F2(
+	function (a, b) {
+		return {$: 'CurveTo', a: a, b: b};
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$EllipticalArc = F2(
+	function (a, b) {
+		return {$: 'EllipticalArc', a: a, b: b};
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$LineTo = F2(
+	function (a, b) {
+		return {$: 'LineTo', a: a, b: b};
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$QuadraticBezierCurveTo = F2(
+	function (a, b) {
+		return {$: 'QuadraticBezierCurveTo', a: a, b: b};
+	});
+var $folkertdev$one_true_path_experiment$LowLevel$Command$toLowLevelDrawTo = function (drawto) {
+	switch (drawto.$) {
+		case 'LineTo':
+			var coordinates = drawto.a;
+			return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$LineTo, $folkertdev$svg_path_lowlevel$Path$LowLevel$Absolute, coordinates);
+		case 'CurveTo':
+			var coordinates = drawto.a;
+			return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$CurveTo, $folkertdev$svg_path_lowlevel$Path$LowLevel$Absolute, coordinates);
+		case 'QuadraticBezierCurveTo':
+			var coordinates = drawto.a;
+			return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$QuadraticBezierCurveTo, $folkertdev$svg_path_lowlevel$Path$LowLevel$Absolute, coordinates);
+		case 'EllipticalArc':
+			var _arguments = drawto.a;
+			return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$EllipticalArc, $folkertdev$svg_path_lowlevel$Path$LowLevel$Absolute, _arguments);
+		default:
+			return $folkertdev$svg_path_lowlevel$Path$LowLevel$ClosePath;
+	}
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$MoveTo = F2(
+	function (a, b) {
+		return {$: 'MoveTo', a: a, b: b};
+	});
+var $folkertdev$one_true_path_experiment$LowLevel$Command$toLowLevelMoveTo = function (_v0) {
+	var target = _v0.a;
+	return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$MoveTo, $folkertdev$svg_path_lowlevel$Path$LowLevel$Absolute, target);
+};
+var $folkertdev$one_true_path_experiment$SubPath$toLowLevel = function (subpath) {
+	if (subpath.$ === 'Empty') {
+		return $elm$core$Maybe$Nothing;
+	} else {
+		var moveto = subpath.a.moveto;
+		var drawtos = subpath.a.drawtos;
+		return $elm$core$Maybe$Just(
+			{
+				drawtos: A2(
+					$elm$core$List$map,
+					$folkertdev$one_true_path_experiment$LowLevel$Command$toLowLevelDrawTo,
+					$folkertdev$elm_deque$Deque$toList(drawtos)),
+				moveto: $folkertdev$one_true_path_experiment$LowLevel$Command$toLowLevelMoveTo(moveto)
+			});
+	}
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$defaultConfig = {floatFormatter: $elm$core$String$fromFloat};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$roundTo = F2(
+	function (n, value) {
+		if (!n) {
+			return $elm$core$String$fromInt(
+				$elm$core$Basics$round(value));
+		} else {
+			var sign = (value < 0.0) ? '-' : '';
+			var exp = A2($elm$core$Basics$pow, 10, n);
+			var raised = $elm$core$Basics$abs(
+				$elm$core$Basics$round(value * exp));
+			var decimals = raised % exp;
+			return (!decimals) ? _Utils_ap(
+				sign,
+				$elm$core$String$fromInt((raised / exp) | 0)) : (sign + ($elm$core$String$fromInt((raised / exp) | 0) + ('.' + $elm$core$String$fromInt(decimals))));
+		}
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$optionFolder = F2(
+	function (option, config) {
+		var n = option.a;
+		return _Utils_update(
+			config,
+			{
+				floatFormatter: $folkertdev$svg_path_lowlevel$Path$LowLevel$roundTo(n)
+			});
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$accumulateOptions = A2($elm$core$List$foldl, $folkertdev$svg_path_lowlevel$Path$LowLevel$optionFolder, $folkertdev$svg_path_lowlevel$Path$LowLevel$defaultConfig);
+var $elm$core$List$isEmpty = function (xs) {
+	if (!xs.b) {
+		return true;
+	} else {
+		return false;
+	}
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$isEmpty = function (command) {
+	switch (command.$) {
+		case 'LineTo':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'Horizontal':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'Vertical':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'CurveTo':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'SmoothCurveTo':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'QuadraticBezierCurveTo':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'SmoothQuadraticBezierCurveTo':
+			var mode = command.a;
+			var coordinates = command.b;
+			return $elm$core$List$isEmpty(coordinates);
+		case 'EllipticalArc':
+			var mode = command.a;
+			var _arguments = command.b;
+			return $elm$core$List$isEmpty(_arguments);
+		default:
+			return false;
+	}
+};
+var $elm$core$Char$toLower = _Char_toLower;
+var $elm$core$Char$toUpper = _Char_toUpper;
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter = F2(
+	function (mode, character) {
+		if (mode.$ === 'Absolute') {
+			return $elm$core$String$fromChar(
+				$elm$core$Char$toUpper(character));
+		} else {
+			return $elm$core$String$fromChar(
+				$elm$core$Char$toLower(character));
+		}
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate = F2(
+	function (config, _v0) {
+		var x = _v0.a;
+		var y = _v0.b;
+		return config.floatFormatter(x) + (',' + config.floatFormatter(y));
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate2 = F2(
+	function (config, _v0) {
+		var c1 = _v0.a;
+		var c2 = _v0.b;
+		return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, c1) + (' ' + A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, c2));
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate3 = F2(
+	function (config, _v0) {
+		var c1 = _v0.a;
+		var c2 = _v0.b;
+		var c3 = _v0.c;
+		return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, c1) + (' ' + (A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, c2) + (' ' + A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, c3))));
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$encodeFlags = function (_v0) {
+	var arcFlag = _v0.a;
+	var direction = _v0.b;
+	var _v1 = _Utils_Tuple2(arcFlag, direction);
+	if (_v1.a.$ === 'LargestArc') {
+		if (_v1.b.$ === 'Clockwise') {
+			var _v2 = _v1.a;
+			var _v3 = _v1.b;
+			return _Utils_Tuple2(1, 0);
+		} else {
+			var _v6 = _v1.a;
+			var _v7 = _v1.b;
+			return _Utils_Tuple2(1, 1);
+		}
+	} else {
+		if (_v1.b.$ === 'Clockwise') {
+			var _v4 = _v1.a;
+			var _v5 = _v1.b;
+			return _Utils_Tuple2(0, 0);
+		} else {
+			var _v8 = _v1.a;
+			var _v9 = _v1.b;
+			return _Utils_Tuple2(0, 1);
+		}
+	}
+};
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyEllipticalArcArgument = F2(
+	function (config, _v0) {
+		var radii = _v0.radii;
+		var xAxisRotate = _v0.xAxisRotate;
+		var arcFlag = _v0.arcFlag;
+		var direction = _v0.direction;
+		var target = _v0.target;
+		var _v1 = $folkertdev$svg_path_lowlevel$Path$LowLevel$encodeFlags(
+			_Utils_Tuple2(arcFlag, direction));
+		var arc = _v1.a;
+		var sweep = _v1.b;
+		return A2(
+			$elm$core$String$join,
+			' ',
+			_List_fromArray(
+				[
+					A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, radii),
+					$elm$core$String$fromFloat(xAxisRotate),
+					$elm$core$String$fromInt(arc),
+					$elm$core$String$fromInt(sweep),
+					A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, target)
+				]));
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyDrawTo = F2(
+	function (config, command) {
+		if ($folkertdev$svg_path_lowlevel$Path$LowLevel$isEmpty(command)) {
+			return '';
+		} else {
+			switch (command.$) {
+				case 'LineTo':
+					var mode = command.a;
+					var coordinates = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('L')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2(
+								$elm$core$List$map,
+								$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate(config),
+								coordinates)));
+				case 'Horizontal':
+					var mode = command.a;
+					var coordinates = command.b;
+					return $elm$core$List$isEmpty(coordinates) ? '' : _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('H')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2($elm$core$List$map, $elm$core$String$fromFloat, coordinates)));
+				case 'Vertical':
+					var mode = command.a;
+					var coordinates = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('V')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2($elm$core$List$map, $elm$core$String$fromFloat, coordinates)));
+				case 'CurveTo':
+					var mode = command.a;
+					var coordinates = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('C')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2(
+								$elm$core$List$map,
+								$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate3(config),
+								coordinates)));
+				case 'SmoothCurveTo':
+					var mode = command.a;
+					var coordinates = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('S')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2(
+								$elm$core$List$map,
+								$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate2(config),
+								coordinates)));
+				case 'QuadraticBezierCurveTo':
+					var mode = command.a;
+					var coordinates = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('Q')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2(
+								$elm$core$List$map,
+								$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate2(config),
+								coordinates)));
+				case 'SmoothQuadraticBezierCurveTo':
+					var mode = command.a;
+					var coordinates = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('T')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2(
+								$elm$core$List$map,
+								$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate(config),
+								coordinates)));
+				case 'EllipticalArc':
+					var mode = command.a;
+					var _arguments = command.b;
+					return _Utils_ap(
+						A2(
+							$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCharacter,
+							mode,
+							_Utils_chr('A')),
+						A2(
+							$elm$core$String$join,
+							' ',
+							A2(
+								$elm$core$List$map,
+								$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyEllipticalArcArgument(config),
+								_arguments)));
+				default:
+					return 'Z';
+			}
+		}
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyMoveTo = F2(
+	function (config, _v0) {
+		var mode = _v0.a;
+		var coordinate = _v0.b;
+		if (mode.$ === 'Absolute') {
+			return 'M' + A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, coordinate);
+		} else {
+			return 'm' + A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyCoordinate, config, coordinate);
+		}
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$toStringSubPath = F2(
+	function (config, _v0) {
+		var moveto = _v0.moveto;
+		var drawtos = _v0.drawtos;
+		return A2($folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyMoveTo, config, moveto) + (' ' + A2(
+			$elm$core$String$join,
+			' ',
+			A2(
+				$elm$core$List$map,
+				$folkertdev$svg_path_lowlevel$Path$LowLevel$stringifyDrawTo(config),
+				drawtos)));
+	});
+var $folkertdev$svg_path_lowlevel$Path$LowLevel$toStringWith = F2(
+	function (options, subpaths) {
+		var config = $folkertdev$svg_path_lowlevel$Path$LowLevel$accumulateOptions(options);
+		return A2(
+			$elm$core$String$join,
+			' ',
+			A2(
+				$elm$core$List$map,
+				$folkertdev$svg_path_lowlevel$Path$LowLevel$toStringSubPath(config),
+				subpaths));
+	});
+var $folkertdev$one_true_path_experiment$SubPath$toStringWith = F2(
+	function (options, subpath) {
+		var config = A3($elm$core$List$foldl, $folkertdev$one_true_path_experiment$SubPath$optionFolder, $folkertdev$one_true_path_experiment$SubPath$defaultConfig, options);
+		var lowLevelOptions = function () {
+			var _v0 = config.decimalPlaces;
+			if (_v0.$ === 'Nothing') {
+				return _List_Nil;
+			} else {
+				var n = _v0.a;
+				return _List_fromArray(
+					[
+						$folkertdev$svg_path_lowlevel$Path$LowLevel$decimalPlaces(n)
+					]);
+			}
+		}();
+		return A2(
+			$elm$core$Maybe$withDefault,
+			'',
+			A2(
+				$elm$core$Maybe$map,
+				A2(
+					$elm$core$Basics$composeL,
+					$folkertdev$svg_path_lowlevel$Path$LowLevel$toStringWith(lowLevelOptions),
+					$elm$core$List$singleton),
+				$folkertdev$one_true_path_experiment$SubPath$toLowLevel(
+					(config.mergeAdjacent ? $folkertdev$one_true_path_experiment$SubPath$compress : $elm$core$Basics$identity)(subpath))));
+	});
+var $folkertdev$one_true_path_experiment$SubPath$toString = function (subpath) {
+	return A2($folkertdev$one_true_path_experiment$SubPath$toStringWith, _List_Nil, subpath);
+};
+var $folkertdev$one_true_path_experiment$Path$toString = A2(
+	$elm$core$Basics$composeL,
+	$elm$core$String$join(' '),
+	$elm$core$List$map($folkertdev$one_true_path_experiment$SubPath$toString));
+var $folkertdev$one_true_path_experiment$Path$element = F2(
+	function (path, attributes) {
+		return A2(
+			$elm$svg$Svg$path,
+			A2(
+				$elm$core$List$cons,
+				$elm$svg$Svg$Attributes$d(
+					$folkertdev$one_true_path_experiment$Path$toString(path)),
+				attributes),
+			_List_Nil);
+	});
 var $elm$core$String$concat = function (strings) {
 	return A2($elm$core$String$join, '', strings);
 };
+var $avh4$elm_color$Color$toCssString = function (_v0) {
+	var r = _v0.a;
+	var g = _v0.b;
+	var b = _v0.c;
+	var a = _v0.d;
+	var roundTo = function (x) {
+		return $elm$core$Basics$round(x * 1000) / 1000;
+	};
+	var pct = function (x) {
+		return $elm$core$Basics$round(x * 10000) / 100;
+	};
+	return $elm$core$String$concat(
+		_List_fromArray(
+			[
+				'rgba(',
+				$elm$core$String$fromFloat(
+				pct(r)),
+				'%,',
+				$elm$core$String$fromFloat(
+				pct(g)),
+				'%,',
+				$elm$core$String$fromFloat(
+				pct(b)),
+				'%,',
+				$elm$core$String$fromFloat(
+				roundTo(a)),
+				')'
+			]));
+};
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString = function (paint) {
+	switch (paint.$) {
+		case 'Paint':
+			var color = paint.a;
+			return $avh4$elm_color$Color$toCssString(color);
+		case 'Reference':
+			var string = paint.a;
+			return $elm$core$String$concat(
+				_List_fromArray(
+					['url(#', string, ')']));
+		case 'ContextFill':
+			return 'context-fill';
+		case 'ContextStroke':
+			return 'context-stroke';
+		default:
+			return 'none';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$fill = A2(
+	$elm$core$Basics$composeL,
+	$elm_community$typed_svg$TypedSvg$Core$attribute('fill'),
+	$elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString);
+var $elm$virtual_dom$VirtualDom$nodeNS = function (tag) {
+	return _VirtualDom_nodeNS(
+		_VirtualDom_noScript(tag));
+};
+var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
+var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
+var $gampleman$elm_visualization$Shape$Generators$line = F2(
+	function (curve, data) {
+		var makeCurves = F2(
+			function (datum, _v3) {
+				var prev = _v3.a;
+				var list = _v3.b;
+				var _v0 = _Utils_Tuple3(prev, datum, list);
+				if (_v0.b.$ === 'Nothing') {
+					var _v1 = _v0.b;
+					var l = _v0.c;
+					return _Utils_Tuple2(false, l);
+				} else {
+					if (!_v0.a) {
+						var point = _v0.b.a;
+						var l = _v0.c;
+						return _Utils_Tuple2(
+							true,
+							A2(
+								$elm$core$List$cons,
+								_List_fromArray(
+									[point]),
+								l));
+					} else {
+						if (_v0.c.b) {
+							var p1 = _v0.b.a;
+							var _v2 = _v0.c;
+							var ps = _v2.a;
+							var l = _v2.b;
+							return _Utils_Tuple2(
+								true,
+								A2(
+									$elm$core$List$cons,
+									A2($elm$core$List$cons, p1, ps),
+									l));
+						} else {
+							var p1 = _v0.b.a;
+							var l = _v0.c;
+							return _Utils_Tuple2(
+								true,
+								A2(
+									$elm$core$List$cons,
+									_List_fromArray(
+										[p1]),
+									l));
+						}
+					}
+				}
+			});
+		return A2(
+			$elm$core$List$map,
+			curve,
+			A3(
+				$elm$core$List$foldr,
+				makeCurves,
+				_Utils_Tuple2(false, _List_Nil),
+				data).b);
+	});
+var $gampleman$elm_visualization$Shape$line = $gampleman$elm_visualization$Shape$Generators$line;
+var $author$project$Main$transformToLineData = function (_v0) {
+	var x = _v0.a;
+	var y = _v0.b;
+	return $elm$core$Maybe$Just(
+		_Utils_Tuple2(
+			A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$xScale, x),
+			A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, y)));
+};
+var $author$project$Main$line = function (model) {
+	return A2(
+		$gampleman$elm_visualization$Shape$line,
+		$gampleman$elm_visualization$Shape$monotoneInXCurve,
+		A2($elm$core$List$map, $author$project$Main$transformToLineData, model));
+};
+var $avh4$elm_color$Color$RgbaSpace = F4(
+	function (a, b, c, d) {
+		return {$: 'RgbaSpace', a: a, b: b, c: c, d: d};
+	});
+var $avh4$elm_color$Color$rgb = F3(
+	function (r, g, b) {
+		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, 1.0);
+	});
+var $avh4$elm_color$Color$rgba = F4(
+	function (r, g, b, a) {
+		return A4($avh4$elm_color$Color$RgbaSpace, r, g, b, a);
+	});
+var $elm_community$typed_svg$TypedSvg$Attributes$stroke = A2(
+	$elm$core$Basics$composeL,
+	$elm_community$typed_svg$TypedSvg$Core$attribute('stroke'),
+	$elm_community$typed_svg$TypedSvg$TypesToStrings$paintToString);
+var $elm_community$typed_svg$TypedSvg$Types$Px = function (a) {
+	return {$: 'Px', a: a};
+};
+var $elm_community$typed_svg$TypedSvg$Types$px = $elm_community$typed_svg$TypedSvg$Types$Px;
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
+	switch (length.$) {
+		case 'Cm':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'cm';
+		case 'Em':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'em';
+		case 'Ex':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'ex';
+		case 'In':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'in';
+		case 'Mm':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'mm';
+		case 'Num':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x);
+		case 'Pc':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'pc';
+		case 'Percent':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + '%';
+		case 'Pt':
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'pt';
+		default:
+			var x = length.a;
+			return $elm$core$String$fromFloat(x) + 'px';
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$strokeWidth = function (length) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'stroke-width',
+		$elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString(length));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth = function (value) {
+	return $elm_community$typed_svg$TypedSvg$Attributes$strokeWidth(
+		$elm_community$typed_svg$TypedSvg$Types$px(value));
+};
+var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
+var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $author$project$Main$tmp = 3 * $author$project$Main$w;
 var $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString = function (xform) {
 	var tr = F2(
 		function (name, args) {
@@ -8438,7 +10359,6 @@ var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
 					_List_fromArray(
 						[minX, minY, vWidth, vHeight]))));
 	});
-var $author$project$Main$w = 900;
 var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
 var $gampleman$elm_visualization$Scale$tickFormat = function (_v0) {
 	var opts = _v0.a;
@@ -8527,23 +10447,12 @@ var $gampleman$elm_visualization$Axis$computeOptions = F2(
 			},
 			postList);
 	});
-var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
 var $elm$svg$Svg$Attributes$dy = _VirtualDom_attribute('dy');
 var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
 var $elm$svg$Svg$Attributes$fontFamily = _VirtualDom_attribute('font-family');
 var $elm$svg$Svg$Attributes$fontSize = _VirtualDom_attribute('font-size');
-var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
 var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
 var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
-var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
-var $gampleman$elm_visualization$Scale$rangeExtent = function (_v0) {
-	var options = _v0.a;
-	return A2(options.rangeExtent, options.domain, options.range);
-};
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
 var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
 var $elm$svg$Svg$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$svg$Svg$Attributes$textAnchor = _VirtualDom_attribute('text-anchor');
@@ -8648,132 +10557,19 @@ var $gampleman$elm_visualization$Axis$verticalAttrs = {
 	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat)
 };
 var $gampleman$elm_visualization$Axis$bottom = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$verticalAttrs, 1, '0.71em', 'middle');
-var $elm$core$Basics$clamp = F3(
-	function (low, high, number) {
-		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
-	});
-var $gampleman$elm_visualization$Scale$Band$normalizeConfig = function (_v0) {
-	var paddingInner = _v0.paddingInner;
-	var paddingOuter = _v0.paddingOuter;
-	var align = _v0.align;
-	return {
-		align: A3($elm$core$Basics$clamp, 0, 1, align),
-		paddingInner: A3($elm$core$Basics$clamp, 0, 1, paddingInner),
-		paddingOuter: A3($elm$core$Basics$clamp, 0, 1, paddingOuter)
-	};
+var $gampleman$elm_visualization$Axis$TickCount = function (a) {
+	return {$: 'TickCount', a: a};
 };
-var $gampleman$elm_visualization$Scale$Band$bandwidth = F3(
-	function (cfg, domain, _v0) {
-		var d0 = _v0.a;
-		var d1 = _v0.b;
-		var n = $elm$core$List$length(domain);
-		var _v1 = (_Utils_cmp(d0, d1) < 0) ? _Utils_Tuple2(d0, d1) : _Utils_Tuple2(d1, d0);
-		var start = _v1.a;
-		var stop = _v1.b;
-		var _v2 = $gampleman$elm_visualization$Scale$Band$normalizeConfig(cfg);
-		var paddingInner = _v2.paddingInner;
-		var paddingOuter = _v2.paddingOuter;
-		var align = _v2.align;
-		var step = (stop - start) / A2($elm$core$Basics$max, 1, (n - paddingInner) + (paddingOuter * 2));
-		return step * (1 - paddingInner);
-	});
-var $gampleman$elm_visualization$Scale$Band$computePositions = F4(
-	function (index, cfg, n, _v0) {
-		var start = _v0.a;
-		var stop = _v0.b;
-		var _v1 = $gampleman$elm_visualization$Scale$Band$normalizeConfig(cfg);
-		var paddingInner = _v1.paddingInner;
-		var paddingOuter = _v1.paddingOuter;
-		var align = _v1.align;
-		var step = (stop - start) / A2($elm$core$Basics$max, 1, (n - paddingInner) + (paddingOuter * 2));
-		var start2 = start + (((stop - start) - (step * (n - paddingInner))) * align);
-		return _Utils_Tuple2(start2, step);
-	});
-var $gampleman$elm_visualization$Scale$Band$indexOfHelp = F3(
-	function (index, value, list) {
-		indexOfHelp:
-		while (true) {
-			if (!list.b) {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (_Utils_eq(value, x)) {
-					return $elm$core$Maybe$Just(index);
-				} else {
-					var $temp$index = index + 1,
-						$temp$value = value,
-						$temp$list = xs;
-					index = $temp$index;
-					value = $temp$value;
-					list = $temp$list;
-					continue indexOfHelp;
-				}
-			}
-		}
-	});
-var $gampleman$elm_visualization$Scale$Band$indexOf = $gampleman$elm_visualization$Scale$Band$indexOfHelp(0);
-var $gampleman$elm_visualization$Scale$Band$convert = F4(
-	function (cfg, domain, _v0, value) {
-		var start = _v0.a;
-		var stop = _v0.b;
-		var _v1 = A2($gampleman$elm_visualization$Scale$Band$indexOf, value, domain);
-		if (_v1.$ === 'Just') {
-			var index = _v1.a;
-			var n = $elm$core$List$length(domain);
-			if (_Utils_cmp(start, stop) < 0) {
-				var _v2 = A4(
-					$gampleman$elm_visualization$Scale$Band$computePositions,
-					index,
-					cfg,
-					n,
-					_Utils_Tuple2(start, stop));
-				var start2 = _v2.a;
-				var step = _v2.b;
-				return start2 + (step * index);
-			} else {
-				var _v3 = A4(
-					$gampleman$elm_visualization$Scale$Band$computePositions,
-					index,
-					cfg,
-					n,
-					_Utils_Tuple2(stop, start));
-				var stop2 = _v3.a;
-				var step = _v3.b;
-				return stop2 + (step * ((n - index) - 1));
-			}
-		} else {
-			return 0 / 0;
-		}
-	});
-var $gampleman$elm_visualization$Scale$band = F3(
-	function (config, range_, domain_) {
-		return $gampleman$elm_visualization$Scale$Scale(
-			{
-				bandwidth: A3($gampleman$elm_visualization$Scale$Band$bandwidth, config, domain_, range_),
-				convert: $gampleman$elm_visualization$Scale$Band$convert(config),
-				domain: domain_,
-				range: range_
-			});
-	});
-var $gampleman$elm_visualization$Scale$defaultBandConfig = {align: 0.5, paddingInner: 0.0, paddingOuter: 0.0};
-var $author$project$Main$xScale = function (model) {
-	return A3(
-		$gampleman$elm_visualization$Scale$band,
-		_Utils_update(
-			$gampleman$elm_visualization$Scale$defaultBandConfig,
-			{paddingInner: 0.1, paddingOuter: 0.2}),
-		_Utils_Tuple2(0, $author$project$Main$w - (2 * $author$project$Main$padding)),
-		A2($elm$core$List$map, $elm$core$Tuple$first, model));
-};
+var $gampleman$elm_visualization$Axis$tickCount = $gampleman$elm_visualization$Axis$TickCount;
 var $author$project$Main$xAxis = function (model) {
 	return A2(
 		$gampleman$elm_visualization$Axis$bottom,
-		_List_Nil,
-		A2(
-			$gampleman$elm_visualization$Scale$toRenderable,
-			$author$project$Main$dateFormat,
-			$author$project$Main$xScale(model)));
+		_List_fromArray(
+			[
+				$gampleman$elm_visualization$Axis$tickCount(
+				$elm$core$List$length(model))
+			]),
+		$author$project$Main$xScale);
 };
 var $gampleman$elm_visualization$Axis$horizontalAttrs = {
 	horizontal: true,
@@ -8788,10 +10584,6 @@ var $gampleman$elm_visualization$Axis$horizontalAttrs = {
 	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat)
 };
 var $gampleman$elm_visualization$Axis$left = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$horizontalAttrs, -1, '0.32em', 'end');
-var $gampleman$elm_visualization$Axis$TickCount = function (a) {
-	return {$: 'TickCount', a: a};
-};
-var $gampleman$elm_visualization$Axis$tickCount = $gampleman$elm_visualization$Axis$TickCount;
 var $author$project$Main$yAxis = A2(
 	$gampleman$elm_visualization$Axis$left,
 	_List_fromArray(
@@ -8802,26 +10594,19 @@ var $author$project$Main$yAxis = A2(
 var $author$project$Main$view = function (model) {
 	switch (model.$) {
 		case 'Failure':
-			return $elm_community$typed_svg$TypedSvg$Core$text('Error: couldnt load');
+			return $elm$html$Html$text('Error: couldnt load');
 		case 'Loading':
-			return $elm_community$typed_svg$TypedSvg$Core$text('Loading...');
+			return $elm$html$Html$text('Loading...');
 		default:
 			var data = model.a;
 			return A2(
 				$elm_community$typed_svg$TypedSvg$svg,
 				_List_fromArray(
 					[
-						A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Main$w, $author$project$Main$h)
+						A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Main$tmp, $author$project$Main$h)
 					]),
 				_List_fromArray(
 					[
-						A2(
-						$elm_community$typed_svg$TypedSvg$style,
-						_List_Nil,
-						_List_fromArray(
-							[
-								$elm_community$typed_svg$TypedSvg$Core$text('\r\n                    .column rect { fill: rgba(118, 214, 78, 0.8); }\r\n                    .column text { display: none; }\r\n                    .column:hover rect { fill: rgb(118, 214, 78); }\r\n                    .column:hover text { display: inline; }\r\n                ')
-							])),
 						A2(
 						$elm_community$typed_svg$TypedSvg$g,
 						_List_fromArray(
@@ -8862,12 +10647,32 @@ var $author$project$Main$view = function (model) {
 								_List_fromArray(
 									['series']))
 							]),
-						A2(
-							$elm$core$List$map,
-							$author$project$Main$column(
-								$author$project$Main$xScale(
-									$author$project$Main$convert(data))),
-							$author$project$Main$convert(data)))
+						_List_fromArray(
+							[
+								A2(
+								$folkertdev$one_true_path_experiment$Path$element,
+								$author$project$Main$area(
+									$author$project$Main$convert(data)),
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(3),
+										$elm_community$typed_svg$TypedSvg$Attributes$fill(
+										$elm_community$typed_svg$TypedSvg$Types$Paint(
+											A4($avh4$elm_color$Color$rgba, 1, 0, 0, 0.54)))
+									])),
+								A2(
+								$folkertdev$one_true_path_experiment$Path$element,
+								$author$project$Main$line(
+									$author$project$Main$convert(data)),
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$stroke(
+										$elm_community$typed_svg$TypedSvg$Types$Paint(
+											A3($avh4$elm_color$Color$rgb, 1, 0, 0))),
+										$elm_community$typed_svg$TypedSvg$Attributes$InPx$strokeWidth(3),
+										$elm_community$typed_svg$TypedSvg$Attributes$fill($elm_community$typed_svg$TypedSvg$Types$PaintNone)
+									]))
+							]))
 					]));
 	}
 };

@@ -11,7 +11,6 @@ module Model where
 
 import Database.Persist.Sqlite
 import Database.Persist.TH
-import Data.Time.LocalTime
 import Data.Time
 import Database.Persist.Quasi
 import Prelude

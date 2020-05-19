@@ -10,8 +10,8 @@ Device
     uuid Text
     userId UserId
     UniqueUuid uuid
-Values
-    value Text
+Values json
+    value Int
     time UTCTime default=CURRENT_TIME
     deviceId DeviceId
     

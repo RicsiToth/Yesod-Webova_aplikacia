@@ -11,10 +11,11 @@
 
 /register RegisterR GET POST
 
-/send-data/#Text/#DeviceId/#Text SendDataR GET POST
+/send-data/#Text/#DeviceId/#Int SendDataR GET POST
 
 /add-device AddDeviceR GET POST
 
 /remove-device/#DeviceId RemoveDeviceR GET POST
 /home HomeR GET
 /home/#DeviceId HomeIdR GET
+/data/#DeviceId DataR GET

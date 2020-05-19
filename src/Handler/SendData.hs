@@ -13,7 +13,7 @@ module Handler.SendData where
 import Import
 import Data.Time.Clock
 
-getSendDataR :: Text -> DeviceId -> Text -> Handler Html
+getSendDataR :: Text -> DeviceId -> Int -> Handler Html
 getSendDataR uuid id' value = do
     valid <- validation id' uuid
     if(valid)
@@ -23,11 +23,7 @@ getSendDataR uuid id' value = do
             defaultLayout [whamlet|<p>OK|]
         else defaultLayout [whamlet|<p>NIE|]
 
-
-
-    
-
-postSendDataR :: Text -> DeviceId -> Text -> Handler Html
+postSendDataR :: Text -> DeviceId -> Int -> Handler Html
 postSendDataR uuid id' value = getSendDataR uuid id' value
 
 validation :: DeviceId -> Text -> Handler Bool
