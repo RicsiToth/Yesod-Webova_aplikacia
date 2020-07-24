@@ -5490,6 +5490,7 @@ var $author$project$Main$Loading = {$: 'Loading'};
 var $author$project$Main$GotData = function (a) {
 	return {$: 'GotData', a: a};
 };
+var $elm$core$String$append = _String_append;
 var $elm$json$Json$Decode$decodeString = _Json_runOnString;
 var $elm$http$Http$BadStatus_ = F2(
 	function (a, b) {
@@ -6584,7 +6585,6 @@ var $elm$parser$Parser$Done = function (a) {
 var $elm$parser$Parser$Loop = function (a) {
 	return {$: 'Loop', a: a};
 };
-var $elm$core$String$append = _String_append;
 var $elm$parser$Parser$UnexpectedChar = {$: 'UnexpectedChar'};
 var $elm$parser$Parser$Advanced$chompIf = F2(
 	function (isGood, expecting) {
@@ -7072,17 +7072,21 @@ var $author$project$Main$dataDecoder = A3(
 	A2($elm$json$Json$Decode$field, 'value', $elm$json$Json$Decode$int));
 var $elm$json$Json$Decode$list = _Json_decodeList;
 var $author$project$Main$theDecoder = $elm$json$Json$Decode$list($author$project$Main$dataDecoder);
-var $author$project$Main$getData = $elm$http$Http$get(
-	{
-		expect: A2($elm$http$Http$expectJson, $author$project$Main$GotData, $author$project$Main$theDecoder),
-		url: 'http://localhost:3000/data/1'
-	});
-var $author$project$Main$init = function (_v0) {
-	return _Utils_Tuple2($author$project$Main$Loading, $author$project$Main$getData);
+var $author$project$Main$getData = function (devId) {
+	return $elm$http$Http$get(
+		{
+			expect: A2($elm$http$Http$expectJson, $author$project$Main$GotData, $author$project$Main$theDecoder),
+			url: A2($elm$core$String$append, 'http://localhost:3000/data/', devId)
+		});
+};
+var $author$project$Main$init = function (devId) {
+	return _Utils_Tuple2(
+		_Utils_Tuple2(devId, $author$project$Main$Loading),
+		$author$project$Main$getData(devId));
 };
 var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
-var $author$project$Main$subscriptions = function (model) {
+var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
 var $author$project$Main$Failure = {$: 'Failure'};
@@ -7092,25 +7096,66 @@ var $author$project$Main$Success = function (a) {
 var $elm$core$Platform$Cmd$batch = _Platform_batch;
 var $elm$core$Platform$Cmd$none = $elm$core$Platform$Cmd$batch(_List_Nil);
 var $author$project$Main$update = F2(
-	function (msg, model) {
+	function (msg, _v0) {
+		var devId = _v0.a;
 		if (msg.$ === 'Again') {
-			return _Utils_Tuple2($author$project$Main$Loading, $author$project$Main$getData);
+			return _Utils_Tuple2(
+				_Utils_Tuple2(devId, $author$project$Main$Loading),
+				$author$project$Main$getData(devId));
 		} else {
 			var result = msg.a;
 			if (result.$ === 'Ok') {
 				var data = result.a;
 				return _Utils_Tuple2(
-					$author$project$Main$Success(data),
+					_Utils_Tuple2(
+						devId,
+						$author$project$Main$Success(data)),
 					$elm$core$Platform$Cmd$none);
 			} else {
-				return _Utils_Tuple2($author$project$Main$Failure, $elm$core$Platform$Cmd$none);
+				return _Utils_Tuple2(
+					_Utils_Tuple2(devId, $author$project$Main$Failure),
+					$elm$core$Platform$Cmd$none);
 			}
 		}
 	});
+var $author$project$Main$Again = {$: 'Again'};
 var $elm_community$typed_svg$TypedSvg$Types$Translate = F2(
 	function (a, b) {
 		return {$: 'Translate', a: a, b: b};
 	});
+var $elm$core$Tuple$second = function (_v0) {
+	var y = _v0.b;
+	return y;
+};
+var $author$project$Main$getFloatFromList = function (list) {
+	if (!list.b) {
+		return _List_Nil;
+	} else {
+		var x = list.a;
+		var xs = list.b;
+		return A2(
+			$elm$core$List$cons,
+			x.b,
+			$author$project$Main$getFloatFromList(xs));
+	}
+};
+var $elm$core$List$sum = function (numbers) {
+	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
+};
+var $author$project$Main$average = function (list) {
+	var listFl = $author$project$Main$getFloatFromList(list);
+	return $elm$core$List$sum(listFl) / $elm$core$List$length(listFl);
+};
+var $elm$html$Html$button = _VirtualDom_node('button');
+var $elm$json$Json$Encode$string = _Json_wrap;
+var $elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			$elm$json$Json$Encode$string(string));
+	});
+var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$virtual_dom$VirtualDom$attribute = F2(
 	function (key, value) {
 		return A2(
@@ -7507,9 +7552,6 @@ var $ryannhg$date_format$DateFormat$monthNumber_ = F2(
 		}(
 			A2($ryannhg$date_format$DateFormat$monthPair, zone, posix));
 	});
-var $elm$core$List$sum = function (numbers) {
-	return A3($elm$core$List$foldl, $elm$core$Basics$add, 0, numbers);
-};
 var $elm$core$List$takeReverse = F3(
 	function (n, list, kept) {
 		takeReverse:
@@ -7938,7 +7980,7 @@ var $elm$virtual_dom$VirtualDom$nodeNS = function (tag) {
 };
 var $elm_community$typed_svg$TypedSvg$Core$node = $elm$virtual_dom$VirtualDom$nodeNS('http://www.w3.org/2000/svg');
 var $elm_community$typed_svg$TypedSvg$g = $elm_community$typed_svg$TypedSvg$Core$node('g');
-var $author$project$Main$h = 450;
+var $author$project$Main$h = 400;
 var $elm_community$typed_svg$TypedSvg$TypesToStrings$lengthToString = function (length) {
 	switch (length.$) {
 		case 'Cm':
@@ -8068,11 +8110,536 @@ var $elm_community$typed_svg$TypedSvg$Attributes$InPx$y = function (value) {
 	return $elm_community$typed_svg$TypedSvg$Attributes$y(
 		$elm_community$typed_svg$TypedSvg$Types$px(value));
 };
+var $author$project$Main$column = F3(
+	function (xscale, yscale, _v0) {
+		var date = _v0.a;
+		var value = _v0.b;
+		return A2(
+			$elm_community$typed_svg$TypedSvg$g,
+			_List_fromArray(
+				[
+					$elm_community$typed_svg$TypedSvg$Attributes$class(
+					_List_fromArray(
+						['column']))
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm_community$typed_svg$TypedSvg$rect,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
+							A2($gampleman$elm_visualization$Scale$convert, xscale, date)),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
+							A2($gampleman$elm_visualization$Scale$convert, yscale, value)),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(
+							$gampleman$elm_visualization$Scale$bandwidth(xscale)),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(
+							($author$project$Main$h - A2($gampleman$elm_visualization$Scale$convert, yscale, value)) - (2 * $author$project$Main$padding))
+						]),
+					_List_Nil),
+					A2(
+					$elm_community$typed_svg$TypedSvg$text_,
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
+							A2(
+								$gampleman$elm_visualization$Scale$convert,
+								A2($gampleman$elm_visualization$Scale$toRenderable, $author$project$Main$dateFormat, xscale),
+								date)),
+							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
+							A2($gampleman$elm_visualization$Scale$convert, yscale, value) - 5),
+							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
+						]),
+					_List_fromArray(
+						[
+							$elm_community$typed_svg$TypedSvg$Core$text(
+							$elm$core$String$fromFloat(value))
+						]))
+				]));
+	});
+var $author$project$Main$get = function (_v0) {
+	var time = _v0.time;
+	var value = _v0.value;
+	return _Utils_Tuple2(time, value);
+};
+var $author$project$Main$convert = function (data) {
+	return A2($elm$core$List$map, $author$project$Main$get, data);
+};
+var $elm$html$Html$div = _VirtualDom_node('div');
+var $elm$virtual_dom$VirtualDom$Normal = function (a) {
+	return {$: 'Normal', a: a};
+};
+var $elm$virtual_dom$VirtualDom$on = _VirtualDom_on;
+var $elm$html$Html$Events$on = F2(
+	function (event, decoder) {
+		return A2(
+			$elm$virtual_dom$VirtualDom$on,
+			event,
+			$elm$virtual_dom$VirtualDom$Normal(decoder));
+	});
+var $elm$html$Html$Events$onClick = function (msg) {
+	return A2(
+		$elm$html$Html$Events$on,
+		'click',
+		$elm$json$Json$Decode$succeed(msg));
+};
+var $elm$html$Html$p = _VirtualDom_node('p');
+var $elm$virtual_dom$VirtualDom$style = _VirtualDom_style;
+var $elm$html$Html$Attributes$style = $elm$virtual_dom$VirtualDom$style;
+var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
+var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
+var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$core$String$concat = function (strings) {
+	return A2($elm$core$String$join, '', strings);
+};
+var $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString = function (xform) {
+	var tr = F2(
+		function (name, args) {
+			return $elm$core$String$concat(
+				_List_fromArray(
+					[
+						name,
+						'(',
+						A2(
+						$elm$core$String$join,
+						' ',
+						A2($elm$core$List$map, $elm$core$String$fromFloat, args)),
+						')'
+					]));
+		});
+	switch (xform.$) {
+		case 'Matrix':
+			var a = xform.a;
+			var b = xform.b;
+			var c = xform.c;
+			var d = xform.d;
+			var e = xform.e;
+			var f = xform.f;
+			return A2(
+				tr,
+				'matrix',
+				_List_fromArray(
+					[a, b, c, d, e, f]));
+		case 'Rotate':
+			var a = xform.a;
+			var x = xform.b;
+			var y = xform.c;
+			return A2(
+				tr,
+				'rotate',
+				_List_fromArray(
+					[a, x, y]));
+		case 'Scale':
+			var x = xform.a;
+			var y = xform.b;
+			return A2(
+				tr,
+				'scale',
+				_List_fromArray(
+					[x, y]));
+		case 'SkewX':
+			var x = xform.a;
+			return A2(
+				tr,
+				'skewX',
+				_List_fromArray(
+					[x]));
+		case 'SkewY':
+			var y = xform.a;
+			return A2(
+				tr,
+				'skewY',
+				_List_fromArray(
+					[y]));
+		default:
+			var x = xform.a;
+			var y = xform.b;
+			return A2(
+				tr,
+				'translate',
+				_List_fromArray(
+					[x, y]));
+	}
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$transform = function (transforms) {
+	return A2(
+		$elm_community$typed_svg$TypedSvg$Core$attribute,
+		'transform',
+		A2(
+			$elm$core$String$join,
+			' ',
+			A2($elm$core$List$map, $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString, transforms)));
+};
+var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
+	function (minX, minY, vWidth, vHeight) {
+		return A2(
+			$elm_community$typed_svg$TypedSvg$Core$attribute,
+			'viewBox',
+			A2(
+				$elm$core$String$join,
+				' ',
+				A2(
+					$elm$core$List$map,
+					$elm$core$String$fromFloat,
+					_List_fromArray(
+						[minX, minY, vWidth, vHeight]))));
+	});
+var $author$project$Main$w = 900;
+var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
+var $gampleman$elm_visualization$Scale$tickFormat = function (_v0) {
+	var opts = _v0.a;
+	return opts.tickFormat(opts.domain);
+};
+var $gampleman$elm_visualization$Scale$ticks = F2(
+	function (_v0, count) {
+		var scale = _v0.a;
+		return A2(scale.ticks, scale.domain, count);
+	});
+var $gampleman$elm_visualization$Axis$computeOptions = F2(
+	function (attrs, scale) {
+		var _v0 = A3(
+			$elm$core$List$foldl,
+			F2(
+				function (attr, _v1) {
+					var babyOpts = _v1.a;
+					var post = _v1.b;
+					switch (attr.$) {
+						case 'TickCount':
+							var val = attr.a;
+							return _Utils_Tuple2(
+								_Utils_update(
+									babyOpts,
+									{tickCount: val}),
+								post);
+						case 'TickSizeInner':
+							var val = attr.a;
+							return _Utils_Tuple2(
+								_Utils_update(
+									babyOpts,
+									{tickSizeInner: val}),
+								post);
+						case 'TickSizeOuter':
+							var val = attr.a;
+							return _Utils_Tuple2(
+								_Utils_update(
+									babyOpts,
+									{tickSizeOuter: val}),
+								post);
+						case 'TickPadding':
+							var val = attr.a;
+							return _Utils_Tuple2(
+								_Utils_update(
+									babyOpts,
+									{tickPadding: val}),
+								post);
+						default:
+							return _Utils_Tuple2(
+								babyOpts,
+								A2($elm$core$List$cons, attr, post));
+					}
+				}),
+			_Utils_Tuple2(
+				{tickCount: 10, tickPadding: 3, tickSizeInner: 6, tickSizeOuter: 6},
+				_List_Nil),
+			attrs);
+		var opts = _v0.a;
+		var postList = _v0.b;
+		return A3(
+			$elm$core$List$foldl,
+			F2(
+				function (attr, options) {
+					switch (attr.$) {
+						case 'Ticks':
+							var val = attr.a;
+							return _Utils_update(
+								options,
+								{ticks: val});
+						case 'TickFormat':
+							var val = attr.a;
+							return _Utils_update(
+								options,
+								{tickFormat: val});
+						default:
+							return options;
+					}
+				}),
+			{
+				tickCount: opts.tickCount,
+				tickFormat: A2($gampleman$elm_visualization$Scale$tickFormat, scale, opts.tickCount),
+				tickPadding: opts.tickPadding,
+				tickSizeInner: opts.tickSizeInner,
+				tickSizeOuter: opts.tickSizeOuter,
+				ticks: A2($gampleman$elm_visualization$Scale$ticks, scale, opts.tickCount)
+			},
+			postList);
+	});
+var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
+var $elm$svg$Svg$Attributes$dy = _VirtualDom_attribute('dy');
+var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
+var $elm$svg$Svg$Attributes$fontFamily = _VirtualDom_attribute('font-family');
+var $elm$svg$Svg$Attributes$fontSize = _VirtualDom_attribute('font-size');
+var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
+var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
+var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
+var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
+var $gampleman$elm_visualization$Scale$rangeExtent = function (_v0) {
+	var options = _v0.a;
+	return A2(options.rangeExtent, options.domain, options.range);
+};
+var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
+var $elm$svg$Svg$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$svg$Svg$Attributes$textAnchor = _VirtualDom_attribute('text-anchor');
+var $elm$svg$Svg$text_ = $elm$svg$Svg$trustedNode('text');
+var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
+var $gampleman$elm_visualization$Axis$element = F4(
+	function (_v0, k, displacement, textAnchorPosition) {
+		var x = _v0.x;
+		var y = _v0.y;
+		var x1 = _v0.x1;
+		var x2 = _v0.x2;
+		var y1 = _v0.y1;
+		var y2 = _v0.y2;
+		var translate = _v0.translate;
+		var horizontal = _v0.horizontal;
+		return F2(
+			function (attrs, scale) {
+				var rangeExtent = $gampleman$elm_visualization$Scale$rangeExtent(scale);
+				var range1 = rangeExtent.b + 0.5;
+				var range0 = rangeExtent.a + 0.5;
+				var position = $gampleman$elm_visualization$Scale$convert(scale);
+				var opts = A2($gampleman$elm_visualization$Axis$computeOptions, attrs, scale);
+				var spacing = A2($elm$core$Basics$max, opts.tickSizeInner, 0) + opts.tickPadding;
+				var drawTick = function (tick) {
+					return A2(
+						$elm$svg$Svg$g,
+						_List_fromArray(
+							[
+								$elm$svg$Svg$Attributes$class('tick'),
+								$elm$svg$Svg$Attributes$transform(
+								translate(
+									position(tick)))
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$svg$Svg$line,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$stroke('#000'),
+										x2(k * opts.tickSizeInner),
+										y1(0.5),
+										y2(0.5)
+									]),
+								_List_Nil),
+								A2(
+								$elm$svg$Svg$text_,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$fill('#000'),
+										x(k * spacing),
+										y(0.5),
+										$elm$svg$Svg$Attributes$dy(displacement)
+									]),
+								_List_fromArray(
+									[
+										$elm$svg$Svg$text(
+										opts.tickFormat(tick))
+									]))
+							]));
+				};
+				var domainLine = horizontal ? ('M' + ($elm$core$String$fromFloat(k * opts.tickSizeOuter) + (',' + ($elm$core$String$fromFloat(range0) + ('H0.5V' + ($elm$core$String$fromFloat(range1) + ('H' + $elm$core$String$fromFloat(k * opts.tickSizeOuter)))))))) : ('M' + ($elm$core$String$fromFloat(range0) + (',' + ($elm$core$String$fromFloat(k * opts.tickSizeOuter) + ('V0.5H' + ($elm$core$String$fromFloat(range1) + ('V' + $elm$core$String$fromFloat(k * opts.tickSizeOuter))))))));
+				return A2(
+					$elm$svg$Svg$g,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$fill('none'),
+							$elm$svg$Svg$Attributes$fontSize('10'),
+							$elm$svg$Svg$Attributes$fontFamily('sans-serif'),
+							$elm$svg$Svg$Attributes$textAnchor(textAnchorPosition)
+						]),
+					A2(
+						$elm$core$List$cons,
+						A2(
+							$elm$svg$Svg$path,
+							_List_fromArray(
+								[
+									$elm$svg$Svg$Attributes$class('domain'),
+									$elm$svg$Svg$Attributes$stroke('#000'),
+									$elm$svg$Svg$Attributes$d(domainLine)
+								]),
+							_List_Nil),
+						A2($elm$core$List$map, drawTick, opts.ticks)));
+			});
+	});
 var $elm$core$Basics$composeL = F3(
 	function (g, f, x) {
 		return g(
 			f(x));
 	});
+var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
+var $elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
+var $elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
+var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
+var $elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
+var $elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
+var $gampleman$elm_visualization$Axis$verticalAttrs = {
+	horizontal: false,
+	translate: function (x) {
+		return 'translate(' + ($elm$core$String$fromFloat(x) + ', 0)');
+	},
+	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
+	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
+	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat),
+	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
+	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
+	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat)
+};
+var $gampleman$elm_visualization$Axis$bottom = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$verticalAttrs, 1, '0.71em', 'middle');
+var $elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
+	});
+var $gampleman$elm_visualization$Scale$Band$normalizeConfig = function (_v0) {
+	var paddingInner = _v0.paddingInner;
+	var paddingOuter = _v0.paddingOuter;
+	var align = _v0.align;
+	return {
+		align: A3($elm$core$Basics$clamp, 0, 1, align),
+		paddingInner: A3($elm$core$Basics$clamp, 0, 1, paddingInner),
+		paddingOuter: A3($elm$core$Basics$clamp, 0, 1, paddingOuter)
+	};
+};
+var $gampleman$elm_visualization$Scale$Band$bandwidth = F3(
+	function (cfg, domain, _v0) {
+		var d0 = _v0.a;
+		var d1 = _v0.b;
+		var n = $elm$core$List$length(domain);
+		var _v1 = (_Utils_cmp(d0, d1) < 0) ? _Utils_Tuple2(d0, d1) : _Utils_Tuple2(d1, d0);
+		var start = _v1.a;
+		var stop = _v1.b;
+		var _v2 = $gampleman$elm_visualization$Scale$Band$normalizeConfig(cfg);
+		var paddingInner = _v2.paddingInner;
+		var paddingOuter = _v2.paddingOuter;
+		var align = _v2.align;
+		var step = (stop - start) / A2($elm$core$Basics$max, 1, (n - paddingInner) + (paddingOuter * 2));
+		return step * (1 - paddingInner);
+	});
+var $gampleman$elm_visualization$Scale$Band$computePositions = F4(
+	function (index, cfg, n, _v0) {
+		var start = _v0.a;
+		var stop = _v0.b;
+		var _v1 = $gampleman$elm_visualization$Scale$Band$normalizeConfig(cfg);
+		var paddingInner = _v1.paddingInner;
+		var paddingOuter = _v1.paddingOuter;
+		var align = _v1.align;
+		var step = (stop - start) / A2($elm$core$Basics$max, 1, (n - paddingInner) + (paddingOuter * 2));
+		var start2 = start + (((stop - start) - (step * (n - paddingInner))) * align);
+		return _Utils_Tuple2(start2, step);
+	});
+var $gampleman$elm_visualization$Scale$Band$indexOfHelp = F3(
+	function (index, value, list) {
+		indexOfHelp:
+		while (true) {
+			if (!list.b) {
+				return $elm$core$Maybe$Nothing;
+			} else {
+				var x = list.a;
+				var xs = list.b;
+				if (_Utils_eq(value, x)) {
+					return $elm$core$Maybe$Just(index);
+				} else {
+					var $temp$index = index + 1,
+						$temp$value = value,
+						$temp$list = xs;
+					index = $temp$index;
+					value = $temp$value;
+					list = $temp$list;
+					continue indexOfHelp;
+				}
+			}
+		}
+	});
+var $gampleman$elm_visualization$Scale$Band$indexOf = $gampleman$elm_visualization$Scale$Band$indexOfHelp(0);
+var $gampleman$elm_visualization$Scale$Band$convert = F4(
+	function (cfg, domain, _v0, value) {
+		var start = _v0.a;
+		var stop = _v0.b;
+		var _v1 = A2($gampleman$elm_visualization$Scale$Band$indexOf, value, domain);
+		if (_v1.$ === 'Just') {
+			var index = _v1.a;
+			var n = $elm$core$List$length(domain);
+			if (_Utils_cmp(start, stop) < 0) {
+				var _v2 = A4(
+					$gampleman$elm_visualization$Scale$Band$computePositions,
+					index,
+					cfg,
+					n,
+					_Utils_Tuple2(start, stop));
+				var start2 = _v2.a;
+				var step = _v2.b;
+				return start2 + (step * index);
+			} else {
+				var _v3 = A4(
+					$gampleman$elm_visualization$Scale$Band$computePositions,
+					index,
+					cfg,
+					n,
+					_Utils_Tuple2(stop, start));
+				var stop2 = _v3.a;
+				var step = _v3.b;
+				return stop2 + (step * ((n - index) - 1));
+			}
+		} else {
+			return 0 / 0;
+		}
+	});
+var $gampleman$elm_visualization$Scale$band = F3(
+	function (config, range_, domain_) {
+		return $gampleman$elm_visualization$Scale$Scale(
+			{
+				bandwidth: A3($gampleman$elm_visualization$Scale$Band$bandwidth, config, domain_, range_),
+				convert: $gampleman$elm_visualization$Scale$Band$convert(config),
+				domain: domain_,
+				range: range_
+			});
+	});
+var $gampleman$elm_visualization$Scale$defaultBandConfig = {align: 0.5, paddingInner: 0.0, paddingOuter: 0.0};
+var $author$project$Main$xScale = function (model) {
+	return A3(
+		$gampleman$elm_visualization$Scale$band,
+		_Utils_update(
+			$gampleman$elm_visualization$Scale$defaultBandConfig,
+			{paddingInner: 0.1, paddingOuter: 0.2}),
+		_Utils_Tuple2(0, $author$project$Main$w - (2 * $author$project$Main$padding)),
+		A2($elm$core$List$map, $elm$core$Tuple$first, model));
+};
+var $author$project$Main$xAxis = function (model) {
+	return A2(
+		$gampleman$elm_visualization$Axis$bottom,
+		_List_Nil,
+		A2(
+			$gampleman$elm_visualization$Scale$toRenderable,
+			$author$project$Main$dateFormat,
+			$author$project$Main$xScale(model)));
+};
+var $gampleman$elm_visualization$Axis$horizontalAttrs = {
+	horizontal: true,
+	translate: function (y) {
+		return 'translate(0, ' + ($elm$core$String$fromFloat(y) + ')');
+	},
+	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
+	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
+	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat),
+	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
+	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
+	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat)
+};
+var $gampleman$elm_visualization$Axis$left = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$horizontalAttrs, -1, '0.32em', 'end');
+var $gampleman$elm_visualization$Axis$TickCount = function (a) {
+	return {$: 'TickCount', a: a};
+};
+var $gampleman$elm_visualization$Axis$tickCount = $gampleman$elm_visualization$Axis$TickCount;
 var $gampleman$elm_visualization$Scale$Internal$bimap = F4(
 	function (_v0, _v1, deinterpolate, reinterpolate) {
 		var d0 = _v0.a;
@@ -8281,597 +8848,177 @@ var $gampleman$elm_visualization$Scale$linear = F2(
 		return $gampleman$elm_visualization$Scale$Scale(
 			{convert: $gampleman$elm_visualization$Scale$Linear$convert, domain: domain_, invert: $gampleman$elm_visualization$Scale$Linear$invert, nice: $gampleman$elm_visualization$Scale$Linear$nice, range: range_, rangeExtent: $gampleman$elm_visualization$Scale$Linear$rangeExtent, tickFormat: $gampleman$elm_visualization$Scale$Linear$tickFormat, ticks: $gampleman$elm_visualization$Scale$Linear$ticks});
 	});
-var $author$project$Main$yScale = A2(
-	$gampleman$elm_visualization$Scale$linear,
-	_Utils_Tuple2($author$project$Main$h - (2 * $author$project$Main$padding), 0),
-	_Utils_Tuple2(0, 600));
-var $author$project$Main$column = F2(
-	function (scale, _v0) {
-		var date = _v0.a;
-		var value = _v0.b;
-		return A2(
-			$elm_community$typed_svg$TypedSvg$g,
-			_List_fromArray(
-				[
-					$elm_community$typed_svg$TypedSvg$Attributes$class(
-					_List_fromArray(
-						['column']))
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm_community$typed_svg$TypedSvg$rect,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-							A2($gampleman$elm_visualization$Scale$convert, scale, date)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-							A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, value)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$width(
-							$gampleman$elm_visualization$Scale$bandwidth(scale)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$height(
-							($author$project$Main$h - A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, value)) - (2 * $author$project$Main$padding))
-						]),
-					_List_Nil),
-					A2(
-					$elm_community$typed_svg$TypedSvg$text_,
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$x(
-							A2(
-								$gampleman$elm_visualization$Scale$convert,
-								A2($gampleman$elm_visualization$Scale$toRenderable, $author$project$Main$dateFormat, scale),
-								date)),
-							$elm_community$typed_svg$TypedSvg$Attributes$InPx$y(
-							A2($gampleman$elm_visualization$Scale$convert, $author$project$Main$yScale, value) - 5),
-							$elm_community$typed_svg$TypedSvg$Attributes$textAnchor($elm_community$typed_svg$TypedSvg$Types$AnchorMiddle)
-						]),
-					_List_fromArray(
-						[
-							$elm_community$typed_svg$TypedSvg$Core$text(
-							$elm$core$String$fromFloat(value))
-						]))
-				]));
-	});
-var $author$project$Main$get = function (_v0) {
-	var time = _v0.time;
-	var value = _v0.value;
-	return _Utils_Tuple2(time, value);
-};
-var $author$project$Main$convert = function (data) {
-	return A2($elm$core$List$map, $author$project$Main$get, data);
-};
-var $elm_community$typed_svg$TypedSvg$style = $elm_community$typed_svg$TypedSvg$Core$node('style');
-var $elm_community$typed_svg$TypedSvg$svg = $elm_community$typed_svg$TypedSvg$Core$node('svg');
-var $elm$core$String$concat = function (strings) {
-	return A2($elm$core$String$join, '', strings);
-};
-var $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString = function (xform) {
-	var tr = F2(
-		function (name, args) {
-			return $elm$core$String$concat(
-				_List_fromArray(
-					[
-						name,
-						'(',
-						A2(
-						$elm$core$String$join,
-						' ',
-						A2($elm$core$List$map, $elm$core$String$fromFloat, args)),
-						')'
-					]));
-		});
-	switch (xform.$) {
-		case 'Matrix':
-			var a = xform.a;
-			var b = xform.b;
-			var c = xform.c;
-			var d = xform.d;
-			var e = xform.e;
-			var f = xform.f;
-			return A2(
-				tr,
-				'matrix',
-				_List_fromArray(
-					[a, b, c, d, e, f]));
-		case 'Rotate':
-			var a = xform.a;
-			var x = xform.b;
-			var y = xform.c;
-			return A2(
-				tr,
-				'rotate',
-				_List_fromArray(
-					[a, x, y]));
-		case 'Scale':
-			var x = xform.a;
-			var y = xform.b;
-			return A2(
-				tr,
-				'scale',
-				_List_fromArray(
-					[x, y]));
-		case 'SkewX':
-			var x = xform.a;
-			return A2(
-				tr,
-				'skewX',
-				_List_fromArray(
-					[x]));
-		case 'SkewY':
-			var y = xform.a;
-			return A2(
-				tr,
-				'skewY',
-				_List_fromArray(
-					[y]));
-		default:
-			var x = xform.a;
-			var y = xform.b;
-			return A2(
-				tr,
-				'translate',
-				_List_fromArray(
-					[x, y]));
+var $author$project$Main$maximum = function (list) {
+	if (!list.b) {
+		return 0;
+	} else {
+		if (!list.b.b) {
+			var x = list.a;
+			return x.b;
+		} else {
+			var x = list.a;
+			var xs = list.b;
+			var value = x.b;
+			var maxTail = $author$project$Main$maximum(xs);
+			return (_Utils_cmp(value, maxTail) > 0) ? value : maxTail;
+		}
 	}
 };
-var $elm_community$typed_svg$TypedSvg$Attributes$transform = function (transforms) {
+var $author$project$Main$yScale = function (model) {
+	var max = $author$project$Main$maximum(model);
 	return A2(
-		$elm_community$typed_svg$TypedSvg$Core$attribute,
-		'transform',
-		A2(
-			$elm$core$String$join,
-			' ',
-			A2($elm$core$List$map, $elm_community$typed_svg$TypedSvg$TypesToStrings$transformToString, transforms)));
+		$gampleman$elm_visualization$Scale$linear,
+		_Utils_Tuple2($author$project$Main$h - (2 * $author$project$Main$padding), 0),
+		_Utils_Tuple2(0, max));
 };
-var $elm_community$typed_svg$TypedSvg$Attributes$viewBox = F4(
-	function (minX, minY, vWidth, vHeight) {
-		return A2(
-			$elm_community$typed_svg$TypedSvg$Core$attribute,
-			'viewBox',
-			A2(
-				$elm$core$String$join,
-				' ',
-				A2(
-					$elm$core$List$map,
-					$elm$core$String$fromFloat,
-					_List_fromArray(
-						[minX, minY, vWidth, vHeight]))));
-	});
-var $author$project$Main$w = 900;
-var $elm$svg$Svg$Attributes$class = _VirtualDom_attribute('class');
-var $gampleman$elm_visualization$Scale$tickFormat = function (_v0) {
-	var opts = _v0.a;
-	return opts.tickFormat(opts.domain);
-};
-var $gampleman$elm_visualization$Scale$ticks = F2(
-	function (_v0, count) {
-		var scale = _v0.a;
-		return A2(scale.ticks, scale.domain, count);
-	});
-var $gampleman$elm_visualization$Axis$computeOptions = F2(
-	function (attrs, scale) {
-		var _v0 = A3(
-			$elm$core$List$foldl,
-			F2(
-				function (attr, _v1) {
-					var babyOpts = _v1.a;
-					var post = _v1.b;
-					switch (attr.$) {
-						case 'TickCount':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickCount: val}),
-								post);
-						case 'TickSizeInner':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickSizeInner: val}),
-								post);
-						case 'TickSizeOuter':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickSizeOuter: val}),
-								post);
-						case 'TickPadding':
-							var val = attr.a;
-							return _Utils_Tuple2(
-								_Utils_update(
-									babyOpts,
-									{tickPadding: val}),
-								post);
-						default:
-							return _Utils_Tuple2(
-								babyOpts,
-								A2($elm$core$List$cons, attr, post));
-					}
-				}),
-			_Utils_Tuple2(
-				{tickCount: 10, tickPadding: 3, tickSizeInner: 6, tickSizeOuter: 6},
-				_List_Nil),
-			attrs);
-		var opts = _v0.a;
-		var postList = _v0.b;
-		return A3(
-			$elm$core$List$foldl,
-			F2(
-				function (attr, options) {
-					switch (attr.$) {
-						case 'Ticks':
-							var val = attr.a;
-							return _Utils_update(
-								options,
-								{ticks: val});
-						case 'TickFormat':
-							var val = attr.a;
-							return _Utils_update(
-								options,
-								{tickFormat: val});
-						default:
-							return options;
-					}
-				}),
-			{
-				tickCount: opts.tickCount,
-				tickFormat: A2($gampleman$elm_visualization$Scale$tickFormat, scale, opts.tickCount),
-				tickPadding: opts.tickPadding,
-				tickSizeInner: opts.tickSizeInner,
-				tickSizeOuter: opts.tickSizeOuter,
-				ticks: A2($gampleman$elm_visualization$Scale$ticks, scale, opts.tickCount)
-			},
-			postList);
-	});
-var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
-var $elm$svg$Svg$Attributes$dy = _VirtualDom_attribute('dy');
-var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
-var $elm$svg$Svg$Attributes$fontFamily = _VirtualDom_attribute('font-family');
-var $elm$svg$Svg$Attributes$fontSize = _VirtualDom_attribute('font-size');
-var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
-var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
-var $elm$svg$Svg$line = $elm$svg$Svg$trustedNode('line');
-var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
-var $gampleman$elm_visualization$Scale$rangeExtent = function (_v0) {
-	var options = _v0.a;
-	return A2(options.rangeExtent, options.domain, options.range);
-};
-var $elm$core$Tuple$second = function (_v0) {
-	var y = _v0.b;
-	return y;
-};
-var $elm$svg$Svg$Attributes$stroke = _VirtualDom_attribute('stroke');
-var $elm$svg$Svg$text = $elm$virtual_dom$VirtualDom$text;
-var $elm$svg$Svg$Attributes$textAnchor = _VirtualDom_attribute('text-anchor');
-var $elm$svg$Svg$text_ = $elm$svg$Svg$trustedNode('text');
-var $elm$svg$Svg$Attributes$transform = _VirtualDom_attribute('transform');
-var $gampleman$elm_visualization$Axis$element = F4(
-	function (_v0, k, displacement, textAnchorPosition) {
-		var x = _v0.x;
-		var y = _v0.y;
-		var x1 = _v0.x1;
-		var x2 = _v0.x2;
-		var y1 = _v0.y1;
-		var y2 = _v0.y2;
-		var translate = _v0.translate;
-		var horizontal = _v0.horizontal;
-		return F2(
-			function (attrs, scale) {
-				var rangeExtent = $gampleman$elm_visualization$Scale$rangeExtent(scale);
-				var range1 = rangeExtent.b + 0.5;
-				var range0 = rangeExtent.a + 0.5;
-				var position = $gampleman$elm_visualization$Scale$convert(scale);
-				var opts = A2($gampleman$elm_visualization$Axis$computeOptions, attrs, scale);
-				var spacing = A2($elm$core$Basics$max, opts.tickSizeInner, 0) + opts.tickPadding;
-				var drawTick = function (tick) {
-					return A2(
-						$elm$svg$Svg$g,
-						_List_fromArray(
-							[
-								$elm$svg$Svg$Attributes$class('tick'),
-								$elm$svg$Svg$Attributes$transform(
-								translate(
-									position(tick)))
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$svg$Svg$line,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$stroke('#000'),
-										x2(k * opts.tickSizeInner),
-										y1(0.5),
-										y2(0.5)
-									]),
-								_List_Nil),
-								A2(
-								$elm$svg$Svg$text_,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$fill('#000'),
-										x(k * spacing),
-										y(0.5),
-										$elm$svg$Svg$Attributes$dy(displacement)
-									]),
-								_List_fromArray(
-									[
-										$elm$svg$Svg$text(
-										opts.tickFormat(tick))
-									]))
-							]));
-				};
-				var domainLine = horizontal ? ('M' + ($elm$core$String$fromFloat(k * opts.tickSizeOuter) + (',' + ($elm$core$String$fromFloat(range0) + ('H0.5V' + ($elm$core$String$fromFloat(range1) + ('H' + $elm$core$String$fromFloat(k * opts.tickSizeOuter)))))))) : ('M' + ($elm$core$String$fromFloat(range0) + (',' + ($elm$core$String$fromFloat(k * opts.tickSizeOuter) + ('V0.5H' + ($elm$core$String$fromFloat(range1) + ('V' + $elm$core$String$fromFloat(k * opts.tickSizeOuter))))))));
-				return A2(
-					$elm$svg$Svg$g,
-					_List_fromArray(
-						[
-							$elm$svg$Svg$Attributes$fill('none'),
-							$elm$svg$Svg$Attributes$fontSize('10'),
-							$elm$svg$Svg$Attributes$fontFamily('sans-serif'),
-							$elm$svg$Svg$Attributes$textAnchor(textAnchorPosition)
-						]),
-					A2(
-						$elm$core$List$cons,
-						A2(
-							$elm$svg$Svg$path,
-							_List_fromArray(
-								[
-									$elm$svg$Svg$Attributes$class('domain'),
-									$elm$svg$Svg$Attributes$stroke('#000'),
-									$elm$svg$Svg$Attributes$d(domainLine)
-								]),
-							_List_Nil),
-						A2($elm$core$List$map, drawTick, opts.ticks)));
-			});
-	});
-var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
-var $elm$svg$Svg$Attributes$x1 = _VirtualDom_attribute('x1');
-var $elm$svg$Svg$Attributes$x2 = _VirtualDom_attribute('x2');
-var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
-var $elm$svg$Svg$Attributes$y1 = _VirtualDom_attribute('y1');
-var $elm$svg$Svg$Attributes$y2 = _VirtualDom_attribute('y2');
-var $gampleman$elm_visualization$Axis$verticalAttrs = {
-	horizontal: false,
-	translate: function (x) {
-		return 'translate(' + ($elm$core$String$fromFloat(x) + ', 0)');
-	},
-	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
-	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
-	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat),
-	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
-	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
-	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat)
-};
-var $gampleman$elm_visualization$Axis$bottom = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$verticalAttrs, 1, '0.71em', 'middle');
-var $elm$core$Basics$clamp = F3(
-	function (low, high, number) {
-		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
-	});
-var $gampleman$elm_visualization$Scale$Band$normalizeConfig = function (_v0) {
-	var paddingInner = _v0.paddingInner;
-	var paddingOuter = _v0.paddingOuter;
-	var align = _v0.align;
-	return {
-		align: A3($elm$core$Basics$clamp, 0, 1, align),
-		paddingInner: A3($elm$core$Basics$clamp, 0, 1, paddingInner),
-		paddingOuter: A3($elm$core$Basics$clamp, 0, 1, paddingOuter)
-	};
-};
-var $gampleman$elm_visualization$Scale$Band$bandwidth = F3(
-	function (cfg, domain, _v0) {
-		var d0 = _v0.a;
-		var d1 = _v0.b;
-		var n = $elm$core$List$length(domain);
-		var _v1 = (_Utils_cmp(d0, d1) < 0) ? _Utils_Tuple2(d0, d1) : _Utils_Tuple2(d1, d0);
-		var start = _v1.a;
-		var stop = _v1.b;
-		var _v2 = $gampleman$elm_visualization$Scale$Band$normalizeConfig(cfg);
-		var paddingInner = _v2.paddingInner;
-		var paddingOuter = _v2.paddingOuter;
-		var align = _v2.align;
-		var step = (stop - start) / A2($elm$core$Basics$max, 1, (n - paddingInner) + (paddingOuter * 2));
-		return step * (1 - paddingInner);
-	});
-var $gampleman$elm_visualization$Scale$Band$computePositions = F4(
-	function (index, cfg, n, _v0) {
-		var start = _v0.a;
-		var stop = _v0.b;
-		var _v1 = $gampleman$elm_visualization$Scale$Band$normalizeConfig(cfg);
-		var paddingInner = _v1.paddingInner;
-		var paddingOuter = _v1.paddingOuter;
-		var align = _v1.align;
-		var step = (stop - start) / A2($elm$core$Basics$max, 1, (n - paddingInner) + (paddingOuter * 2));
-		var start2 = start + (((stop - start) - (step * (n - paddingInner))) * align);
-		return _Utils_Tuple2(start2, step);
-	});
-var $gampleman$elm_visualization$Scale$Band$indexOfHelp = F3(
-	function (index, value, list) {
-		indexOfHelp:
-		while (true) {
-			if (!list.b) {
-				return $elm$core$Maybe$Nothing;
-			} else {
-				var x = list.a;
-				var xs = list.b;
-				if (_Utils_eq(value, x)) {
-					return $elm$core$Maybe$Just(index);
-				} else {
-					var $temp$index = index + 1,
-						$temp$value = value,
-						$temp$list = xs;
-					index = $temp$index;
-					value = $temp$value;
-					list = $temp$list;
-					continue indexOfHelp;
-				}
-			}
-		}
-	});
-var $gampleman$elm_visualization$Scale$Band$indexOf = $gampleman$elm_visualization$Scale$Band$indexOfHelp(0);
-var $gampleman$elm_visualization$Scale$Band$convert = F4(
-	function (cfg, domain, _v0, value) {
-		var start = _v0.a;
-		var stop = _v0.b;
-		var _v1 = A2($gampleman$elm_visualization$Scale$Band$indexOf, value, domain);
-		if (_v1.$ === 'Just') {
-			var index = _v1.a;
-			var n = $elm$core$List$length(domain);
-			if (_Utils_cmp(start, stop) < 0) {
-				var _v2 = A4(
-					$gampleman$elm_visualization$Scale$Band$computePositions,
-					index,
-					cfg,
-					n,
-					_Utils_Tuple2(start, stop));
-				var start2 = _v2.a;
-				var step = _v2.b;
-				return start2 + (step * index);
-			} else {
-				var _v3 = A4(
-					$gampleman$elm_visualization$Scale$Band$computePositions,
-					index,
-					cfg,
-					n,
-					_Utils_Tuple2(stop, start));
-				var stop2 = _v3.a;
-				var step = _v3.b;
-				return stop2 + (step * ((n - index) - 1));
-			}
-		} else {
-			return 0 / 0;
-		}
-	});
-var $gampleman$elm_visualization$Scale$band = F3(
-	function (config, range_, domain_) {
-		return $gampleman$elm_visualization$Scale$Scale(
-			{
-				bandwidth: A3($gampleman$elm_visualization$Scale$Band$bandwidth, config, domain_, range_),
-				convert: $gampleman$elm_visualization$Scale$Band$convert(config),
-				domain: domain_,
-				range: range_
-			});
-	});
-var $gampleman$elm_visualization$Scale$defaultBandConfig = {align: 0.5, paddingInner: 0.0, paddingOuter: 0.0};
-var $author$project$Main$xScale = function (model) {
-	return A3(
-		$gampleman$elm_visualization$Scale$band,
-		_Utils_update(
-			$gampleman$elm_visualization$Scale$defaultBandConfig,
-			{paddingInner: 0.1, paddingOuter: 0.2}),
-		_Utils_Tuple2(0, $author$project$Main$w - (2 * $author$project$Main$padding)),
-		A2($elm$core$List$map, $elm$core$Tuple$first, model));
-};
-var $author$project$Main$xAxis = function (model) {
+var $author$project$Main$yAxis = function (model) {
 	return A2(
-		$gampleman$elm_visualization$Axis$bottom,
-		_List_Nil,
-		A2(
-			$gampleman$elm_visualization$Scale$toRenderable,
-			$author$project$Main$dateFormat,
-			$author$project$Main$xScale(model)));
+		$gampleman$elm_visualization$Axis$left,
+		_List_fromArray(
+			[
+				$gampleman$elm_visualization$Axis$tickCount(10)
+			]),
+		$author$project$Main$yScale(model));
 };
-var $gampleman$elm_visualization$Axis$horizontalAttrs = {
-	horizontal: true,
-	translate: function (y) {
-		return 'translate(0, ' + ($elm$core$String$fromFloat(y) + ')');
-	},
-	x: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x, $elm$core$String$fromFloat),
-	x1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x1, $elm$core$String$fromFloat),
-	x2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$x2, $elm$core$String$fromFloat),
-	y: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y, $elm$core$String$fromFloat),
-	y1: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y1, $elm$core$String$fromFloat),
-	y2: A2($elm$core$Basics$composeL, $elm$svg$Svg$Attributes$y2, $elm$core$String$fromFloat)
-};
-var $gampleman$elm_visualization$Axis$left = A4($gampleman$elm_visualization$Axis$element, $gampleman$elm_visualization$Axis$horizontalAttrs, -1, '0.32em', 'end');
-var $gampleman$elm_visualization$Axis$TickCount = function (a) {
-	return {$: 'TickCount', a: a};
-};
-var $gampleman$elm_visualization$Axis$tickCount = $gampleman$elm_visualization$Axis$TickCount;
-var $author$project$Main$yAxis = A2(
-	$gampleman$elm_visualization$Axis$left,
-	_List_fromArray(
-		[
-			$gampleman$elm_visualization$Axis$tickCount(5)
-		]),
-	$author$project$Main$yScale);
 var $author$project$Main$view = function (model) {
-	switch (model.$) {
+	switch (model.b.$) {
 		case 'Failure':
-			return $elm_community$typed_svg$TypedSvg$Core$text('Error: couldnt load');
-		case 'Loading':
-			return $elm_community$typed_svg$TypedSvg$Core$text('Loading...');
-		default:
-			var data = model.a;
+			var _v1 = model.b;
 			return A2(
-				$elm_community$typed_svg$TypedSvg$svg,
+				$elm$html$Html$div,
 				_List_fromArray(
 					[
-						A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Main$w, $author$project$Main$h)
+						$elm$html$Html$Attributes$class('graph_fail')
 					]),
 				_List_fromArray(
 					[
 						A2(
-						$elm_community$typed_svg$TypedSvg$style,
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Events$onClick($author$project$Main$Again),
+								A2($elm$html$Html$Attributes$style, 'display', 'block')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Refresh')
+							])),
+						$elm$html$Html$text('Error: couldnt load')
+					]));
+		case 'Loading':
+			var _v2 = model.b;
+			return $elm$html$Html$text('Loading...');
+		default:
+			var data = model.b.a;
+			return A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('graph')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$button,
+						_List_fromArray(
+							[
+								$elm$html$Html$Events$onClick($author$project$Main$Again),
+								A2($elm$html$Html$Attributes$style, 'display', 'block')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Refresh')
+							])),
+						A2(
+						$elm$html$Html$div,
 						_List_Nil,
 						_List_fromArray(
 							[
-								$elm_community$typed_svg$TypedSvg$Core$text('\r\n                    .column rect { fill: rgba(118, 214, 78, 0.8); }\r\n                    .column text { display: none; }\r\n                    .column:hover rect { fill: rgb(118, 214, 78); }\r\n                    .column:hover text { display: inline; }\r\n                ')
-							])),
-						A2(
-						$elm_community$typed_svg$TypedSvg$g,
-						_List_fromArray(
-							[
-								$elm_community$typed_svg$TypedSvg$Attributes$transform(
+								A2(
+								$elm$html$Html$p,
 								_List_fromArray(
 									[
-										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Main$padding - 1, $author$project$Main$h - $author$project$Main$padding)
+										$elm$html$Html$Attributes$class('average')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(
+										'Average is ' + $elm$core$String$fromFloat(
+											$author$project$Main$average(
+												$author$project$Main$convert(data))))
 									]))
+							])),
+						A2(
+						$elm_community$typed_svg$TypedSvg$svg,
+						_List_fromArray(
+							[
+								A4($elm_community$typed_svg$TypedSvg$Attributes$viewBox, 0, 0, $author$project$Main$w, $author$project$Main$h)
 							]),
 						_List_fromArray(
 							[
-								$author$project$Main$xAxis(
-								$author$project$Main$convert(data))
-							])),
-						A2(
-						$elm_community$typed_svg$TypedSvg$g,
-						_List_fromArray(
-							[
-								$elm_community$typed_svg$TypedSvg$Attributes$transform(
+								A2(
+								$elm_community$typed_svg$TypedSvg$style,
+								_List_Nil,
 								_List_fromArray(
 									[
-										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Main$padding - 1, $author$project$Main$padding)
-									]))
-							]),
-						_List_fromArray(
-							[$author$project$Main$yAxis])),
-						A2(
-						$elm_community$typed_svg$TypedSvg$g,
-						_List_fromArray(
-							[
-								$elm_community$typed_svg$TypedSvg$Attributes$transform(
-								_List_fromArray(
-									[
-										A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Main$padding, $author$project$Main$padding)
+										$elm_community$typed_svg$TypedSvg$Core$text('\r\n                        .column rect { fill: white; }\r\n                        .column text { display: none; }\r\n                        .column:hover rect { fill: royalblue; }\r\n                        .column:hover text { display: inline; }\r\n                    ')
 									])),
-								$elm_community$typed_svg$TypedSvg$Attributes$class(
+								A2(
+								$elm_community$typed_svg$TypedSvg$g,
 								_List_fromArray(
-									['series']))
-							]),
-						A2(
-							$elm$core$List$map,
-							$author$project$Main$column(
-								$author$project$Main$xScale(
-									$author$project$Main$convert(data))),
-							$author$project$Main$convert(data)))
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$transform(
+										_List_fromArray(
+											[
+												A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Main$padding - 1, $author$project$Main$h - $author$project$Main$padding)
+											]))
+									]),
+								_List_fromArray(
+									[
+										$author$project$Main$xAxis(
+										$author$project$Main$convert(data))
+									])),
+								A2(
+								$elm_community$typed_svg$TypedSvg$g,
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$transform(
+										_List_fromArray(
+											[
+												A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Main$padding - 1, $author$project$Main$padding)
+											]))
+									]),
+								_List_fromArray(
+									[
+										$author$project$Main$yAxis(
+										$author$project$Main$convert(data))
+									])),
+								A2(
+								$elm_community$typed_svg$TypedSvg$g,
+								_List_fromArray(
+									[
+										$elm_community$typed_svg$TypedSvg$Attributes$transform(
+										_List_fromArray(
+											[
+												A2($elm_community$typed_svg$TypedSvg$Types$Translate, $author$project$Main$padding, $author$project$Main$padding)
+											])),
+										$elm_community$typed_svg$TypedSvg$Attributes$class(
+										_List_fromArray(
+											['series']))
+									]),
+								A2(
+									$elm$core$List$map,
+									A2(
+										$author$project$Main$column,
+										$author$project$Main$xScale(
+											$author$project$Main$convert(data)),
+										$author$project$Main$yScale(
+											$author$project$Main$convert(data))),
+									$author$project$Main$convert(data)))
+							]))
 					]));
 	}
 };
 var $author$project$Main$main = $elm$browser$Browser$element(
 	{init: $author$project$Main$init, subscriptions: $author$project$Main$subscriptions, update: $author$project$Main$update, view: $author$project$Main$view});
-_Platform_export({'Main':{'init':$author$project$Main$main(
-	$elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
+_Platform_export({'Main':{'init':$author$project$Main$main($elm$json$Json$Decode$string)(0)}});}(this));

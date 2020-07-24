@@ -25,7 +25,7 @@ getHomeIdR deviceId = do
     let id' = toSqlKey tmp2
     seldev <- runDB $ selectList [DeviceUserId ==. id', DeviceId ==. deviceId] [] 
     dev <- runDB $ selectList [DeviceUserId ==. id'] [Asc DeviceId]
-    value <- runDB $ selectList [ValuesDeviceId ==. deviceId] [Asc ValuesTime]
+    _ <- runDB $ selectList [ValuesDeviceId ==. deviceId] [Asc ValuesTime]
     defaultLayout $ do
         setTitle "Welcome to Ročníkáč"
         $(widgetFile "homepage")

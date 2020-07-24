@@ -1,4 +1,4 @@
-module Main exposing (main)
+module Main2 exposing (main)
 
 
 import Axis
@@ -6,10 +6,10 @@ import DateFormat
 import Scale exposing (BandScale, ContinuousScale, defaultBandConfig)
 import Time
 import TypedSvg exposing (g, rect, style, svg, text_)
-import TypedSvg.Attributes exposing (class, textAnchor, transform, viewBox)
-import TypedSvg.Attributes.InPx exposing (height, width, x, y)
+import TypedSvg.Attributes exposing (class, fill, stroke, textAnchor, transform, viewBox)
+import TypedSvg.Attributes.InPx exposing (height, width, x, y, strokeWidth)
 import TypedSvg.Core exposing (Svg, text)
-import TypedSvg.Types exposing (AnchorAlignment(..), Transform(..))
+import TypedSvg.Types exposing (AnchorAlignment(..), Transform(..), Paint(..))
 import Json.Decode as Decode
 import Json.Decode.Extra as JDE
 import Browser
@@ -19,6 +19,9 @@ import Html.Events
 import Http
 import List
 import String
+import Color
+import Path exposing (Path)
+import Shape
 
 
 --The Main Elm part
@@ -71,18 +74,14 @@ view model =
                 [ button [ Html.Events.onClick Again, Html.Attributes.style "display" "block" ] [ Html.text "Refresh" ]
                 , div [] [ Html.p [ Html.Attributes.class "average" ] [ Html.text ("Average is " ++ String.fromFloat (average (convert data))) ] ]
                 , svg [ viewBox 0 0 w h ]
-                    [ TypedSvg.style [] [ TypedSvg.Core.text """
-                        .column rect { fill: white; }
-                        .column text { display: none; }
-                        .column:hover rect { fill: royalblue; }
-                        .column:hover text { display: inline; }
-                    """ ]
-                    , g [ transform [ Translate (padding - 1) (h - padding) ] ]
+                    [ g [ transform [ Translate (padding - 1) (h - padding) ] ]
                         [ xAxis (convert data) ]
                     , g [ transform [ Translate (padding - 1) padding ] ]
-                        [ yAxis (convert data)]
-                    , g [ transform [ Translate padding padding ], TypedSvg.Attributes.class [ "series" ] ] <|
-                        List.map (column (xScale (convert data)) (yScale (convert data))) (convert data)
+                        [ yAxis (convert data) ]
+                    , g [ transform [ Translate padding padding ], class [ "series" ] ]
+                        [ Path.element (area (convert data)) [ strokeWidth 3, fill <| Paint <| Color.white ]
+                        , Path.element (line (convert data)) [ stroke <| Paint <| Color.rgb 0.25 0.41 0.88 , strokeWidth 2, fill PaintNone ]
+                        ]
                     ]
                 ]
 
@@ -136,20 +135,56 @@ padding : Float
 padding =
     30
 
-maximum : List ( Time.Posix, Float ) -> Float
-maximum list =
+maximumFloat : List ( Time.Posix, Float ) -> Float
+maximumFloat list =
     case list of
         [] -> 0
         [x] -> Tuple.second x
         (x::xs) ->
             let 
-                maxTail = maximum xs
+                maxTail = maximumFloat xs
                 value = Tuple.second x
             in
                 if value > maxTail then
                     value
                 else
                     maxTail
+
+
+maximumTime : List ( Time.Posix, Float ) -> Time.Posix
+maximumTime list =
+    case list of
+        [] -> Time.millisToPosix 0
+        [x] -> Tuple.first x
+        (x::xs) ->
+            let 
+                maxTail = maximumTime xs
+                value = Tuple.first x
+                valueMillis = Time.posixToMillis value
+                maxTailMillis = Time.posixToMillis maxTail
+            in
+                if valueMillis > maxTailMillis then
+                    value
+                else
+                    maxTail
+
+
+minimumTime : List ( Time.Posix, Float ) -> Time.Posix
+minimumTime list =
+    case list of
+        [] -> Time.millisToPosix 0
+        [x] -> Tuple.first x
+        (x::xs) ->
+            let 
+                minTail = minimumTime xs
+                value = Tuple.first x
+                valueMillis = Time.posixToMillis value
+                minTailMillis = Time.posixToMillis minTail
+            in
+                if valueMillis < minTailMillis then
+                    value
+                else
+                    minTail
 
 
 getFloatFromList : List ( Time.Posix, Float ) -> List Float
@@ -166,16 +201,19 @@ average list =
     in
         List.sum listFl / Basics.toFloat (List.length listFl)
 
-xScale : List ( Time.Posix, Float ) -> BandScale Time.Posix
+xScale : List ( Time.Posix, Float ) -> ContinuousScale Time.Posix
 xScale model =
-    List.map Tuple.first model
-        |> Scale.band { defaultBandConfig | paddingInner = 0.1, paddingOuter = 0.2 } ( 0, w - 2 * padding )
+    let 
+        max = maximumTime model
+        min = minimumTime model
+    in
+        Scale.time Time.utc ( 0, w - 2* padding ) ( min, max )
 
 
 yScale : List ( Time.Posix, Float ) -> ContinuousScale Float
 yScale model =
     let 
-        max = maximum model
+        max = maximumFloat model
     in
         Scale.linear ( h - 2 * padding, 0 ) ( 0, max )
 
@@ -188,28 +226,33 @@ dateFormat =
 
 xAxis : List ( Time.Posix, Float ) -> Svg msg
 xAxis model =
-    Axis.bottom [] (Scale.toRenderable dateFormat (xScale model))
+    Axis.bottom [ Axis.tickCount (List.length model) ] (xScale model)
 
 
 yAxis : List ( Time.Posix, Float ) -> Svg msg
 yAxis model =
     Axis.left [ Axis.tickCount 10 ] (yScale model)
 
+transformToLineData : List ( Time.Posix, Float ) -> ( Time.Posix, Float ) -> Maybe ( Float, Float )
+transformToLineData model ( x, y ) =
+    Just ( Scale.convert (xScale model) x, Scale.convert (yScale model) y )
 
-column : BandScale Time.Posix -> ContinuousScale Float -> ( Time.Posix, Float ) -> Svg msg
-column xscale yscale ( date, value ) =
-    g [ TypedSvg.Attributes.class [ "column" ] ]
-        [ rect
-            [ x <| Scale.convert xscale date
-            , y <| Scale.convert yscale value
-            , TypedSvg.Attributes.InPx.width <| Scale.bandwidth xscale
-            , TypedSvg.Attributes.InPx.height <| h - Scale.convert yscale value - 2 * padding
-            ]
-            []
-        , text_
-            [ x <| Scale.convert (Scale.toRenderable dateFormat xscale) date
-            , y <| Scale.convert yscale value - 5
-            , textAnchor AnchorMiddle
-            ]
-            [ TypedSvg.Core.text <| String.fromFloat value ]
-        ]
+
+tranfromToAreaData : List ( Time.Posix, Float ) -> ( Time.Posix, Float ) -> Maybe ( ( Float, Float ), ( Float, Float ) )
+tranfromToAreaData model ( x, y ) =
+    Just
+        ( ( Scale.convert (xScale model) x, Tuple.first (Scale.rangeExtent (yScale model)) )
+        , ( Scale.convert (xScale model) x, Scale.convert (yScale model) y )
+        )
+
+
+line : List ( Time.Posix, Float ) -> Path
+line model =
+    List.map (transformToLineData model) model
+        |> Shape.line Shape.monotoneInXCurve
+
+
+area : List ( Time.Posix, Float ) -> Path
+area model =
+    List.map (tranfromToAreaData model) model
+        |> Shape.area Shape.monotoneInXCurve

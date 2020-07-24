@@ -7,12 +7,24 @@
                 $else
                     <a href=@{HomeIdR deviceid}>#{deviceName device}
 $forall Entity deviceid device <- seldev
-    <div id="elm">
-        <script src="http://localhost:3000/static/client/chart1.js">
+    $if((deviceGraph device) == "1")
+        <a .changeGraph href=@{ChangeGraphR "2" deviceid}>Change graph
+        <pre id="elm">
+        <script type="text/javascript" src="http://localhost:3000/static/client/chart1.js">
         <script>
             var app = Elm.Main.init({
-                node : document.getElementById("elm")
-                
+                node : document.getElementById("elm"),
+                flags : "#{fromSqlKey deviceid}"
+            });
+    $else
+        <a .changeGraph href=@{ChangeGraphR "1" deviceid}>Change graph
+
+        <pre id="elm">
+        <script type="text/javascript" src="http://localhost:3000/static/client/chart2.js">
+        <script>
+            var app = Elm.Main2.init({
+                node : document.getElementById("elm"),
+                flags : "#{fromSqlKey deviceid}"
             });
     <div .devInfo>
         <div .uuid>

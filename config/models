@@ -8,6 +8,7 @@ User
 Device
     name Text
     uuid Text
+    graph Text default="1"
     userId UserId
     UniqueUuid uuid
 Values json

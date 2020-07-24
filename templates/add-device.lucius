@@ -2,4 +2,21 @@
     border-style: double;
     border-radius: 10px;
     background-color: white;
+
+    .required{
+        position: absolute;
+        left: 35%;
+        top: 30%;
+        
+        label{
+            position: absolute;
+            left: -25%;
+        }
+    }
+
+    button{
+        position: absolute;
+        left: 45%;
+        top: 45%;
+    }
 }

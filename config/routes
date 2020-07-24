@@ -19,3 +19,4 @@
 /home HomeR GET
 /home/#DeviceId HomeIdR GET
 /data/#DeviceId DataR GET
+change/#Text/#DeviceId ChangeGraphR GET

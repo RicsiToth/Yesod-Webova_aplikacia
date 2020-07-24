@@ -8,12 +8,12 @@
 {-# LANGUAGE FlexibleContexts           #-}
 {-# LANGUAGE GADTs                      #-}
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
-module Handler.Data where
+module Handler.ChangeGraph where
 
 import Import
-import Yesod.Core.Json (returnJson)
 
-getDataR :: DeviceId -> Handler Value
-getDataR devId = do
-    tmp <- runDB $ selectList [ValuesDeviceId ==. devId] [Asc ValuesTime]
-    returnJson (map entityVal tmp)
+getChangeGraphR :: Text -> DeviceId -> Handler Html
+getChangeGraphR text id' = do
+    _ <- runDB $ update id' [DeviceGraph =. text]
+    redirect (HomeIdR id')
+

@@ -32,7 +32,7 @@ postAddDeviceR = do
             let tmp2 = R.read tmp ::Int64
             let id' = toSqlKey tmp2
             uuid <- liftIO $ genText
-            _ <- runDB $ insert $ Device (name nu) uuid id'
+            _ <- runDB $ insert $ Device (name nu) uuid "1" id'
             redirect AddDeviceR
         _ -> do
             setMessage "Something went wrong"

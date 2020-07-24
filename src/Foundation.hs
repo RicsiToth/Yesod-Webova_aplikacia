@@ -79,6 +79,7 @@ instance Yesod App where
     isAuthorized (HomeIdR _) _ = isAuthenticated
     isAuthorized HomeR _ = isAuthenticated
     isAuthorized (DataR _) _ = return Authorized
+    isAuthorized (ChangeGraphR _ _) _ = isAuthenticated
 
     addStaticContent :: Text -> Text -> LByteString -> Handler (Maybe (Either Text (Route App, [(Text, Text)])))
     addStaticContent ext mime content = do
