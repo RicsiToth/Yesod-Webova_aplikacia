@@ -20,6 +20,7 @@ import Yesod.Default.Util (addStaticContentExternal)
 import Yesod.Core.Types (Logger)
 import qualified Yesod.Core.Unsafe as Unsafe
 import Network.HTTP.Conduit (Manager)
+import Data.Time.Clock
 
 import Yesod.Auth.HashDB
 
@@ -73,6 +74,7 @@ instance Yesod App where
     isAuthorized (AuthR _) _ = return Authorized
     isAuthorized RegisterR _ = return Authorized
     isAuthorized (SendDataR _ _ _) _ = return Authorized
+    isAuthorized (SendDataTimeR _ _ _ _) _ = return Authorized
     isAuthorized ProfileR _ = isAuthenticated
     isAuthorized AddDeviceR _ = isAuthenticated
     isAuthorized (RemoveDeviceR _) _ = isAuthenticated

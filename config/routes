@@ -16,7 +16,13 @@
 /add-device AddDeviceR GET POST
 
 /remove-device/#DeviceId RemoveDeviceR GET POST
+
 /home HomeR GET
+
 /home/#DeviceId HomeIdR GET
+
 /data/#DeviceId DataR GET
+
 change/#Text/#DeviceId ChangeGraphR GET
+
+/send-data/#Text/#DeviceId/#Int/#Text SendDataTimeR GET POST
