@@ -1,0 +1,24 @@
+section {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+    border-style: double;
+}
+form {
+    position: relative;
+    left: 120px;
+    top: 100px;
+}
+#hident3 {
+    position: relative;
+    left: 14px;
+}
+#hident2 {
+    position: relative;
+    left: 11px;
+}
+body {
+    background-color: white;
+}

@@ -40,7 +40,7 @@ type Msg
 type alias Data = 
     {
     time : Time.Posix,
-    value : Int
+    value : Float
     }
 
 init : String -> (Model, Cmd Msg)
@@ -100,17 +100,17 @@ main =
 --Json dekoder and data conversion
 dataDecoder : Decode.Decoder Data
 dataDecoder =
-    Decode.map2 Data (Decode.field "time" JDE.datetime) (Decode.field "value" Decode.int)
+    Decode.map2 Data (Decode.field "time" JDE.datetime) (Decode.field "value" Decode.float)
 
 
 theDecoder : Decode.Decoder (List Data)
 theDecoder =
     Decode.list dataDecoder
 
-get : {c | time : Time.Posix, value : Int} -> (Time.Posix, Float)
-get {time, value} = (time ,toFloat value)
+get : {c | time : Time.Posix, value : Float} -> (Time.Posix, Float)
+get {time, value} = (time , value)
 
-convert : List({c | time : Time.Posix, value : Int}) -> (List (Time.Posix, Float))
+convert : List({c | time : Time.Posix, value : Float}) -> (List (Time.Posix, Float))
 convert data = List.map get data
 
 getData : String -> Cmd Msg
@@ -139,32 +139,45 @@ maximumFloat : List ( Time.Posix, Float ) -> Float
 maximumFloat list =
     case list of
         [] -> 0
-        [x] -> Tuple.second x
-        (x::xs) ->
+        [(_, y)] -> y
+        ((_, y)::xs) ->
             let 
                 maxTail = maximumFloat xs
-                value = Tuple.second x
             in
-                if value > maxTail then
-                    value
+                if y > maxTail then
+                    y
                 else
                     maxTail
+
+
+minimumFloat : List ( Time.Posix, Float ) -> Float
+minimumFloat list =
+    case list of
+        [] -> 0
+        [(_, y)] -> y
+        ((_, y)::xs) ->
+            let 
+                minTail = minimumFloat xs
+            in
+                if y < minTail then
+                    y
+                else
+                    minTail
 
 
 maximumTime : List ( Time.Posix, Float ) -> Time.Posix
 maximumTime list =
     case list of
         [] -> Time.millisToPosix 0
-        [x] -> Tuple.first x
-        (x::xs) ->
+        [(x, _)] -> x
+        ((x, _)::xs) ->
             let 
                 maxTail = maximumTime xs
-                value = Tuple.first x
-                valueMillis = Time.posixToMillis value
+                valueMillis = Time.posixToMillis x
                 maxTailMillis = Time.posixToMillis maxTail
             in
                 if valueMillis > maxTailMillis then
-                    value
+                    x
                 else
                     maxTail
 
@@ -173,16 +186,15 @@ minimumTime : List ( Time.Posix, Float ) -> Time.Posix
 minimumTime list =
     case list of
         [] -> Time.millisToPosix 0
-        [x] -> Tuple.first x
-        (x::xs) ->
+        [(x, _)] -> x
+        ((x, _)::xs) ->
             let 
                 minTail = minimumTime xs
-                value = Tuple.first x
-                valueMillis = Time.posixToMillis value
+                valueMillis = Time.posixToMillis x
                 minTailMillis = Time.posixToMillis minTail
             in
                 if valueMillis < minTailMillis then
-                    value
+                    x
                 else
                     minTail
 
@@ -191,7 +203,7 @@ getFloatFromList : List ( Time.Posix, Float ) -> List Float
 getFloatFromList list = 
     case list of
        [] -> []
-       (x::xs) -> (Tuple.second x :: getFloatFromList xs) 
+       ((_, y)::xs) -> (y :: getFloatFromList xs) 
 
 
 average : List ( Time.Posix, Float ) -> Basics.Float
@@ -214,8 +226,9 @@ yScale : List ( Time.Posix, Float ) -> ContinuousScale Float
 yScale model =
     let 
         max = maximumFloat model
+        min = minimumFloat model
     in
-        Scale.linear ( h - 2 * padding, 0 ) ( 0, max )
+        Scale.linear ( h - 2 * padding, 0 ) ( min, max )
 
 
 dateFormat : Time.Posix -> String

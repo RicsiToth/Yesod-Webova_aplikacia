@@ -12,7 +12,7 @@ Device
     userId UserId
     UniqueUuid uuid
 Values json
-    value Int
+    value Double
     time UTCTime default=CURRENT_TIME
     deviceId DeviceId
     

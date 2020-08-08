@@ -1,0 +1,40 @@
+section {
+    border-style: double;
+}
+form {
+    position: relative;
+    left: 110px;
+    top: 30px;
+}
+#hident3 {
+    position: relative;
+    left: 15px;
+}
+#hident2 {
+    position: relative;
+    left: 11px;
+}
+h2 {
+    text-align: center;
+}
+button {
+    position: relative;
+    left: 110px;
+    top: 15px;
+}
+body {
+    background-color: white;
+}
+.top {
+    background-color: #1a1aff;
+    height: 50px;
+    font-size: 2.5em;
+    color: white;
+}
+section {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}

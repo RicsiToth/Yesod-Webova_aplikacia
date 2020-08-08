@@ -1,0 +1,120 @@
+D:\Haskell 8.6.5\Web\src\Application.hs:
+  hash: ac138645a7e96493c32cedee5555664d6779b4d8bd34a61ca942e2c87d16f210
+  size: 7695
+  modtime: 1596034140
+D:\Haskell 8.6.5\Web\src\Handler\Intro.hs:
+  hash: fb25a554530d873a9fd5994a2393b260b2f080fe2a44935aedaebaca6311f336
+  size: 454
+  modtime: 1582827136
+D:\Haskell 8.6.5\Web\templates\register.hamlet:
+  hash: 17d8bb525bb6af37f130956027e99a2071cc0b6e7c2b4becc4736f2e1b8930e3
+  size: 131
+  modtime: 1582795798
+D:\Haskell 8.6.5\Web\config\models:
+  hash: 4c4b994e7df27a5f93c2e8a04c7e4c26fa63d66cf15311f6ad6f661ad079f0b3
+  size: 480
+  modtime: 1596384043
+D:\Haskell 8.6.5\Web\src\Handler\Data.hs:
+  hash: 5a3949893e22f86fe67a34644f2749217f791a43fab2ff30ae2ade3ece0e3246
+  size: 639
+  modtime: 1589967807
+D:\Haskell 8.6.5\Web\src\Settings\StaticFiles.hs:
+  hash: 05d50ff4565a9c18c44102b7a541ecbfe7d71087bc99d14757edf5fe098816a0
+  size: 799
+  modtime: 1580805286
+C:\Users\Asus\AppData\Local\Programs\stack\x86_64-windows\ghc-8.4.4\lib\include\ghcversion.h:
+  hash: 3b9bbcae80e989c985b8bf9030bc523bff6a4ec3bd90838a2350f407251ced3f
+  size: 524
+  modtime: 1539500105
+D:\Haskell 8.6.5\Web\src\Foundation.hs:
+  hash: 2f0e02ffd497b7e89720a2304daf21be991b829b015afca66b957da157076345
+  size: 5341
+  modtime: 1596384288
+D:\Haskell 8.6.5\Web\src\Handler\ChangeGraph.hs:
+  hash: c17aed36d1228268a84cb0a4b77e3cc6ec3b622a6e696d0fd5d26c164513ae1a
+  size: 605
+  modtime: 1595614216
+D:\Haskell 8.6.5\Web\config\settings.yml:
+  hash: 6a33a109abca83d21cc09890f48f5fa003a6b237313efcccdfd0db282fb93b0e
+  size: 1606
+  modtime: 1580805286
+D:\Haskell 8.6.5\Web\src\Handler\AddDevice.hs:
+  hash: dd67f4bcef1be515658ebeaa95d945d2930b4b20598a651dd2ba5e2ec61ae7a1
+  size: 1287
+  modtime: 1595612996
+D:\Haskell 8.6.5\Web\src\Handler\SendDataTime.hs:
+  hash: aa084cd8fa6a1245fa32d2b546d9b52231820f0fb9c1312e562647d7bbeafa43
+  size: 1314
+  modtime: 1596386054
+D:\Haskell 8.6.5\Web\templates\intro.hamlet:
+  hash: 4ec7188e3f5bed3e43c044c03d4be852cf2ae467f0795a483e470f0510229063
+  size: 135
+  modtime: 1582795788
+D:\Haskell 8.6.5\Web\src\Settings.hs:
+  hash: 1e98c96d3274ef932a2979fe7c080067172574389ea2a05abc5c0dab423bcf56
+  size: 5860
+  modtime: 1580805286
+D:\Haskell 8.6.5\Web\src\Handler\SendData.hs:
+  hash: af0291231a7a06ca54739e9c5b49f2454f8ae1bef30e04595562bcc63c28d763
+  size: 1343
+  modtime: 1596386043
+D:\Haskell 8.6.5\Web\Web.cabal:
+  hash: 2018e6704233e0c6b9b614022cd17bc78db190d47912deaa0eaef932e99676d4
+  size: 6230
+  modtime: 1596035857
+D:\Haskell 8.6.5\Web\src\Model.hs:
+  hash: bc93ec66539c091517aa190cdeca8f29b7279a6fbcb2bf2e234664aabebe7328
+  size: 1030
+  modtime: 1589193210
+D:\Haskell 8.6.5\Web\src\Handler\Profile.hs:
+  hash: af79ec491626e46a53112a9c020eb29fffc6b591d1ec666825e3cf7bc7591cf2
+  size: 301
+  modtime: 1580805286
+D:\Haskell 8.6.5\Web\.stack-work\dist\7d103d30\build\autogen\cabal_macros.h:
+  hash: 85b6f90ce3ec0934f62311877b4e3a93818d36d26e8630a8814af2649325b8d2
+  size: 23131
+  modtime: 1596386016
+D:\Haskell 8.6.5\Web\templates\add-device.hamlet:
+  hash: 36c9dea4ed034e1da0317ee35a5947a7f8c6c7c7c94ca0b0fa91a6618fa2a913
+  size: 103
+  modtime: 1582795810
+D:\Haskell 8.6.5\Web\templates\default-layout.hamlet:
+  hash: 904c9129b60797e41f6cacafdf9c07f5cd249a6cc0c1a3c924af10c8e668d8c3
+  size: 208
+  modtime: 1582827833
+D:\Haskell 8.6.5\Web\src\Handler\RemoveDevice.hs:
+  hash: 697cc06681b8bf9c73f42539608553229ca77ff8988e560fcb0f143c7d51b30a
+  size: 1151
+  modtime: 1582755074
+D:\Haskell 8.6.5\Web\templates\default-layout-wrapper.hamlet:
+  hash: ef51e7410b249ffccca5e63a6aab2d8c252b5e9819f8e2b031f99ebf102c9775
+  size: 176
+  modtime: 1589967427
+D:\Haskell 8.6.5\Web\src\Import\NoFoundation.hs:
+  hash: 82dad19561281f8c3860c6622458be491fb95214dc64fd8851e9d9633213295b
+  size: 367
+  modtime: 1580805286
+D:\Haskell 8.6.5\Web\src\Handler\Home.hs:
+  hash: c162bf69700ed06032173072b465787f7c9b5285f581f69af77df9dbc748dde6
+  size: 891
+  modtime: 1589967722
+D:\Haskell 8.6.5\Web\src\Handler\HomeId.hs:
+  hash: c8447dd7e7127b84728943bc1d0f851aa58ffde507a10f11aac5128193c70c87
+  size: 1053
+  modtime: 1589967721
+D:\Haskell 8.6.5\Web\src\Import.hs:
+  hash: e2316f6d638cc4e9d157c71f1b1b075efb0b67fdc59fee700ac8d9a7df167a03
+  size: 125
+  modtime: 1580805286
+D:\Haskell 8.6.5\Web\src\Handler\Register.hs:
+  hash: 619cd67299ade703a85a1dadf70a2d8b1158562207faa00289338c7724728e80
+  size: 1825
+  modtime: 1582827466
+D:\Haskell 8.6.5\Web\config\routes:
+  hash: 9ec8474b4c631da837ff58f15605499db6385a01a1c7023e516147e05242b9f2
+  size: 599
+  modtime: 1596385026
+D:\Haskell 8.6.5\Web\templates\homepage.hamlet:
+  hash: 8a05dc91a646b9be912e8411c0c3d29b6ecccddde7fe91a7f2d5e376e0c7198b
+  size: 1322
+  modtime: 1595614318

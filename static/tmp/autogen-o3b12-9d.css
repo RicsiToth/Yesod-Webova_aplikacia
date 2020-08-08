@@ -1,0 +1,28 @@
+.sideBar {
+    position: relative;
+    left: 0%;
+    margin: 0;
+    background-color: #4d88ff;
+    width: 150px;
+    color: white;
+}
+a {
+    color: white;
+}
+body {
+    background-color: white;
+}
+.top {
+    background: linear-gradient(to top left, #0066cc 0%, #ff99cc 100%);
+    height: 50px;
+    font-size: 2em;
+    color: white;
+    margin: 0;
+}
+.center {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}

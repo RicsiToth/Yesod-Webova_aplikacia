@@ -1,0 +1,32 @@
+body {
+    background-image: url(http://localhost:3000/static/img/background.jpg?etag=V_5gR7Ca);
+}
+#header {
+    width: 500px;
+    height: 250px;
+    color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+  z-index: 2;
+}
+#login {
+    background: #E1DEDD;
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+  z-index: 1;
+}
+form {
+    position: relative;
+    left: 120px;
+    top: 100px;
+}

@@ -12,26 +12,30 @@ module Handler.SendData where
 
 import Import
 import Data.Time.Clock
+import Data.Text
+import Text.Read
+import Database.Persist.Sql
 
-getSendDataR :: Text -> DeviceId -> Int -> Handler Html
-getSendDataR uuid id' value = do
-    valid <- validation id' uuid
+getSendDataR :: Text -> Text -> Handler Html
+getSendDataR uuid value = do
+    (valid, id') <- validation uuid
     if(valid)
         then do
             time <- liftIO myTime
-            _ <- runDB $ insert $ Values value time id'
+            let value' = read $ Data.Text.unpack value
+            _ <- runDB $ insert $ Values value' time id'
             defaultLayout [whamlet|<p>OK|]
         else defaultLayout [whamlet|<p>NIE|]
 
-postSendDataR :: Text -> DeviceId -> Int -> Handler Html
-postSendDataR uuid id' value = getSendDataR uuid id' value
+postSendDataR :: Text -> Text -> Handler Html
+postSendDataR uuid value = getSendDataR uuid value
 
-validation :: DeviceId -> Text -> Handler Bool
-validation id' uuid = do
-  results <- runDB $ selectList [DeviceId ==. id', DeviceUuid ==. uuid] []
+validation :: Text -> Handler (Bool, DeviceId)
+validation uuid = do
+  results <- runDB $ getBy $ UniqueUuid uuid
   case results of
-    [] -> return False
-    _  -> return True
+    Nothing -> return (False, toSqlKey 0)
+    Just(Entity deviceId _) -> return (True, deviceId)
 
 myTime :: IO UTCTime
 myTime = do

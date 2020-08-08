@@ -1,0 +1,26 @@
+body {
+    background-color: #cce6ff
+;
+}
+.top {
+    background: white;
+    height: 50px;
+    font-size: 2em;
+    color: black;
+    margin: 0;
+}
+.center {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}
+.home,.home:hover {
+    color: #000;
+    text-decoration: none;
+}
+.logout {
+    position: relative;
+    left: 70%;
+}

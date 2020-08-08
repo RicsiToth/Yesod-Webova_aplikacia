@@ -1,0 +1,10 @@
+body {
+    background-color: white;
+}
+section {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}

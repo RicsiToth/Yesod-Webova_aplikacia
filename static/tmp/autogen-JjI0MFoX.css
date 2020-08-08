@@ -1,0 +1,15 @@
+section {
+    background: #E1DEDD;
+    width: 500px;
+    height: 250px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -270px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+;
+}
+body {
+    background-image: url(http://localhost:3000/static/img/background3.jpg?etag=V_5gR7Ca)
+;
+}

@@ -1,0 +1,16 @@
+body {
+    background-color: white;
+}
+.top {
+    background-color: #1a1aff;
+    height: 50px;
+    font-size: 2em;
+    color: white;
+}
+section {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}

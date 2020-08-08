@@ -1,0 +1,20 @@
+.login:link,.login:visited{background-image:url(http://localhost:3000/static/img/buttonblood.jpg?etag=ULvEtjBH);color:white;padding:14px 25px;text-align:center;text-decoration:none;display:inline-block}.signin:link,.signin:visited{background-image:url(http://localhost:3000/static/img/buttonmoney.jpg?etag=9E5uovtj);color:white;padding:14px 25px;text-align:center;text-decoration:none;display:inline-block}.def {
+    background: #E1DEDD;
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+;
+}
+.intro {
+    text-align: center;
+    margin: 10px
+;
+}
+body {
+    background-image: url(http://localhost:3000/static/img/background.jpg?etag=V_5gR7Ca);
+}

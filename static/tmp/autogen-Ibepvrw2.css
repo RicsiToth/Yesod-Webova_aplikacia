@@ -1,0 +1,53 @@
+form{position:relative;left:120px}#hident5{position:relative;left:42px}#hident4{position:relative;left:14px}#hident3{position:relative;left:12px}#hident2{position:relative;left:11px}.deff {
+    background: #E1DEDD;
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+;
+}
+.def {
+    background: black;
+    width: 500px;
+    height: 325px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+;
+}
+.intro {
+    text-align: center;
+    margin: 10px
+;
+}
+h1 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+body {
+    background-image: url(http://localhost:3000/static/img/background.jpg?etag=V_5gR7Ca);
+}
+#header {
+    display: none;
+}
+#login {
+    background: #E1DEDD;
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+;
+}

@@ -1,0 +1,12 @@
+.bar {
+    background-color: gray;
+    border-style: solid;
+    border-color: black;
+    width: 300px;
+    height: auto
+;
+}
+.bar_item {
+    color: white
+;
+}

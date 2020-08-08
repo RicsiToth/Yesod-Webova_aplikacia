@@ -1,0 +1,54 @@
+.login:link,.login:visited {
+    border-color: #1a1aff;
+    background-color: white;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(26, 26, 255, 0.5), 0 6px 20px 0 rgba(26, 26, 255, 0.19);
+    position: relative;
+    left: 60px;
+    top: 50px;
+}
+.login:hover,.login:active {
+    border-color: #1a1aff;
+    box-shadow: 0 4px 8px 0 rgba(26, 26, 255, 0.7), 0 6px 20px 0 rgba(26, 26, 255, 0.4);
+}
+.signin:link,.signin:visited {
+    border-color: #1a1aff;
+    background-color: white;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(26, 26, 255, 0.5), 0 6px 20px 0 rgba(26, 26, 255, 0.19);
+    position: relative;
+    left: 90px;
+    top: 50px;
+}
+.signin:hover,.signin:active {
+    border-color: #1a1aff;
+    box-shadow: 0 4px 8px 0 rgba(26, 26, 255, 0.7), 0 6px 20px 0 rgba(26, 26, 255, 0.4);
+}
+body {
+    background-color: white;
+}
+.top {
+    background-color: #1a1aff;
+    height: 50px;
+    font-size: 2em;
+    color: white;
+}
+section {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}

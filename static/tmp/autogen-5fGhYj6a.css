@@ -1,0 +1,50 @@
+.bars {
+    float: left
+;
+}
+.bar_holder {
+    background-color: #333333;
+    border-style: solid;
+    border-color: black;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    margin: 10px 10px
+;
+}
+.bar {
+    width: 297px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border-style: solid;
+    border-color: black;
+    border-width: 0.5px;
+    text-align: center
+;
+}
+.bar_item,.bar_item:hover {
+    color: white;
+}
+.main {
+    background: #E1DEDD;
+    width: 800px;
+    height: 1000px;
+    float: left
+;
+}
+body {
+    background-image: url(http://localhost:3000/static/img/background3.jpg?etag=V_5gR7Ca)
+;
+}
+section {
+    background: #E1DEDD;
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 2), 0 6px 20px 0 rgba(0, 0, 0, 2)
+;
+}

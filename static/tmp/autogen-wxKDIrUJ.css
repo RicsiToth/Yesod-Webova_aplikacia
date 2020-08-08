@@ -1,0 +1,55 @@
+section {
+    border-style: double;
+}
+form {
+    position: relative;
+    left: 110px;
+    top: 30px;
+}
+#hident3 {
+    position: relative;
+    left: 15px;
+}
+#hident2 {
+    position: relative;
+    left: 11px;
+}
+h2 {
+    text-align: center;
+}
+button {
+    position: relative;
+    left: 110px;
+    top: 15px;
+}
+body {
+    background-color: #cce6ff
+;
+}
+.top {
+    background: white;
+    height: 50px;
+    color: black;
+    margin: 0;
+}
+.center {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}
+.home,.home:hover,.home:active,.home:visited {
+    position: relative;
+    left: 1%;
+    color: #000;
+    font-size: 2em;
+    text-decoration: none;
+}
+.logout {
+    position: relative;
+    left: 73%;
+    color: #000;
+    text-decoration: none;
+    font-size: 1.5em;
+}

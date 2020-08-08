@@ -1,0 +1,44 @@
+.bar_holder {
+    background-color: #333333;
+    border-style: solid;
+    border-color: black;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    height: auto;
+    margin: 10px 10px
+;
+}
+.bar {
+    text-align: left;
+    padding-left: 30px;
+    width: 150px;
+    padding-top: 3px;
+    height: 18px;
+    background-image: url(../images/gifsprite160120.gif);
+    background-position: -181px -85px;
+    background-color: #1d1d1d;
+}
+.bar_item,.bar_item:hover {
+    color: white;
+}
+.game {
+    background: #E1DEDD;
+    width: 800px;
+    min-height: 625px;
+    position: absolute;
+    left: 100%;
+    top: 3%
+;
+}
+.menu {
+    width: 180px;
+    height: 25px;
+    background-image: url(../images/gifsprite160120.gif);
+    background-position: 0px -11px;
+}
+.main {
+    position: absolute;
+}
+body {
+    background-image: url(http://localhost:3000/static/img/background3.jpg?etag=V_5gR7Ca);
+}

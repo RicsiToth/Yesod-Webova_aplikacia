@@ -37,7 +37,7 @@ type Msg
 type alias Data = 
     {
     time : Time.Posix,
-    value : Int
+    value : Float
     }
 
 init : String -> (Model, Cmd Msg)
@@ -101,17 +101,17 @@ main =
 --Json dekoder and data conversion
 dataDecoder : Decode.Decoder Data
 dataDecoder =
-    Decode.map2 Data (Decode.field "time" JDE.datetime) (Decode.field "value" Decode.int)
+    Decode.map2 Data (Decode.field "time" JDE.datetime) (Decode.field "value" Decode.float)
 
 
 theDecoder : Decode.Decoder (List Data)
 theDecoder =
     Decode.list dataDecoder
 
-get : {c | time : Time.Posix, value : Int} -> (Time.Posix, Float)
-get {time, value} = (time ,toFloat value)
+get : {c | time : Time.Posix, value : Float} -> (Time.Posix, Float)
+get {time, value} = (time , value)
 
-convert : List({c | time : Time.Posix, value : Int}) -> (List (Time.Posix, Float))
+convert : List({c | time : Time.Posix, value : Float}) -> (List (Time.Posix, Float))
 convert data = List.map get data
 
 getData : String -> Cmd Msg
@@ -152,6 +152,21 @@ maximum list =
                     maxTail
 
 
+minimum : List ( Time.Posix, Float ) -> Float
+minimum list =
+    case list of
+        [] -> 0
+        [(_, y)] -> y
+        ((_, y)::xs) ->
+            let 
+                minTail = minimum xs
+            in
+                if y < minTail then
+                    y
+                else
+                    minTail
+
+
 getFloatFromList : List ( Time.Posix, Float ) -> List Float
 getFloatFromList list = 
     case list of
@@ -166,6 +181,7 @@ average list =
     in
         List.sum listFl / Basics.toFloat (List.length listFl)
 
+
 xScale : List ( Time.Posix, Float ) -> BandScale Time.Posix
 xScale model =
     List.map Tuple.first model
@@ -176,8 +192,9 @@ yScale : List ( Time.Posix, Float ) -> ContinuousScale Float
 yScale model =
     let 
         max = maximum model
+        min = minimum model
     in
-        Scale.linear ( h - 2 * padding, 0 ) ( 0, max )
+        Scale.linear ( h - 2 * padding, 0 ) ( min, max )
 
 
 dateFormat : Time.Posix -> String

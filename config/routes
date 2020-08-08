@@ -11,7 +11,7 @@
 
 /register RegisterR GET POST
 
-/send-data/#Text/#DeviceId/#Int SendDataR GET POST
+/send-data/#Text/#Text SendDataR GET POST
 
 /add-device AddDeviceR GET POST
 
@@ -25,4 +25,4 @@
 
 change/#Text/#DeviceId ChangeGraphR GET
 
-/send-data/#Text/#DeviceId/#Int/#Text SendDataTimeR GET POST
+/send-data/#Text/#Text/#Text SendDataTimeR GET POST

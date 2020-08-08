@@ -1,0 +1,50 @@
+.login:link,.login:visited {
+    background-color: black;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    left: 60px;
+    top: 50px;
+}
+.login:hover,.login:active {
+    box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 0.5), 0 6px 20px 0 rgba(100, 0, 0, 0.19);
+    color: red;
+}
+.signin:link,.signin:visited {
+    background-color: black;
+    color: white;
+    padding: 14px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    left: 90px;
+    top: 50px;
+}
+.signin:hover,.signin:active {
+    box-shadow: 0 4px 8px 0 rgba(100, 0, 0, 0.5), 0 6px 20px 0 rgba(100, 0, 0, 0.19);
+    color: red;
+}
+body {
+    background-color: white;
+}
+.top {
+    background-color: #99bbff;
+    height: 75px;
+}
+section {
+    width: 500px;
+    height: 250px;
+    position: fixed;
+    top: 35%;
+    left: 35%;
+}
