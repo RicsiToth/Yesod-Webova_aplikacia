@@ -15,9 +15,9 @@ D:\Haskell 8.6.5\Web\config\models:
   size: 480
   modtime: 1596384043
 D:\Haskell 8.6.5\Web\src\Handler\Data.hs:
-  hash: 5a3949893e22f86fe67a34644f2749217f791a43fab2ff30ae2ade3ece0e3246
-  size: 639
-  modtime: 1589967807
+  hash: 45af8c7eb87fbb71f43cf8017532b9ebe614c2614b8af23d4ba2c900e273cd09
+  size: 891
+  modtime: 1597220175
 D:\Haskell 8.6.5\Web\src\Settings\StaticFiles.hs:
   hash: 05d50ff4565a9c18c44102b7a541ecbfe7d71087bc99d14757edf5fe098816a0
   size: 799
@@ -73,7 +73,7 @@ D:\Haskell 8.6.5\Web\src\Handler\Profile.hs:
 D:\Haskell 8.6.5\Web\.stack-work\dist\7d103d30\build\autogen\cabal_macros.h:
   hash: 85b6f90ce3ec0934f62311877b4e3a93818d36d26e8630a8814af2649325b8d2
   size: 23131
-  modtime: 1596386016
+  modtime: 1597219562
 D:\Haskell 8.6.5\Web\templates\add-device.hamlet:
   hash: 36c9dea4ed034e1da0317ee35a5947a7f8c6c7c7c94ca0b0fa91a6618fa2a913
   size: 103
@@ -111,10 +111,10 @@ D:\Haskell 8.6.5\Web\src\Handler\Register.hs:
   size: 1825
   modtime: 1582827466
 D:\Haskell 8.6.5\Web\config\routes:
-  hash: 9ec8474b4c631da837ff58f15605499db6385a01a1c7023e516147e05242b9f2
-  size: 599
-  modtime: 1596385026
+  hash: 52121b1b12a57e6e430b589ad01e554c1d1b08621fd4db5ff4365b9e4cb18fff
+  size: 595
+  modtime: 1597220127
 D:\Haskell 8.6.5\Web\templates\homepage.hamlet:
-  hash: 8a05dc91a646b9be912e8411c0c3d29b6ecccddde7fe91a7f2d5e376e0c7198b
-  size: 1322
-  modtime: 1595614318
+  hash: b6fa4262064f587fdcf61df77f6861d5f63d6276de00ec10e0bce080a485b5ee
+  size: 1318
+  modtime: 1597220280

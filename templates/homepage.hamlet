@@ -14,7 +14,7 @@ $forall Entity deviceid device <- seldev
         <script>
             var app = Elm.Main.init({
                 node : document.getElementById("elm"),
-                flags : "#{fromSqlKey deviceid}"
+                flags : "#{deviceUuid device}"
             });
     $else
         <a .changeGraph href=@{ChangeGraphR "1" deviceid}>Change graph
@@ -24,7 +24,7 @@ $forall Entity deviceid device <- seldev
         <script>
             var app = Elm.Main2.init({
                 node : document.getElementById("elm"),
-                flags : "#{fromSqlKey deviceid}"
+                flags : "#{deviceUuid device}"
             });
     <div .devInfo>
         <div .uuid>

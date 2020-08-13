@@ -21,7 +21,7 @@
 
 /home/#DeviceId HomeIdR GET
 
-/data/#DeviceId DataR GET
+/data/#Text DataR GET
 
 change/#Text/#DeviceId ChangeGraphR GET
 
